@@ -58,7 +58,7 @@ function MainContent() {
                         }}
                     ></Particles>
                 </div>
-                <div className="flex flex-col lg:flex-row items-center justify-center px-10 lg:px-20 xl:px-32 2xl:px-40 mt-20 w-full z-[20] relative">
+                <div className="flex flex-col lg:flex-row items-center justify-center px-10 lg:px-20 xl:px-32 2xl:px-40 mt-20 w-full  relative">
                     <div className="flex flex-col items-center gap-3 lg:items-start text-justify h-full w-full justify-center">
                         <div
                             className="text-neutral-800 font-bold flex flex-col text-center lg:text-start gap-6 mt-6 text-6xl xl:text-7xl 2xl:text-8xl h-auto w-auto lg:px-16 xl:px-20 2xl:px-24"

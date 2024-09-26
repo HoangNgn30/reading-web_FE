@@ -1,14 +1,14 @@
 import { useState } from 'react';
 import ReactModal from 'react-modal';
 
-ReactModal.setAppElement("#root")
+ReactModal.setAppElement('#root');
 function Header() {
     const [modalIsOpen, setModalIsOpen] = useState(false);
-    const openModal = () => setModalIsOpen(true);
+    const toggleOpen = () => setModalIsOpen((prev) => !prev);
     const closeModal = () => setModalIsOpen(false);
 
     return (
-        <div className="w-full h-[65px] fixed top-0 shadow-lg shadow-[#2A0E61]/50 bg-[#020213d2] md:bg-[#03001417] md:backdrop-blur-md z-50 px-10">
+        <div className="w-full h-[65px] fixed top-0 shadow-lg shadow-[#2A0E61]/50 bg-[#020213d2] md:bg-[#03001417] md:backdrop-blur-md z-30 px-10">
             <div className="w-full h-full flex flex-row items-center justify-between m-auto px-[10px]">
                 <a href="#Intro" className="h-full w-auto flex flex-row items-center">
                     <img
@@ -37,7 +37,7 @@ function Header() {
                     </div>
                 </div>
                 <div className="lg:hidden flex items-center">
-                    <button className="text-gray-300" onClick={openModal}>
+                    <button className="text-gray-300" onClick={toggleOpen}>
                         <svg
                             aria-hidden="true"
                             focusable="false"
@@ -62,9 +62,9 @@ function Header() {
                         onRequestClose={closeModal}
                         shouldCloseOnOverlayClick={true}
                         className="bg-transparent"
-                        style={{ overlay: { backgroundColor: 'transparent' } }}
+                        style={{ overlay: { backgroundColor: 'transparent', zIndex: 40 } }}
                     >
-                        <div className="absolute top-[65px] right-0 bg-[#020213d2] border border-[#7042f861] w-[250px] p-4 rounded-lg shadow-lg">
+                        <div className="absolute top-[65px] right-0 bg-[#020213d2] border border-[#7042f861] w-[250px] p-4 rounded-lg shadow-lg z-50">
                             <a className="block py-2 cursor-pointer text-white">Giới thiệu</a>
                             <a className="block py-2 cursor-pointer text-white">Hoạt động</a>
                             <a className="block py-2 cursor-pointer text-white">Phòng Ban</a>
