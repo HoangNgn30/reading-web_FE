@@ -7,7 +7,6 @@ import './index.css'
 
 createRoot(document.getElementById('root')).render(
   <StrictMode>
-    <StarBackground/>
     <App></App>
   </StrictMode>,
 )
