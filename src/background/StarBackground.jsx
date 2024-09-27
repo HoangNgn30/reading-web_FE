@@ -11,8 +11,12 @@ const StarBackgound = () => {
     return (
         <Particles
             init={particlesInit}
-            id="tsparticles"
+            id="tsparticles2"
+            className="absolute top-0 w-full h-full"
             options={{
+                fullScreen: {
+                    enable: false, // Tắt chế độ full màn hình
+                },
                 autoPlay: true,
                 background: {
                     color: {

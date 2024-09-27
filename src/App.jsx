@@ -1,14 +1,13 @@
-import { useState } from 'react'
-import Header from './header/Header'
-import MainContent from './main-content/MainContent'
+import Header from './header/Header';
+import MainDivider from './MainDivider';
 
 function App() {
-  return (
-    <>
-      <Header></Header>
-      <MainContent></MainContent>
-    </>
-  )
+    return (
+        <>
+            <Header></Header>
+            <MainDivider />
+        </>
+    );
 }
 
-export default App
+export default App;
