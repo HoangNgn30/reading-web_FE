@@ -28,11 +28,11 @@ function MainContent() {
                 </h1>
                 <div className="w-full bg-[#F3F4F6] opacity-50 mt-6">
                     <div className="flex justify-around">
-                        <div className="flex items center text-[#20409A]">
+                        <div className="flex items-center text-[#20409A]">
                             <AiOutlineGlobal className="h-full text-xl mr-1" />
                             <p className="md:font-bold font-medium">https://dainam.edu.vn</p>
                         </div>
-                        <div className="flex items center text-[#20409A]">
+                        <div className="flex items-center text-[#20409A]">
                             <FaFacebook className="h-full text-xl  mr-1" />
                             <p className="md:font-bold font-medium">facebook.com/DAINAM.EDU.VN</p>
                         </div>
