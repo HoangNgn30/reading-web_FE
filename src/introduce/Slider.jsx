@@ -1,7 +1,7 @@
 import { memo, useEffect, useRef, useState } from 'react';
-import anh1 from '../assets/anh1.jpg';
-import anh2 from '../assets/anh2.jpg';
-import anh3 from '../assets/anh3.jpg';
+import anh1 from '../assets/1a9iovick9pxnkr083g420240504014503_thump.jpg';
+import anh2 from '../assets/y62f9v64pebpvz25pynz20240504014116_thump.jpg';
+import anh3 from '../assets/tiobxptgj9ritger2dn520240415170417_thump.jpg';
 
 let count = 0;
 function Slider() {
@@ -51,8 +51,8 @@ function Slider() {
             <div ref={slideWrapper} className="flex w-full h-full duration-500">
                 {listImage.map((image, index) => {
                     return (
-                        <div key={index} className="relative shrink-0">
-                            <img src={image.src} className="w-full h-full" />
+                        <div key={index} className="relative shrink-0 w-full">
+                            <img src={image.src} className="w-full h-full object-cover object-center" />
                             <h5 className="absolute left-2/4 -translate-x-2/4 bottom-[50px] text-[30px] text-white inline-block font-bold whitespace-nowrap">
                                 {image.content}
                             </h5>

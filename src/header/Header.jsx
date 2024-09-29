@@ -1,5 +1,6 @@
 import { useState } from 'react';
 import ReactModal from 'react-modal';
+// import logo from '../assets/Logo_DAI_NAM.svg';
 
 ReactModal.setAppElement('#root');
 function Header() {
@@ -8,7 +9,7 @@ function Header() {
     const closeModal = () => setModalIsOpen(false);
 
     return (
-        <div className="w-full h-[65px] fixed top-0 shadow-lg shadow-[#2A0E61]/50 bg-[#020213d2] md:bg-[#03001417] md:backdrop-blur-md z-30 px-10">
+        <div className="w-full h-[65px] fixed top-0 shadow-lg shadow-[#2A0E61]/50  md:backdrop-blur-md z-30 px-10 bg-primary">
             <div className="w-full h-full flex flex-row items-center justify-between m-auto px-[10px]">
                 <a href="#Intro" className="h-full w-auto flex flex-row items-center">
                     <img
@@ -19,7 +20,7 @@ function Header() {
                         decoding="async"
                         data-nimg="1"
                         style={{ color: `transparent` }}
-                        src="https://itis-portfolio.vercel.app/logo.svg"
+                        src=""
                     />
                     <span
                         className="font-bold ml-[10px] hidden md:block text-neutral-200"
