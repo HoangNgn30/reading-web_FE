@@ -1,18 +1,13 @@
-import { useState } from 'react'
-import Header from './header/Header'
-import MainContent from './main-content/MainContent'
-import Department from './department/Department'
-import Contact from './contact/Contact'
+import Header from './header/Header';
+import MainDivider from './MainDivider';
 
 function App() {
   return (
     <>
       <Header></Header>
-      <MainContent></MainContent>
-      <Department/>
-      <Contact/>
+      <MainDivider />
     </>
   )
 }
 
-export default App
+export default App;

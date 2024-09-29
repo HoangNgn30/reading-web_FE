@@ -10,7 +10,7 @@ function Department() {
     return ( 
         <div>
             <section id="room" className="relative w-full overflow-hidden h-full flex flex-col pb-12">
-                <div className="flex flex-col justify-center items-center gap-4 w-full z-[30] "
+                <div className="flex flex-col justify-center items-center gap-4 w-full z-[30] mb-12"
                      style={{opacity: "1", willChange:"auto", transform: "none"}}
                     >
                     <h5
@@ -131,8 +131,10 @@ function Department() {
                         </div>
                     </animated.div>
                 </div>
+                {/* faq */}
+                <FAQ/>
             </section>
-            <FAQ/>
+            
         </div>
      );
 }

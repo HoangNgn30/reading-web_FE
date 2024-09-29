@@ -32,8 +32,8 @@ function Header() {
                     <div className="flex items-center justify-between border border-[#7042f861] bg-[#0300145e] mr-[15px] px-[20px] py-[10px] rounded-full text-gray-50 gap-4 z-50">
                         <a className="cursor-pointer">Giới thiệu</a>
                         <a className="cursor-pointer">Hoạt động</a>
-                        <a className="cursor-pointer" href='#room'>Phòng Ban</a>
-                        <a className="cursor-pointer">Liên hệ</a>
+                        <a className="cursor-pointer" >Phòng Ban</a>
+                        <a className="cursor-pointer" >Liên hệ</a>
                     </div>
                 </div>
                 <div className="lg:hidden flex items-center">
