@@ -1,7 +1,7 @@
 import { memo, useEffect, useRef, useState } from 'react';
-import anh1 from '../assets/1a9iovick9pxnkr083g420240504014503_thump.jpg';
-import anh2 from '../assets/y62f9v64pebpvz25pynz20240504014116_thump.jpg';
-import anh3 from '../assets/tiobxptgj9ritger2dn520240415170417_thump.jpg';
+import anh1 from '../../assets/1a9iovick9pxnkr083g420240504014503_thump.jpg';
+import anh2 from '../../assets/y62f9v64pebpvz25pynz20240504014116_thump.jpg';
+import anh3 from '../../assets/tiobxptgj9ritger2dn520240415170417_thump.jpg';
 
 let count = 0;
 function Slider() {

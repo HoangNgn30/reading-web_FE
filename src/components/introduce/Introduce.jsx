@@ -1,5 +1,5 @@
 import Slider from './Slider';
-import section from '../assets/section.svg';
+import section from '../../assets/section.svg';
 
 function Introduce() {
     return (
@@ -62,6 +62,7 @@ function Introduce() {
                             allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
                             referrerPolicy="strict-origin-when-cross-origin"
                             allowFullScreen
+                            style={{ maxWidth: '100%' }}
                         ></iframe>
                     </div>
                 </div>
