@@ -1,7 +1,7 @@
 import { useCallback } from 'react';
 import { loadSlim } from 'tsparticles-slim';
-import backfix from '../assets/awvhf0v6rp9vsfk4l4gi20230717030908_thump.jpg';
-import logo from '../assets/Logo_DAI_NAM.png';
+import backfix from '../../assets/awvhf0v6rp9vsfk4l4gi20230717030908_thump.jpg';
+import logo from '../../assets/Logo_DAI_NAM.png';
 import { AiOutlineGlobal } from 'react-icons/ai';
 import { FaFacebook } from 'react-icons/fa';
 
