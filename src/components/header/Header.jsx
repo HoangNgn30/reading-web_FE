@@ -1,5 +1,6 @@
 import { useState } from 'react';
 import ReactModal from 'react-modal';
+// import logo from '../../assets/Logo_DAI_NAM.svg';
 
 ReactModal.setAppElement('#root');
 function Header() {
@@ -8,7 +9,7 @@ function Header() {
     const closeModal = () => setModalIsOpen(false);
 
     return (
-        <div className="w-full h-[65px] fixed top-0 shadow-lg shadow-[#2A0E61]/50 bg-[#020213d2] md:bg-[#03001417] md:backdrop-blur-md z-50 px-10">
+        <div className="w-full h-[65px] fixed top-0 shadow-lg shadow-[#2A0E61]/50  md:backdrop-blur-md z-40 px-10 bg-primary">
             <div className="w-full h-full flex flex-row items-center justify-between m-auto px-[10px]">
                 <a href="#Intro" className="h-full w-auto flex flex-row items-center">
                     <img
@@ -19,7 +20,7 @@ function Header() {
                         decoding="async"
                         data-nimg="1"
                         style={{ color: `transparent` }}
-                        src="https://itis-portfolio.vercel.app/logo.svg"
+                        src=""
                     />
                     <span
                         className="font-bold ml-[10px] hidden md:block text-neutral-200"
@@ -32,8 +33,8 @@ function Header() {
                     <div className="flex items-center justify-between border border-[#7042f861] bg-[#0300145e] mr-[15px] px-[20px] py-[10px] rounded-full text-gray-50 gap-4 z-50">
                         <a className="cursor-pointer">Giới thiệu</a>
                         <a className="cursor-pointer">Hoạt động</a>
-                        <a className="cursor-pointer" >Phòng Ban</a>
-                        <a className="cursor-pointer" >Liên hệ</a>
+                        <a className="cursor-pointer">Phòng Ban</a>
+                        <a className="cursor-pointer">Liên hệ</a>
                     </div>
                 </div>
                 <div className="lg:hidden flex items-center">
