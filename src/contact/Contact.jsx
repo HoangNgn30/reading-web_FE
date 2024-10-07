@@ -13,12 +13,16 @@ function Contact() {
                 </div>
                 <div className="w-auto h-auto md:mx-16 px-8">
                     <h3 className='font-bold w-full text-center md:text-left lg:text-[24px] text-base mb-4'>Liên hệ</h3>
+
                     {/* facebook */}
+
                     <div className="flex flex-col md:flex-row w-full items-center mb-3 gap-4">
                        <FontAwesomeIcon icon={faFacebook}/>
                        <a href="https://www.facebook.com/lcdkhoacntt1.ptit" className="ml-4">Liên chi Đoàn Khoa CNTT1 - PTIT</a>
                     </div>
+
                     {/* Phone */}
+
                     <div className="flex w-full items-center justify-center mb-3 gap-4">
                         <div className="flex flex-col md:flex-row items-center justify-center mb-3 gap-4">
                             <div>
@@ -40,7 +44,9 @@ function Contact() {
                             </div>
                         </div>
                     </div>
+                    
                     {/* mail */}
+                    
                     <div className="flex flex-col w-full md:flex-row gap-4 items-center mb-3">
                         <div>
                             <FontAwesomeIcon icon={faEnvelope}/>

@@ -1,5 +1,6 @@
 import FAQ from "./Faq";
 import { useSpring, animated } from '@react-spring/web'
+import card1 from '../assets/card-1.svg';
 /* eslint-disable react/no-unescaped-entities */
 function Department() {
     const styles = useSpring({
@@ -23,10 +24,11 @@ function Department() {
                     <animated.div style={styles} className="flex flex-wrap justify-center items-center gap-4 px-6 lg:px-20 mt-4">
                         <div className="block relative p-0.5 bg-no-repeat bg-[length:100%_100%] md:max-w-[32rem] h-[24rem]"
                             style={{
-                                backgroundImage:"https://media.istockphoto.com/id/1222963442/vi/anh/m%E1%BA%A1ng-x%C3%A3-h%E1%BB%99i.jpg?s=1024x1024&w=is&k=20&c=dl8rXdflude8ypQD2KQUNH4qdQg6eMjFr-9MgNx50-M=",
+                                backgroundImage:`url(${card1})`,
                                 opacity: "1", willChange:"auto", transform: "none"}}
                         >
-                            <div className="relative z-2 flex flex-col min-h[22rem] p-[2.4rem] pointer-events-none">
+                            <div className="relative z-2 flex flex-col min-h[22rem] p-[2.4rem] pointer-events-none"
+                            >
                                 <h2 className="font-bold md:text-2xl mb-2 text-[#3c86f6]">BAN TRUYỀN THÔNG</h2>
                                 <p className="body-2 mb-6 text-xs md:text-[1rem] font-semibold text-neutral-700 text-justify">Với slogan Ban "Truyền thông - Không sợ deadline, làm việc nhiệt tình, chơi hết mình" cùng các thành viên vô cùng năng động, sáng tạo và nhiệt huyết, ban Truyền thông mang trên mình sứ mệnh xây dựng, gìn giữ những hình ảnh đẹp về Liên chi, đồng thời là nơi lan tỏa những thông tin của Liên chi Đoàn nói riêng và khoa CNTT1 nói chung đến các bạn sinh viên trong và ngoài Học viện.</p>
                             </div>
@@ -50,7 +52,7 @@ function Department() {
                         </div>
                         <div className="block relative p-0.5 bg-no-repeat bg-[length:100%_100%] md:max-w-[32rem] h-[24rem]"
                             style={{
-                                backgroundImage:"https://media.istockphoto.com/id/1222963442/vi/anh/m%E1%BA%A1ng-x%C3%A3-h%E1%BB%99i.jpg?s=1024x1024&w=is&k=20&c=dl8rXdflude8ypQD2KQUNH4qdQg6eMjFr-9MgNx50-M=",
+                                backgroundImage:`url(${card1})`,
                                 opacity: "1", willChange:"auto", transform: "none"}}
                         >
                             <div className="relative z-2 flex flex-col min-h[22rem] p-[2.4rem] pointer-events-none">
@@ -77,7 +79,7 @@ function Department() {
                         </div>
                         <div className="block relative p-0.5 bg-no-repeat bg-[length:100%_100%] md:max-w-[32rem] h-[24rem]"
                             style={{
-                                backgroundImage:"https://media.istockphoto.com/id/1222963442/vi/anh/m%E1%BA%A1ng-x%C3%A3-h%E1%BB%99i.jpg?s=1024x1024&w=is&k=20&c=dl8rXdflude8ypQD2KQUNH4qdQg6eMjFr-9MgNx50-M=",
+                                backgroundImage:`url(${card1})`,
                                 opacity: "1", willChange:"auto", transform: "none"}}
                         >
                             <div className="relative z-2 flex flex-col min-h[22rem] p-[2.4rem] pointer-events-none">
@@ -104,7 +106,7 @@ function Department() {
                         </div>
                         <div className="block relative p-0.5 bg-no-repeat bg-[length:100%_100%] md:max-w-[32rem] h-[24rem]"
                             style={{
-                                backgroundImage:"https://media.istockphoto.com/id/1222963442/vi/anh/m%E1%BA%A1ng-x%C3%A3-h%E1%BB%99i.jpg?s=1024x1024&w=is&k=20&c=dl8rXdflude8ypQD2KQUNH4qdQg6eMjFr-9MgNx50-M=",
+                                backgroundImage:`url(${card1})`,
                                 opacity: "1", willChange:"auto", transform: "none"}}
                         >
                             <div className="relative z-2 flex flex-col min-h[22rem] p-[2.4rem] pointer-events-none">
