@@ -5,54 +5,60 @@ function FAQ() {
 
     const faqData = [
         {
-          question: 'Liên chi Đoàn Khoa CNTT1 là một tổ chức thế nào??',
-          answer: ['Liên chi Đoàn Khoa CNTT1 (có tên gọi thân mật ITIS) là Liên Chi Đoàn lớn nhất Học viện, trực thuộc Khoa CNTT1. Hiện tại Liên chi Đoàn đang có khoảng 100 thành viên và khoảng 5000 Đoàn viên của các ngành CNTT, ATTT, KHMT, CNTT CLC, CNTT Việt - Nhật.'
-            ,'Trong suốt quá trình hình thành và phát triển, Liên chi Đoàn đã và đang đồng hành cùng Khoa CNTT1 nỗ lực hết mình với mục tiêu đẩy mạnh các hoạt động học tập, nghiên cứu khoa học, đồng thời tạo ra nhiều sân chơi giúp các bạn sinh viên trong khoa thỏa mãn đam mê, giải tỏa căng thẳng và luôn đồng hành cùng các bạn sinh viên trong khoa trong quá trình học tập tại Học viện.'
+          question: 'Làm thế nào để trở thành sinh viên khoa CNTT trường Đại học Đại Nam?',
+          answer: ['Năm 2024, khoa CNTT trường Đại học Đại Nam (mã trường DDN) tuyển sinh 1.000 chỉ tiêu hệ đại học chính quy ở các ngành CNTT (800 chỉ tiêu), Khoa học máy tính (100 chỉ tiêu), Hệ thống thông tin (100 chỉ tiêu) theo 03 phương thức xét tuyển.',
+            '- Phương thức 1: sử dụng kết quả 3 môn từ kết quả kỳ thi tốt nghiệp THPT theo tổ hợp đăng ký để xét tuyển.'
+            ,'- Phương thức 2: sử dụng kết quả học bạ, điểm 3 môn từ kết quả học tập lớp 12 THPT theo tổ hợp đăng ký để xét tuyển.'
+            ,'- Phương thức 3: xét tuyển thẳng theo quy định của Bộ Giáo dục và Đào tạo và nhà trường.'
           ]
         },
         {
-          question: 'Liên chi khác CLB như thế nào?',
-          answer: ['CLB (Câu lạc bộ) và Liên chi Đoàn Khoa (LCK) là hai loại tổ chức hoạt động trong môi trường trường học, nhưng chúng có mục tiêu và hoạt động khác nhau:',
-            'Về mục tiêu:','- Liên chi: Liên chi Đoàn Khoa thường có mục tiêu rộng hơn và thường liên quan đến công tác thanh thiếu niên và sinh viên, cũng như phát triển xã hội. LCK thường là tổ chức đại diện cho toàn bộ khoa hoặc ngành học trong một trường đại học hoặc cao đẳng. Mục tiêu của LCK bao gồm việc thúc đẩy tình đoàn kết, tổ chức các hoạt động văn hóa và xã hội, và tham gia vào các hoạt động cộng đồng và công tác xã hội.'
-            ,'- CLB: Câu lạc bộ thường tập trung vào các sở thích hoặc mục tiêu cụ thể của các thành viên. Các thành viên tham gia CLB thường có cùng sở thích, ví dụ: CLB thể thao, CLB IT,... Mục tiêu chính của CLB là tạo ra một môi trường cho các thành viên thực hiện và thảo luận về sở thích hoặc mục tiêu đó.'
-            ,'Về phạm vi:','- Liên chi: LCK thường hoạt động trên phạm vi lớn hơn, đại diện cho toàn bộ khoa hoặc ngành học trong một trường học và thường được tổ chức và quản lý bởi trường hoặc khoa.'
-            ,'- CLB: Các CLB thường có phạm vi hẹp hơn và tập trung vào một lĩnh vực cụ thể hoặc sở thích chung của các thành viên. Các CLB thường được tổ chức và quản lý bởi các thành viên tự nguyện hoặc sinh viên.'
-            ,'Tóm lại, CLB và LCK đều là các tổ chức hoạt động trong môi trường trường học nhưng có mục tiêu và phạm vi khác nhau, với LCK thường có mục tiêu và phạm vi rộng hơn và liên quan đến công tác thanh thiếu niên và sinh viên, trong khi CLB tập trung vào các sở thích hoặc mục tiêu cụ thể của các thành viên.'           
+          question: 'Sứ mệnh của khoa Công nghệ thông tin',
+          answer: ['Đào tạo để người học ra trường có cuộc sống tốt và là công dân tốt, là lực lượng lao động khoa học – công nghệ đi đầu  trong xã hội.']
+        },
+        {
+          question: 'Mục tiêu phát triển của khoa Công nghệ thông tin',
+          answer: ['Đến năm 2030, Khoa Công nghệ thông tin trường Đại học Đại Nam là cơ sở đào tạo tin cậy hàng đầu Việt Nam về Công nghệ thông tin, Khoa học máy tính, Hệ thống thông tin mà nổi bật là năng lực "Khởi nghiệp và đổi mới sáng tạo về công nghệ".'
           ]
         },
         {
-          question: 'Hình thức tuyển CTV Liên chi?',
-          answer: ['CTV Liên chi Đoàn Khoa Công nghệ Thông tin 1 được tuyển thông qua 3 vòng xét duyệt:'
-            ,'Vòng CV: Tuyển chọn qua thông tin trên CV được các ứng cử viên điền qua form đăng ký.'
-            ,'Vòng phỏng vấn: Qua việc phỏng vấn, chúng tôi hiểu rõ hơn về các ứng cử viên, từ đó chọn ra người phù hợp để đi tiếp.'
-            ,'Vòng Training: Các CTV tập sự sẽ được thử thách ở vòng Training với một số hoạt động chung, mang tính tập thể. Qua đó các bạn sẽ xây dựng được tinh thần đoàn kết, hỗ trợ nhau trong công việc, bộc lộ kỹ năng cá nhân…'
-            ,'Vượt qua vòng Training thì xin chúc mừng các bạn vì đã trở thành CTV chính thức của Liên chi Đoàn Khoa Công nghệ Thông tin 1.'
-          ]
-        },
-        {
-            question: 'Liên chi Đoàn Khoa CNTT1 tuyển CTV những khóa nào?',
-            answer: ['Hằng năm, Liên chi Đoàn chủ yếu tuyển các bạn sinh viên năm nhất. Ngoài ra Liên chi cũng rất chào đón các bạn năm 2 trở lên có mong muốn tham gia vào Liên chi, trao nhiệt huyết của mình để cùng Liên chi phát triển.'
+            question: 'Giá trị bằng cấp',
+            answer: ['1. Ngành Khoa học máy tính                       - Kỹ sư KHMT             - ĐH Đại Nam cấp.',
+              '2. Ngành Công nghệ thông tin                     - Cử nhân CNTT         - ĐH Đại Nam cấp.',
+              '3. Ngành Hệ thống thông tin                        - Cử nhân HTTT          - ĐH Đại Nam cấp.'
             ]
           },
           {
-            question: 'Liên chi là tổ chức chạy sự kiện, vậy có dạy lập trình không?',
-            answer: ['ITIS không phải CLB học thuật mà là nơi phát triển các kỹ năng mềm và tổ chức sự kiện của khoa. Tuy nhiên khi các bạn vào Liên chi các bạn sẽ được học các lớp học code như C/C++ và có thể là các khóa thuật toán cùng với các tài liệu chỉ lưu hành nội bộ được soạn và dạy bởi những anh chị khóa trên.']
-          },
-          {
-            question: 'Có được tham gia cả Liên chi và CLB không?',
-            answer: ['Tất nhiên là có! Nếu có thể, bạn hãy thử sức mình với 2 vị trí ở 2 tổ chức khác nhau nhé. Ngoài Liên chi thì các CLB về Công nghệ thông tin ở Học viện chúng mình rất mạnh về học thuật và cũng có rất nhiều hoạt động sôi nổi đó nhé']
-          },
-          {
-            question: 'Chưa có kỹ năng về tổ chức sự kiện có thể tham gia Liên chi được hay không?',
-            answer: ['Khi vào Liên chi các bạn sẽ được training những kiến thức, kỹ năng cần thiết trước khi tham gia vào các sự kiện.'
+            question: 'Thời gian đào tạo',
+            answer: ['1. Ngành Khoa học máy tính                       - Học 4 năm    - Học 03 kỳ/năm.',
+              '2. Ngành Công nghệ thông tin                     - Học 3,5 năm - Học 03 kỳ/năm.',
+              '3. Ngành Hệ thống thông tin                        - Cử nhân HTTT          - ĐH Đại Nam cấp.',
+              'Các ngành có thời gian đào tạo ngắn, tận dụng nhiều thời gian học tập, thực tập, trải nghiệm tại các doanh nghiệp công nghệ.',
+              'Sinh viên ra trường sớm từ 0,5 – 1 năm, tiết kiệm hàng trăm triệu đồng chi phí ăn ở, sinh hoạt trong quá trình học đại học; tiếp cận thị trường lao động sớm; tiết kiệm thời gian học lên Thạc sĩ, Tiến sĩ…'
             ]
           },
           {
-            question: 'Nhận được quyền lợi gì khi tham gia vào Liên chi?',
-            answer: ['Được sự hỗ trợ trực tiếp từ các thầy cô trong khoa, khi trở thành thành viên của Liên chi, các bạn sẽ được tiếp xúc và làm việc trực tiếp cùng các thầy cô. Được tham gia các hoạt động vui chơi được tổ chức một cách chuyên nghiệp. Ngoài ra sẽ được học các kĩ năng như: kĩ năng tổ chức sự kiện, kỹ năng thuyết trình, kĩ năng làm việc nhóm,... Đồng thời các bạn sẽ trực tiếp tham gia tổ chức cá nhân hoạt động quy mô Khoa và Học viện. Đặc biệt các bạn còn được các anh chị hỗ trợ trong việc học C/C++, thuật toán cùng các môn học khác.'
+            question: '05 đặc trưng về đào tạo Công nghệ thông tin trường Đại học Đại Nam',
+            answer: ['Công nghệ thông tin (CNTT) là một trong những ngành đào tạo mũi nhọn của trường Đại học Đại Nam, có số lượng sinh viên theo học rất lớn. Ngành học này thu hút sinh viên bởi cơ hội việc làm lớn, mức thu nhập cao, chương trình đào tạo đổi mới, phương pháp giảng dạy linh hoạt.',
+              '1. Chuẩn đầu ra bám sát nhu cầu thực tiễn',
+              '2. Đào tạo chuyên ngành công nghệ thông tin ngay từ học kỳ đầu',
+              '3. Các năm học đạt được theo các chuẩn chuyên ngành',
+              '4. Các học kỳ sinh viên được học và thực tập tại xưởng thực hành tại trường',
+              '5. Hợp tác với nhiều đối tác là doanh nghiệp, cơ sở nghiên cứu trong và ngoài nước'
             ]
-          }
-
+          },
+          {
+            question: 'Nét đặc sắc trong chương trình đào tạo của các ngành',
+            answer: ['- Ngành Khoa học máy tính:',
+              'Ngành Khoa học máy tính (KHMT) tập trung đào tạo các học phần về trí tuệ nhân tạo, học máy, học sâu, dữ liệu lớn, phân tích dữ liệu, trực quan hóa dữ liệu, xử lý ngôn ngữ tự nhiên.',
+              '- Ngành Công nghệ thông tin:',
+              'Ngành Công nghệ thông tin (CNTT) tập trung đào tạo sâu về kỹ thuật lập trình, thiết kế phần mềm, thiết kế và xây dựng các hệ thống thông minh, Ngành CNTT được phân thành 02 chuyên ngành:',
+              '1. Phát triển phần mềm (Software Development);',
+              '2. Lập trình nhúng và IoT (Embbed Programming and IoT).',
+              '- Ngành Hệ thống thông tin:',
+              'Ngành Hệ thống thông tin (HTTT) tập trung đào tạo sâu về thiết kế hệ thống thông tin, tối ưu hiệu năng hoạt động của hệ thống thông tin, quản trị dữ liệu, phân tích dữ liệu, quản trị mạng và bảo mật hệ thống.'
+            ]
+          },
       ];
       
     return ( 
