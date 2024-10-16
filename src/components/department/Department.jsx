@@ -46,7 +46,7 @@ function Department() {
                         >
                             <div className="relative z-2 flex flex-col min-h[22rem] p-[2.4rem] pointer-events-none">
                                 <h2 className="font-bold md:text-2xl mb-2 text-[#448bf5]">Ngành Khoa học máy tính</h2>
-                                <h4 className="font-bold md:text-lg mb-2 text-[#448bf5]">Mã ngành: 7480201</h4>
+                                <h4 className="font-bold md:text-lg mb-2 text-[#448bf5]">Mã ngành: 7480101</h4>
                                 <p className="body-2 mb-6 text-sm md:text-lg font-semibold text-neutral-700 text-justify">
                                     Ngành Khoa học máy tính tập trung đào tạo các học phần về trí tuệ nhân tạo, học máy,
                                     học sâu, dữ liệu lớn, phân tích dữ liệu, trực quan hóa dữ liệu, xử lý ngôn ngữ tự
@@ -85,10 +85,10 @@ function Department() {
                             }}
                         >
                             <div className="relative z-2 flex flex-col min-h[22rem] p-[2.4rem] pointer-events-none">
-                                <h2 className="font-bold md:text-2xl mb-2 text-[#e8b637]">
-                                    Ngành Công nghệ thông tin{' '}
+                                <h2 className="font-bold md:text-2xl mb-2 text-[#da3dd0]">
+                                    Ngành Công nghệ thông tin
                                 </h2>
-                                <h4 className="font-bold md:text-lg mb-2 text-[#e8b637]">Mã ngành: 7480201</h4>
+                                <h4 className="font-bold md:text-lg mb-2 text-[#da3dd0]">Mã ngành: 7480201</h4>
                                 <p className="body-2 mb-6 text-sm md:text-lg font-semibold text-neutral-700 text-justify">
                                     Ngành CNTT tập trung đào tạo sâu về kỹ thuật lập trình, thiết kế phần mềm, thiết kế
                                     và xây dựng các hệ thống thông minh.
@@ -132,8 +132,8 @@ function Department() {
                             }}
                         >
                             <div className="relative z-2 flex flex-col min-h[22rem] p-[2.4rem] pointer-events-none">
-                                <h2 className="font-bold md:text-2xl mb-2 text-[#43e974]">Ngành Hệ thống thông tin</h2>
-                                <h4 className="font-bold md:text-lg mb-2 text-[#43e974]">Mã ngành: 7480201</h4>
+                                <h2 className="font-bold md:text-2xl mb-2 text-[#3dcb68]">Ngành Hệ thống thông tin</h2>
+                                <h4 className="font-bold md:text-lg mb-2 text-[#3dcb68]">Mã ngành: 7480104</h4>
                                 <p className="body-2 mb-6 text-sm md:text-lg font-semibold text-neutral-700 text-justify">
                                     Ngành Hệ thống thông tin tập trung đào tạo sâu về thiết kế hệ thống thông tin, tối
                                     ưu hiệu năng hoạt động của hệ thống thông tin, quản trị dữ liệu, phân tích dữ liệu,

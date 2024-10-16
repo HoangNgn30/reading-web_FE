@@ -69,7 +69,7 @@ function Contact() {
                 </div>
             </div>
         
-            <div className="w-full items-center justify-center flex text-gray-600 mb-4">
+            <div className="w-full items-center justify-center flex text-gray-600 mb-4 mt-6">
                 <p>Copyright @2019 Đại học Đại Nam</p>
             </div>
         </div>

@@ -32,7 +32,7 @@ function FAQ() {
             question: 'Thời gian đào tạo',
             answer: ['1. Ngành Khoa học máy tính                       - Học 4 năm    - Học 03 kỳ/năm.',
               '2. Ngành Công nghệ thông tin                     - Học 3,5 năm - Học 03 kỳ/năm.',
-              '3. Ngành Hệ thống thông tin                        - Cử nhân HTTT          - ĐH Đại Nam cấp.',
+              '3. Ngành Hệ thống thông tin                        - Học 3,5 năm - Học 03 kỳ/năm.',
               'Các ngành có thời gian đào tạo ngắn, tận dụng nhiều thời gian học tập, thực tập, trải nghiệm tại các doanh nghiệp công nghệ.',
               'Sinh viên ra trường sớm từ 0,5 – 1 năm, tiết kiệm hàng trăm triệu đồng chi phí ăn ở, sinh hoạt trong quá trình học đại học; tiếp cận thị trường lao động sớm; tiết kiệm thời gian học lên Thạc sĩ, Tiến sĩ…'
             ]
