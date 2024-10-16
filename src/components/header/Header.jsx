@@ -1,6 +1,6 @@
 import { useState } from 'react';
 import ReactModal from 'react-modal';
-// import logo from '../../assets/Logo_DAI_NAM.svg';
+import logo from '../../assets/dai-nam-11.jpg';
 
 ReactModal.setAppElement('#root');
 function Header() {
@@ -15,26 +15,37 @@ function Header() {
                     <img
                         alt="logo"
                         loading="lazy"
-                        width="40"
-                        height="40"
+                        width="80"
+                        height="80"
                         decoding="async"
                         data-nimg="1"
                         style={{ color: `transparent` }}
-                        src=""
+                        src={logo}
                     />
                     <span
                         className="font-bold ml-[10px] hidden md:block text-neutral-200"
                         style={{ textShadow: `2px 2px 4px rgba(0, 0, 0, 0.4)` }}
                     >
-                        LIÊN CHI ĐOÀN KHOA CÔNG NGHỆ THÔNG TIN 1
+                        KHOA CÔNG NGHỆ THÔNG TIN
                     </span>
                 </a>
-                <div className="hidden lg:flex w-[500px] h-full flex-row items-center justify-between md:mr-10">
+                <div
+                    className="hidden lg:flex w-[500px] h-full flex-row items-center justify-between md:mr-10"
+                    style={{ maxWidth: '100%' }}
+                >
                     <div className="flex items-center justify-between border border-[#7042f861] bg-[#0300145e] mr-[15px] px-[20px] py-[10px] rounded-full text-gray-50 gap-4 z-50">
-                        <a className="cursor-pointer">Giới thiệu</a>
-                        <a className="cursor-pointer">Hoạt động</a>
-                        <a className="cursor-pointer">Phòng Ban</a>
-                        <a className="cursor-pointer">Liên hệ</a>
+                        <a href="#Intro" className="cursor-pointer">
+                            Giới thiệu
+                        </a>
+                        <a href="#Activity" className="cursor-pointer">
+                            Hoạt động
+                        </a>
+                        <a href="#Department" className="cursor-pointer">
+                            Chuyên ngành
+                        </a>
+                        <a href="#Contact" className="cursor-pointer">
+                            Liên hệ
+                        </a>
                     </div>
                 </div>
                 <div className="lg:hidden flex items-center">
@@ -66,10 +77,18 @@ function Header() {
                         style={{ overlay: { backgroundColor: 'transparent', zIndex: 40 } }}
                     >
                         <div className="absolute top-[65px] right-0 bg-[#020213d2] border border-[#7042f861] w-[250px] p-4 rounded-lg shadow-lg z-50">
-                            <a className="block py-2 cursor-pointer text-white">Giới thiệu</a>
-                            <a className="block py-2 cursor-pointer text-white">Hoạt động</a>
-                            <a className="block py-2 cursor-pointer text-white">Phòng Ban</a>
-                            <a className="block py-2 cursor-pointer text-white">Liên hệ</a>
+                            <a href="#Intro" className="block py-2 cursor-pointer text-white">
+                                Giới thiệu
+                            </a>
+                            <a href="#Activity" className="block py-2 cursor-pointer text-white">
+                                Hoạt động
+                            </a>
+                            <a href="#Department" className="block py-2 cursor-pointer text-white">
+                                Chuyên ngành
+                            </a>
+                            <a href="#Contact" className="block py-2 cursor-pointer text-white">
+                                Liên hệ
+                            </a>
                         </div>
                     </ReactModal>
                 </div>

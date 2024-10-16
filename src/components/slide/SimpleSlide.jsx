@@ -22,6 +22,7 @@ function SimpleSlide({ listOb }) {
                 breakpoint: 768,
                 settings: {
                     slidesToShow: 1, // Hiển thị 1 slide cho màn hình nhỏ hơn 1024
+                    centerPadding: '0px',
                 },
             },
             
@@ -29,7 +30,7 @@ function SimpleSlide({ listOb }) {
     };
     return (
         <div>
-            <Slider {...settings} className="xl:w-[1090px] md:w-[720px] w-[430px]">
+            <Slider {...settings} className="xl:w-[1090px] md:w-[720px] w-[330px]">
                 {listOb.map((ob, index) => {
                     return (
                         <div className="w-[330px] max-w-[330px] h-[300px] relative" key={index}>

@@ -13,7 +13,7 @@ function Department() {
         config: { tension: 200, friction: 100 },
     });
     return (
-        <div>
+        <div id="Department">
             <section id="room" className="relative w-full overflow-hidden h-full flex flex-col pb-12">
                 <div
                     className="flex flex-col justify-center items-center gap-4 w-full z-[30] mb-12"
@@ -85,9 +85,7 @@ function Department() {
                             }}
                         >
                             <div className="relative z-2 flex flex-col min-h[22rem] p-[2.4rem] pointer-events-none">
-                                <h2 className="font-bold md:text-2xl mb-2 text-[#da3dd0]">
-                                    Ngành Công nghệ thông tin
-                                </h2>
+                                <h2 className="font-bold md:text-2xl mb-2 text-[#da3dd0]">Ngành Công nghệ thông tin</h2>
                                 <h4 className="font-bold md:text-lg mb-2 text-[#da3dd0]">Mã ngành: 7480201</h4>
                                 <p className="body-2 mb-6 text-sm md:text-lg font-semibold text-neutral-700 text-justify">
                                     Ngành CNTT tập trung đào tạo sâu về kỹ thuật lập trình, thiết kế phần mềm, thiết kế
@@ -100,12 +98,7 @@ function Department() {
                             </div>
                             <div className="absolute inset-0.5 bg-n-8 -z-10" style={{ clipPath: 'url(#benefits)' }}>
                                 <div className="absolute z-20 bg-white h-full w-full bottom-0 flex items-center">
-                                    <img
-                                        src={image2}
-                                        width={900}
-                                        height={900}
-                                        className="opacity-20"
-                                    />
+                                    <img src={image2} width={900} height={900} className="opacity-20" />
                                 </div>
                                 <div className="absolute inset-0">
                                     <img
@@ -146,12 +139,7 @@ function Department() {
                             </div>
                             <div className="absolute inset-0.5 bg-n-8 -z-10" style={{ clipPath: 'url(#benefits)' }}>
                                 <div className="absolute z-20 bg-white h-full w-full bottom-0 flex items-center">
-                                    <img
-                                        src={image3}
-                                        width={900}
-                                        height={900}
-                                        className="opacity-20"
-                                    />
+                                    <img src={image3} width={900} height={900} className="opacity-20" />
                                 </div>
                                 <div className="absolute inset-0">
                                     <img

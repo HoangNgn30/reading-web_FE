@@ -32,7 +32,10 @@ function Activity() {
         },
     ];
     return (
-        <div className="flex flex-col items-center justify-center h-full relative overflow-hidden z-10 mb-16">
+        <div
+            className="flex flex-col items-center justify-center h-full relative overflow-hidden z-10 mb-16"
+            id="Activity"
+        >
             <div
                 className="flex flex-col items-center justify-center gap-4 w-full z-[30]"
                 style={{ opacity: '1', willChange: 'auto' }}
@@ -44,23 +47,6 @@ function Activity() {
                     HOẠT ĐỘNG
                 </h1>
                 <SimpleSlide listOb={listActivity} />
-                {/* <div className="flex flex-wrap items-center justify-center px-10 lg:px-20 gap-8 mt-4">
-                    {listActivity.map((act, index) => {
-                        return (
-                            <div
-                                className="w-[300px] h-[300px] bg-white rounded-3xl flex flex-col items-center overflow-hidden"
-                                key={index}
-                            >
-                                <div className="w-full " style={{ aspectRatio: 4 / 3 }}>
-                                    <img src={act.image} className="w-full h-full object-cover object center"></img>
-                                </div>
-                                <div className="p-2.5">
-                                    <p className="line-clamp-2 text-lg font-bold">{act.content}</p>
-                                </div>
-                            </div>
-                        );
-                    })}
-                </div> */}
             </div>
             <img src="/section_white.png" width="1920" alt="" className="w-full relative" />
         </div>

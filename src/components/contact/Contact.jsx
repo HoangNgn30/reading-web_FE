@@ -7,7 +7,7 @@ import { AiOutlineGlobal } from "react-icons/ai";
 import logo from "../../assets/Logo_DAI_NAM.png";
 function Contact() {
     return ( 
-    <div id="contact" className="text-gray-200 w-full h-full bg-transparent shadow-lg p-4 z-20 relative">
+    <div id="Contact" className="text-gray-200 w-full h-full bg-transparent shadow-lg p-4 z-20 relative">
         <div className="flex flex-col w-full justify-center items-center m-auto">
             <div className="flex flex-row w-full h-full justify-around items-center flex-wrap">
                 <div className="">
