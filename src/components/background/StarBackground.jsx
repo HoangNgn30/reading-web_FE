@@ -20,9 +20,9 @@ const StarBackgound = () => {
                 autoPlay: true,
                 background: {
                     color: {
-                        value: '#111111',
+                        value: '#2e1901',
                     },
-                    image: '',
+                    image: ``,
                     position: '',
                     repeat: '',
                     size: '',

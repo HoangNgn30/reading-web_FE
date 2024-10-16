@@ -6,9 +6,9 @@ import anh3 from '../../assets/tiobxptgj9ritger2dn520240415170417_thump.jpg';
 let count = 0;
 function Slider() {
     const listImage = [
-        { src: anh1, content: 'ITIS: NGÀY TRỞ VỀ' },
-        { src: anh2, content: 'BIGGAME ITIS' },
-        { src: anh3, content: 'ITIS CUP 2023' },
+        { src: anh1, content: '' },
+        { src: anh2, content: '' },
+        { src: anh3, content: '' },
     ];
     const [currentIndex, setCurrentIndex] = useState(0);
     const [toggleReeffect, setToogleReefect] = useState(false);
