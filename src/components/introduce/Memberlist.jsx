@@ -34,22 +34,26 @@ const members = [
 
 export default function Memberlist() {
     return (
-        <div className="flex flex-col items-center">
-            <h3 className="text-primary text-3xl font-bold py-10">THÀNH VIÊN</h3>
+        <div className="flex flex-col">
+            <h3 className="text-primary text-4xl font-bold self-center md:mb-6 mb-10">THÀNH VIÊN</h3>
 
-            <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:gap-8 gap-4 px-6">
+            <div className="md:mb-6 mb-2 flex flex-col items-end px-6">
+                <button className="md:px-4 px-3 py-2 rounded-full bg-orange-400 font-medium md:text-md text-sm text-neutral-500">
+                    Tìm hiểu thêm <i className="fa-solid fa-angles-right"></i>
+                </button>
+            </div>
+
+            <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:gap-8 gap-4 px-6 mb-10">
                 {members.map((item, index) => (
                     <div key={index}>
-                        <div className="bg-white rounded-lg overflow-hidden shadow-lg p-4 w-full h-96">
+                        <div className="bg-gray-200 rounded-lg overflow-hidden shadow-lg p-4 w-full h-96 flex flex-col">
                             <img src={item.image} alt={item.name} className="w-full h-64 object-cover mb-4" />
-
                             <h3 className="text-lg font-semibold">{item.name}</h3>
-
                             <p className="text-gray-700">{item.position}</p>
                         </div>
                     </div>
                 ))}
             </div>
         </div>
-    );
+    )
 }

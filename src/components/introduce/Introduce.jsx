@@ -2,7 +2,6 @@ import Slider from './Slider';
 import section from '../../assets/section.svg';
 import LabSlider from './LabSlider';
 import { useState } from 'react';
-import MemberSlide from '../slide/MemberSlide';
 import Memberlist from './Memberlist';
 
 function Introduce() {
