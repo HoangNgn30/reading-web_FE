@@ -1,3 +1,4 @@
+/* eslint-disable react/prop-types */
 import 'slick-carousel/slick/slick.css';
 import 'slick-carousel/slick/slick-theme.css';
 import Slider from 'react-slick';
@@ -25,7 +26,6 @@ function SimpleSlide({ listOb }) {
                     centerPadding: '0px',
                 },
             },
-            
         ],
     };
     return (
@@ -37,7 +37,6 @@ function SimpleSlide({ listOb }) {
                             <div
                                 className="w-[300px] max-w-[300px] h-[300px] bg-white rounded-3xl flex flex-col items-center overflow-hidden box-border absolute left-1/2 "
                                 style={{ transform: 'translateX(-50%)' }}
-                                
                             >
                                 <div className="w-full " style={{ aspectRatio: 4 / 3 }}>
                                     <img src={ob.image} className="w-full h-full object-cover object center"></img>

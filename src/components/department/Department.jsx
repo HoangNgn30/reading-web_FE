@@ -5,7 +5,6 @@ import image1 from '../../assets/department1.jpg';
 import image2 from '../../assets/department2.jpg';
 import image3 from '../../assets/department3.jpg';
 
-/* eslint-disable react/no-unescaped-entities */
 function Department() {
     const styles = useSpring({
         from: { transform: 'translateX(-100%)', opacity: 0 },

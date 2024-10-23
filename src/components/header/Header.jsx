@@ -22,13 +22,15 @@ function Header() {
                         style={{ color: `transparent` }}
                         src={logo}
                     />
+
                     <span
                         className="font-bold ml-[10px] hidden md:block text-neutral-200"
                         style={{ textShadow: `2px 2px 4px rgba(0, 0, 0, 0.4)` }}
                     >
-                        KHOA CÔNG NGHỆ THÔNG TIN
+                        PHÒNG LAB KHOA CÔNG NGHỆ THÔNG TIN
                     </span>
                 </a>
+
                 <div
                     className="hidden lg:flex w-[500px] h-full flex-row items-center justify-between md:mr-10"
                     style={{ maxWidth: '100%' }}
@@ -37,17 +39,21 @@ function Header() {
                         <a href="#Intro" className="cursor-pointer">
                             Giới thiệu
                         </a>
+
                         <a href="#Activity" className="cursor-pointer">
                             Hoạt động
                         </a>
+
                         <a href="#Department" className="cursor-pointer">
                             Chuyên ngành
                         </a>
+
                         <a href="#Contact" className="cursor-pointer">
                             Liên hệ
                         </a>
                     </div>
                 </div>
+
                 <div className="lg:hidden flex items-center">
                     <button className="text-gray-300" onClick={toggleOpen}>
                         <svg
@@ -69,6 +75,7 @@ function Header() {
                             ></path>
                         </svg>
                     </button>
+
                     <ReactModal
                         isOpen={modalIsOpen}
                         onRequestClose={closeModal}

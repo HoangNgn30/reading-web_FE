@@ -1,3 +1,4 @@
+/* eslint-disable no-unused-vars */
 import { useCallback } from 'react';
 import { loadSlim } from 'tsparticles-slim';
 import backfix from '../../assets/awvhf0v6rp9vsfk4l4gi20230717030908_thump.jpg';
@@ -24,7 +25,7 @@ function MainContent() {
             <div className="absolute flex flex-col items-center w-full ">
                 <img src={logo} className="w-[150px] h-[150px]" />
                 <h1 className="md:text-5xl font-bold text-primary mt-12 text-center text-3xl">
-                    KHOA CÔNG NGHỆ THÔNG TIN
+                    NGÀNH CÔNG NGHỆ THÔNG TIN
                 </h1>
                 <div className="w-full bg-[#F3F4F6] opacity-50 mt-6 md:block hidden">
                     <div className="flex justify-around">

@@ -1,7 +1,11 @@
 import Slider from './Slider';
 import section from '../../assets/section.svg';
+import LabSlider from './LabSlider';
+import { useState } from 'react';
 
 function Introduce() {
+    const [showMore, setShowMore] = useState(false);
+
     return (
         <div className="flex flex-col items-center justify-center h-full relative overflow-hidden z-20 pb-10">
             <div id="Intro" className="h-full w-full bg-[#e4ded0]">
@@ -19,19 +23,19 @@ function Introduce() {
                         className="font-bold text-4xl text-primary text-center my-3 mx-6"
                         style={{ opacity: '1', willChange: 'auto', transform: 'none' }}
                     >
-                        KHOA CÔNG NGHỆ THÔNG TIN
+                        NGÀNH CÔNG NGHỆ THÔNG TIN
                     </h1>
-                    <div className="flex flex-col lg:flex-row w-full lg:my-10 items-center justify-center gap-5 px-10 lg:px-20">
+                    <div className="flex flex-col lg:flex-row w-full lg:my-10 items-start justify-center gap-5 px-10 lg:px-20">
                         <Slider></Slider>
                         <div className="flex flex-col gap-3 lg:max-w-[550px] text-black text-justify lg:ml-6">
                             <p
                                 className="text-base lg:text-xl"
                                 style={{ opacity: '1', willChange: 'auto', transform: 'none' }}
                             >
-                                <span className="font-bold">Khoa Công nghệ thông tin (CNTT) </span> là một trong những
-                                khoa được thành lập sớm nhất của trường Đại học Đại Nam. Sau 15 năm xây dựng và phát
-                                triển, Khoa đã đào tạo được hơn 2.000 cử nhân CNTT chất lượng, tự tin hội nhập, tham gia
-                                vào thị trường công nghệ rộng lớn, đầy cạnh tranh.
+                                <span className="font-bold">Ngành Công nghệ thông tin (CNTT) </span> là một trong những
+                                ngành được thành lập sớm nhất của trường Đại học Đại Nam. Sau 15 năm xây dựng và phát
+                                triển, trường đã đào tạo được hơn 2.000 cử nhân CNTT chất lượng, tự tin hội nhập, tham
+                                gia vào thị trường công nghệ rộng lớn, đầy cạnh tranh.
                             </p>
                             <p
                                 className="text-base lg:text-xl"
@@ -46,6 +50,44 @@ function Introduce() {
                             </p>
                         </div>
                     </div>
+
+                    <div className="flex flex-col lg:flex-row w-full lg:my-10 items-center justify-center gap-5 px-10 lg:px-20">
+                        <LabSlider />
+                        <div className="flex flex-col gap-3 lg:max-w-[550px] text-black text-justify lg:ml-6">
+                            <p
+                                className="text-base lg:text-xl"
+                                style={{ opacity: '1', willChange: 'auto', transform: 'none' }}
+                            >
+                                <span className="font-bold">
+                                    Phòng Lab AIoT Khoa Công nghệ thông tin Đại học Đại Nam
+                                </span>{' '}
+                                là một không gian học tập và nghiên cứu tiên tiến, được xây dựng với mục tiêu hỗ trợ
+                                sinh viên và giảng viên trong việc khám phá và ứng dụng công nghệ Internet vạn vật (IoT)
+                                và trí tuệ nhân tạo (AI). Lab được trang bị hệ thống máy tính mạnh mẽ, các thiết bị cảm
+                                biến, robot giao tiếp, và các công cụ phần mềm hiện đại, tạo điều kiện thuận lợi cho
+                                việc thực hiện các dự án nghiên cứu cũng như các bài tập thực hành.
+                            </p>
+                            {showMore && (
+                                <p
+                                    className="text-base lg:text-xl"
+                                    style={{ opacity: '1', willChange: 'auto', transform: 'none' }}
+                                >
+                                    Ngoài việc phục vụ cho hoạt động học tập, phòng Lab còn tổ chức các buổi seminar,
+                                    hội thảo với sự tham gia của các chuyên gia trong lĩnh vực AIoT, giúp sinh viên tiếp
+                                    cận những kiến thức mới nhất và trao đổi kinh nghiệm thực tiễn. Sinh viên sẽ có cơ
+                                    hội làm việc trong các dự án nghiên cứu đa dạng, từ phát triển ứng dụng thông minh
+                                    cho nhà ở đến hệ thống giám sát trong nông nghiệp, hoặc các giải pháp giao thông
+                                    thông minh, tạo ra giá trị thực tế cho cộng đồng. Với sự hỗ trợ từ giảng viên và sự
+                                    khuyến khích tham gia vào các cuộc thi và dự án khởi nghiệp, phòng Lab AIoT không
+                                    chỉ là nơi học tập mà còn là môi trường thúc đẩy sự sáng tạo, khơi dậy đam mê nghiên
+                                    cứu và phát triển công nghệ trong thế hệ sinh viên tương lai.
+                                </p>
+                            )}
+                            <button className="text-primary underline mt-2 text-lg" onClick={() => setShowMore(!showMore)}>
+                                {showMore ? 'Thu gọn...' : 'Đọc thêm...'}
+                            </button>
+                        </div>
+                    </div>
                     <h3
                         className="font-normal text-2xl text-black text-center my-3 lg:my-6"
                         style={{ opacity: '1', willChange: 'auto', transform: 'none' }}
@@ -58,7 +100,6 @@ function Introduce() {
                             height="315"
                             src="https://www.youtube.com/embed/gLlDPBXyyxg"
                             title="Khám Phá Trường Đại Học Đại Nam | Tuyển Sinh 2024"
-                            frameBorder="0"
                             allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
                             referrerPolicy="strict-origin-when-cross-origin"
                             allowFullScreen
