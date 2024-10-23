@@ -10,7 +10,7 @@ function MainDivider() {
         <div className="w-full">
             <div className="felx flex-col">
                 <MainContent></MainContent>
-                <div className="absolute">
+                <div className="absolute w-full">
                     <Introduce />
                     <StarBackgound />
                     <Activity />

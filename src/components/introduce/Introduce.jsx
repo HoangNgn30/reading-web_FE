@@ -2,6 +2,7 @@ import Slider from './Slider';
 import section from '../../assets/section.svg';
 import LabSlider from './LabSlider';
 import { useState } from 'react';
+import MemberSlide from '../slide/MemberSlide';
 
 function Introduce() {
     const [showMore, setShowMore] = useState(false);
@@ -25,7 +26,7 @@ function Introduce() {
                     >
                         NGÀNH CÔNG NGHỆ THÔNG TIN
                     </h1>
-                    <div className="flex flex-col lg:flex-row w-full lg:my-10 items-start justify-center gap-5 px-10 lg:px-20">
+                    <div className="flex flex-col lg:flex-row w-full lg:my-10 items-center justify-center gap-5 px-10 lg:px-20 mb-20">
                         <Slider></Slider>
                         <div className="flex flex-col gap-3 lg:max-w-[550px] text-black text-justify lg:ml-6">
                             <p
@@ -51,8 +52,9 @@ function Introduce() {
                         </div>
                     </div>
 
-                    <div className="flex flex-col lg:flex-row w-full lg:my-10 items-center justify-center gap-5 px-10 lg:px-20">
+                    <div className="flex flex-col lg:flex-row w-full lg:my-10 items-center justify-center gap-5 px-10 lg:px-20 mb-20">
                         <LabSlider />
+
                         <div className="flex flex-col gap-3 lg:max-w-[550px] text-black text-justify lg:ml-6">
                             <p
                                 className="text-base lg:text-xl"
@@ -83,11 +85,17 @@ function Introduce() {
                                     cứu và phát triển công nghệ trong thế hệ sinh viên tương lai.
                                 </p>
                             )}
-                            <button className="text-primary underline mt-2 text-lg" onClick={() => setShowMore(!showMore)}>
+                            <button
+                                className="text-primary underline mt-2 text-lg"
+                                onClick={() => setShowMore(!showMore)}
+                            >
                                 {showMore ? 'Thu gọn...' : 'Đọc thêm...'}
                             </button>
                         </div>
                     </div>
+
+                    <MemberSlide />
+
                     <h3
                         className="font-normal text-2xl text-black text-center my-3 lg:my-6"
                         style={{ opacity: '1', willChange: 'auto', transform: 'none' }}
