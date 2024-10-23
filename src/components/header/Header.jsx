@@ -27,7 +27,7 @@ function Header() {
                         className="font-bold ml-[10px] hidden md:block text-neutral-200"
                         style={{ textShadow: `2px 2px 4px rgba(0, 0, 0, 0.4)` }}
                     >
-                        PHÒNG LAB KHOA CÔNG NGHỆ THÔNG TIN
+                        PHÒNG LAB AIoT CÔNG NGHỆ THÔNG TIN
                     </span>
                 </a>
 
