@@ -3,6 +3,7 @@ import section from '../../assets/section.svg';
 import LabSlider from './LabSlider';
 import { useState } from 'react';
 import MemberSlide from '../slide/MemberSlide';
+import Memberlist from './Memberlist';
 
 function Introduce() {
     const [showMore, setShowMore] = useState(false);
@@ -94,7 +95,7 @@ function Introduce() {
                         </div>
                     </div>
 
-                    <MemberSlide />
+                    <Memberlist />
 
                     <h3
                         className="font-normal text-2xl text-black text-center my-3 lg:my-6"
