@@ -24,7 +24,7 @@ function Introduce() {
                         className="font-bold text-4xl text-primary text-center my-3 mx-6"
                         style={{ opacity: '1', willChange: 'auto', transform: 'none' }}
                     >
-                        NGÀNH CÔNG NGHỆ THÔNG TIN
+                        PHÒNG LAB AIOT CÔNG NGHỆ THÔNG TIN
                     </h1>
                     <div className="flex flex-col lg:flex-row w-full lg:my-10 items-center justify-center gap-5 px-10 lg:px-20 mb-20">
                         <Slider></Slider>
@@ -33,21 +33,21 @@ function Introduce() {
                                 className="text-base lg:text-xl"
                                 style={{ opacity: '1', willChange: 'auto', transform: 'none' }}
                             >
-                                <span className="font-bold">Ngành Công nghệ thông tin (CNTT) </span> là một trong những
-                                ngành được thành lập sớm nhất của trường Đại học Đại Nam. Sau 15 năm xây dựng và phát
-                                triển, trường đã đào tạo được hơn 2.000 cử nhân CNTT chất lượng, tự tin hội nhập, tham
-                                gia vào thị trường công nghệ rộng lớn, đầy cạnh tranh.
+                                <span className="font-bold">Phòng lab aiot Công nghệ thông tin (CNTT) </span>
                             </p>
                             <p
                                 className="text-base lg:text-xl"
                                 style={{ opacity: '1', willChange: 'auto', transform: 'none' }}
                             >
-                                Tốt nghiệp ngành Công nghệ thông tin, sinh viên có thể đảm nhiệm các công việc như: Lập
-                                trình viên phần mềm, chuyên viên phân tích thiết kế hệ thống, quản lý dữ liệu, quản trị
-                                mạng, kỹ thuật phần cứng máy tính, … tại các công ty phần mềm; Trở thành chuyên gia quản
-                                lý, điều phối các dự án công nghệ thông tin tại các tập đoàn, tổ chức thương mại điện tử
-                                trong và ngoài nước; Cán bộ, Chuyên viên về CNTT ở bộ phận CNTT hoặc cần ứng dụng CNTT ở
-                                các cơ sở đào tạo từ bậc trung học phổ thông đến bậc đại học và các viện nghiên cứu.
+                                Ngoài việc phục vụ cho hoạt động học tập, phòng Lab còn tổ chức các buổi seminar, hội
+                                thảo với sự tham gia của các chuyên gia trong lĩnh vực AIoT, giúp sinh viên tiếp cận
+                                những kiến thức mới nhất và trao đổi kinh nghiệm thực tiễn. Sinh viên sẽ có cơ hội làm
+                                việc trong các dự án nghiên cứu đa dạng, từ phát triển ứng dụng thông minh cho nhà ở đến
+                                hệ thống giám sát trong nông nghiệp, hoặc các giải pháp giao thông thông minh, tạo ra
+                                giá trị thực tế cho cộng đồng. Với sự hỗ trợ từ giảng viên và sự khuyến khích tham gia
+                                vào các cuộc thi và dự án khởi nghiệp, phòng Lab AIoT không chỉ là nơi học tập mà còn là
+                                môi trường thúc đẩy sự sáng tạo, khơi dậy đam mê nghiên cứu và phát triển công nghệ
+                                trong thế hệ sinh viên tương lai.
                             </p>
                         </div>
                     </div>
