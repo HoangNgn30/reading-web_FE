@@ -7,13 +7,13 @@ import ResearchProjects from '../projects/Projects';
 function Introduce() {
     return (
         <div className="flex flex-col items-center justify-center h-full relative overflow-hidden z-20 pb-10">
-            <div id="Intro" className="h-full w-full bg-[#D72134]">
+            <div id="Intro" className="h-full w-full bg-[#DFEFFF]">
                 <div
                     className="flex flex-col items-center justify-center w-full z-[30]"
                     style={{ opacity: '1', willChange: 'auto', backdropFilter: 'brightness(90%)' }}
                 >
                     <h3
-                        className="xl:text-3xl text-xl font-bold text-primary mt-20"
+                        className="xl:text-3xl text-xl font-bold text-[#001355] mt-20"
                         style={{ opacity: '1', willChange: 'auto', transform: 'none' }}
                     >
                         GIỚI THIỆU
@@ -22,7 +22,7 @@ function Introduce() {
                     <div className="flex flex-col lg:flex-row w-full lg:my-10 items-center justify-center gap-5 px-10 lg:px-20 mb-20">
                         <LabSlider />
 
-                        <div className="flex flex-col gap-3 lg:max-w-[550px] h-fit text-black text-justify lg:ml-6">
+                        <div className="flex flex-col gap-3 lg:max-w-[570px] h-fit text-black text-justify lg:ml-6">
                             <p
                                 className="text-base lg:text-xl"
                                 style={{ opacity: '1', willChange: 'auto', fit: 'true' }}
@@ -48,9 +48,8 @@ function Introduce() {
                         </div>
                     </div>
 
-                    <Memberlist className="mt-20" />
-
                     <AdviserList className="mt-20" />
+                    <Memberlist className="my-20" />
 
                     <ResearchProjects />
                 </div>

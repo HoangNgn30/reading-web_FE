@@ -23,21 +23,19 @@ function MainContent() {
                 />
             </div>
             <div className="absolute flex flex-col items-center w-full ">
-                {/* <img src={logo} className="w-[150px] h-[150px]" />
-                <h1 className="md:text-5xl font-bold text-primary mt-12 text-center text-3xl">
-                    AIoT LAB
-                </h1> */}
                 <div className="h-[150px]"></div>
                 <div className="w-full bg-[#F3F4F6] opacity-50 mt-6 md:block hidden">
                     <div className="flex justify-around">
-                        <div className="flex items-center text-[#20409A]">
-                            <AiOutlineGlobal className="h-full text-xl mr-1" />
-                            <p className="md:font-bold font-medium text-sm">https://dainam.edu.vn</p>
-                        </div>
-                        <div className="flex items-center text-[#20409A]">
-                            <FaFacebook className="h-full text-xl  mr-1" />
-                            <p className="md:font-bold font-medium text-sm">facebook.com/DAINAM.EDU.VN</p>
-                        </div>
+                        {/* <div>
+                            Lab Trí tuệ nhân tạo (Lab AI) Lab Trí tuệ nhân tạo (Lab AI) được thành lập vào năm 2022, là
+                            đơn vị nghiên cứu thuộc Viện Khoa học tính toán và Trí tuệ nhân tạo, Trường Đại học Văn
+                            Lang. Lab AI nghiên cứu phát triển lĩnh vực trí tuệ nhân tạo thông qua nghiên cứu liên
+                            ngành, giáo dục và chuyển giao công nghệ. Nghiên cứu của Lab AI tập trung vào phát triển các
+                            thuật toán và kỹ thuật học máy, xử lý ngôn ngữ tự nhiên, thị giác máy tính và robot. Lab AI
+                            nhằm mục đích giải quyết các vấn đề phức tạp trong thế giới thực bằng cách áp dụng công nghệ
+                            trí tuệ nhân tạo vào nhiều lĩnh vực khác nhau, bao gồm chăm sóc sức khỏe, tài chính, giao
+                            thông vận tải và an ninh mạng.
+                        </div> */}
                     </div>
                 </div>
             </div>

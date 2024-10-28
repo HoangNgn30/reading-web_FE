@@ -1,6 +1,6 @@
 import { useState } from 'react';
 import ReactModal from 'react-modal';
-import logo from '../../assets/dai-nam-11.jpg';
+import logo from '../../assets/logo.png';
 
 ReactModal.setAppElement('#root');
 function Header() {
@@ -9,14 +9,14 @@ function Header() {
     const closeModal = () => setModalIsOpen(false);
 
     return (
-        <div className="w-full h-[65px] fixed top-0 shadow-lg shadow-[#2A0E61]/50  md:backdrop-blur-md z-40 px-10 bg-[#fff]">
+        <div className="w-full h-[65px] fixed top-0 shadow-lg shadow-[#2A0E61]/50  md:backdrop-blur-md z-40 px-10 bg-transparent">
             <div className="w-full h-full flex flex-row items-center justify-between m-auto px-[10px]">
                 <a href="#Intro" className="h-full w-auto flex flex-row items-center">
                     <img
                         alt="logo"
                         loading="lazy"
-                        width="80"
-                        height="80"
+                        width="100"
+                        height="100"
                         decoding="async"
                         data-nimg="1"
                         style={{ color: `transparent` }}
@@ -24,16 +24,24 @@ function Header() {
                         className="rounded-full"
                     />
 
-                    <span className="font-bold ml-[10px] hidden md:block text-primary text-xl">AIOT LAB - FIT DNU</span>
+                    <span className="font-bold ml-[10px] hidden md:block text-[#001355] text-xl">AIOT LAB - FIT DNU</span>
                 </a>
 
                 <div
-                    className="hidden lg:flex w-[500px] h-full flex-row items-center justify-between md:mr-10"
+                    className="hidden lg:flex w-fit h-full flex-row items-center justify-between md:mr-10"
                     style={{ maxWidth: '100%' }}
                 >
-                    <div className="flex text-black items-center justify-between border border-[#7042f861] bg-[#0300145e] mr-[15px] px-[20px] py-[10px] rounded-full gap-10 z-50">
+                    <div className="flex items-center justify-between border border-[#7042f861] bg-[#0300145e] mr-[15px] px-[20px] py-[10px] rounded-full gap-10 z-50 font-medium text-gray-200">
                         <a href="#Intro" className="cursor-pointer">
                             Giới thiệu
+                        </a>
+
+                        <a href="#Member" className="cursor-pointer">
+                            Thành viên
+                        </a>
+
+                        <a href="#Project" className="cursor-pointer">
+                            Nghiên cứu khoa học
                         </a>
 
                         <a href="#Activity" className="cursor-pointer">

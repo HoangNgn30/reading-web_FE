@@ -15,12 +15,12 @@ const StarBackgound = () => {
             className="absolute top-0 w-full h-full"
             options={{
                 fullScreen: {
-                    enable: false, // Tắt chế độ full màn hình
+                    enable: false,
                 },
                 autoPlay: true,
                 background: {
                     color: {
-                        value: '#1F2251',
+                        value: '#0D0D10',
                     },
                     image: ``,
                     position: '',

@@ -4,7 +4,7 @@ import { FaArrowRight } from 'react-icons/fa';
 const ResearchProjects = () => {
     return (
         <div className="container mx-auto px-4 py-8 w-[90%]">
-            <h1 className="text-3xl font-semibold mb-6 text-primary">Đề tài/Dự án & Công bố khoa học</h1>
+            <h1 className="text-3xl font-semibold mb-6 text-[#001355]">Đề tài/Dự án & Công bố khoa học</h1>
 
             <div className="mb-8 bg-gray-200 p-4 rounded-lg">
                 <div className="flex justify-between items-center">

@@ -6,6 +6,7 @@ import anh3 from '../../assets/Mem3.jpg';
 import anh4 from '../../assets/Mem4.jpg';
 import anh5 from '../../assets/Mem5.jpg';
 import anh6 from '../../assets/NHAN.jpg';
+import anh7 from '../../assets/mem7.jpg';
 import { BiArrowFromLeft, BiArrowFromRight } from 'react-icons/bi';
 import 'slick-carousel/slick/slick.css';
 import 'slick-carousel/slick/slick-theme.css';
@@ -21,6 +22,7 @@ const members = [
     { position: 'Thành viên', name: 'ThS. Nguyễn Ngọc Ân', image: anh4 },
     { position: 'Thành viên', name: 'ThS. Lê Tuấn Anh', image: anh5 },
     { position: 'Thành viên', name: 'KS. Nguyễn Văn Nhân', image: anh6 },
+    { position: 'Thành viên', name: 'KS. Nguyễn Thái Khánh', image: anh7 },
 ];
 
 const CustomArrow = ({ className, onClick, direction }) => (
@@ -42,7 +44,7 @@ export default function MemberList({ className }: IMemberListProps) {
         slidesToShow: 3,
         slidesToScroll: 1,
         autoplay: true,
-        autoplaySpeed: 2000,
+        autoplaySpeed: 5000,
         responsive: [
             { breakpoint: 1024, settings: { slidesToShow: 2 } },
             { breakpoint: 640, settings: { slidesToShow: 1 } },
@@ -50,8 +52,8 @@ export default function MemberList({ className }: IMemberListProps) {
     };
 
     return (
-        <div className={`flex flex-col items-center ${className} w-full max-w-screen-lg mx-auto`}>
-            <h3 className="text-primary md:text-4xl text-3xl font-bold self-center md:mb-6 mb-10">THÀNH VIÊN</h3>
+        <div className={`flex flex-col items-center ${className} w-full max-w-screen-lg mx-auto container`}>
+            <h3 className="text-[#001355] md:text-4xl text-3xl font-bold self-center md:mb-6 mb-10">THÀNH VIÊN</h3>
 
             <div className="md:mb-6 mb-2 flex flex-col items-end px-6"></div>
 

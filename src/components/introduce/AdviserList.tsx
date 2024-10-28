@@ -12,8 +12,8 @@ interface IMemberListProps {
 }
 
 const members = [
-    { position: 'Trưởng Khoa CNTT', name: 'TS. Trần Đăng Công', image: anh1 },
     { position: 'Phó trưởng Khoa CNTT', name: 'TS. Đậu Hải Phong', image: anh2 },
+    { position: 'Trưởng Khoa CNTT', name: 'TS. Trần Đăng Công', image: anh1 },
     { position: 'Phó trưởng Khoa CNTT', name: 'ThS. Phạm Văn Tiệp', image: anh3 },
 ];
 
@@ -44,7 +44,7 @@ export default function AdviserList({ className }: IMemberListProps) {
 
     return (
         <div className={`flex flex-col items-center ${className} w-full max-w-screen-lg mx-auto`}>
-            <h3 className="text-primary md:text-4xl text-3xl font-bold self-center md:mb-6 mb-10">THÀNH VIÊN</h3>
+            <h3 className="text-[#001355] md:text-4xl text-3xl font-bold self-center md:mb-6 mb-10">CỐ VẤN</h3>
 
             <div className="md:mb-6 mb-2 flex flex-col items-end px-6"></div>
 

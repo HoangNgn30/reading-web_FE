@@ -41,7 +41,7 @@ function Activity() {
                 style={{ opacity: '1', willChange: 'auto' }}
             >
                 <h1
-                    className="font-bold text-center text-2xl lg:text-4xl text-[#e4ded0] px-10 lg:px-20"
+                    className="font-bold text-center text-2xl lg:text-4xl text-[#001355] px-10 lg:px-20"
                     style={{ opacity: '1', willChange: 'auto', transform: 'none' }}
                 >
                     HOẠT ĐỘNG
