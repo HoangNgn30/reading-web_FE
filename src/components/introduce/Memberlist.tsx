@@ -40,7 +40,7 @@ export default function AdviserList({ className }: IMemberListProps) {
         slidesToShow: 3,
         slidesToScroll: 1,
         autoplay: true,
-        autoplaySpeed: 3000,
+        autoplaySpeed: 2000,
 
         responsive: [
             { breakpoint: 1024, settings: { slidesToShow: 2 } },
@@ -52,12 +52,7 @@ export default function AdviserList({ className }: IMemberListProps) {
         <div className={`flex flex-col items-center ${className} w-full max-w-screen-lg mx-auto`}>
             <h3 className="text-primary md:text-4xl text-3xl font-bold self-center md:mb-6 mb-10">Thành viên</h3>
 
-            <div className="md:mb-6 mb-2 flex flex-col items-end px-6">
-                <button className="md:px-4 px-3 py-2 rounded-full bg-orange-400 hover:scale-105 font-medium md:text-md text-sm text-neutral-500 flex gap-2 items-center">
-                    <span>Tìm hiểu thêm</span>
-                    <BiArrowFromLeft size={20} />
-                </button>
-            </div>
+            <div className="md:mb-6 mb-2 flex flex-col items-end px-6"></div>
 
             <div className="w-full overflow-hidden">
                 <Slider {...settings} className="w-full">

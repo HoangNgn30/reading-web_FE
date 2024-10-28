@@ -41,12 +41,7 @@ export default function AdviserList({ className }: IAdvisorListProps) {
         <div className={`flex flex-col ${className}`}>
             <h3 className="text-primary text-4xl font-bold self-center md:mb-6 mb-10">CỐ VẤN</h3>
 
-            <div className="md:mb-6 mb-2 flex flex-col items-end px-6">
-            <button className="md:px-4 px-3 py-2 rounded-full bg-orange-400 hover:scale-105 font-medium md:text-md text-sm text-neutral-500 flex gap-2 items-center">
-                    <span>Tìm hiểu thêm</span>
-                    <BiArrowFromLeft size={20} />
-                </button>
-            </div>
+            <div className="md:mb-6 mb-2 flex flex-col items-end px-6"></div>
 
             <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:gap-8 gap-4 px-6 mb-10">
                 {members.map((item, index) => (
