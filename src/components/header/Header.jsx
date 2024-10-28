@@ -27,7 +27,7 @@ function Header() {
                         className="font-bold ml-[10px] hidden md:block text-neutral-200"
                         style={{ textShadow: `2px 2px 4px rgba(0, 0, 0, 0.4)` }}
                     >
-                        PHÒNG LAB AIoT CÔNG NGHỆ THÔNG TIN
+                        AIOT LAB - FIT DNU
                     </span>
                 </a>
 
@@ -35,17 +35,13 @@ function Header() {
                     className="hidden lg:flex w-[500px] h-full flex-row items-center justify-between md:mr-10"
                     style={{ maxWidth: '100%' }}
                 >
-                    <div className="flex items-center justify-between border border-[#7042f861] bg-[#0300145e] mr-[15px] px-[20px] py-[10px] rounded-full text-gray-50 gap-4 z-50">
+                    <div className="flex items-center justify-between border border-[#7042f861] bg-[#0300145e] mr-[15px] px-[20px] py-[10px] rounded-full text-gray-50 gap-10 z-50">
                         <a href="#Intro" className="cursor-pointer">
                             Giới thiệu
                         </a>
 
                         <a href="#Activity" className="cursor-pointer">
                             Hoạt động
-                        </a>
-
-                        <a href="#Department" className="cursor-pointer">
-                            Chuyên ngành
                         </a>
 
                         <a href="#Contact" className="cursor-pointer">

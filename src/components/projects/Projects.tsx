@@ -29,18 +29,18 @@ const ResearchProjects = () => {
                             Profitability of Ichimoku-Based Trading Rule in Vietnam Stock Market in the Context of the
                             COVID-19 Outbreak
                         </h3>
-                        <p className="text-gray-600">TS. Nguyễn Trang Thảo</p>
+                        <p className="text-gray-600">TS. Lê Trung Hiếu</p>
                     </div>
                     <div className="p-4 border rounded shadow">
                         <h3 className="font-semibold">
                             Mining frequent weighted utility patterns with dynamic weighted items from quantitative
                             databases
                         </h3>
-                        <p className="text-gray-600">TS. Lê Cung Tường</p>
+                        <p className="text-gray-600">TS. Lê Văn Phong</p>
                     </div>
                     <div className="p-4 border rounded shadow">
                         <h3 className="font-semibold">OPT-BAG Model for Predicting Student Employability</h3>
-                        <p className="text-gray-600">TS. Lê Cung Tường</p>
+                        <p className="text-gray-600">KS. Nguyễn Văn Nhân</p>
                     </div>
                 </div>
             </div>

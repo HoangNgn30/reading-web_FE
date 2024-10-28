@@ -5,6 +5,7 @@ import anh2 from '../../assets/Phong.jpg';
 import anh3 from '../../assets/Mem3.jpg';
 import anh4 from '../../assets/Mem4.jpg';
 import anh5 from '../../assets/Mem5.jpg';
+import anh6 from '../../assets/NHAN.jpg';
 import { BiArrowFromLeft, BiArrowFromRight } from 'react-icons/bi';
 import 'slick-carousel/slick/slick.css';
 import 'slick-carousel/slick/slick-theme.css';
@@ -19,6 +20,7 @@ const members = [
     { position: 'Thành viên', name: 'ThS. Lê Thị Thùy Trang', image: anh3 },
     { position: 'Thành viên', name: 'ThS. Nguyễn Ngọc Ân', image: anh4 },
     { position: 'Thành viên', name: 'ThS. Lê Tuấn Anh', image: anh5 },
+    { position: 'Thành viên', name: 'KS. Nguyễn Văn Nhân', image: anh6 },
 ];
 
 const CustomArrow = ({ className, onClick, direction }) => (
@@ -41,7 +43,6 @@ export default function AdviserList({ className }: IMemberListProps) {
         slidesToScroll: 1,
         autoplay: true,
         autoplaySpeed: 2000,
-
         responsive: [
             { breakpoint: 1024, settings: { slidesToShow: 2 } },
             { breakpoint: 640, settings: { slidesToShow: 1 } },
@@ -50,20 +51,20 @@ export default function AdviserList({ className }: IMemberListProps) {
 
     return (
         <div className={`flex flex-col items-center ${className} w-full max-w-screen-lg mx-auto`}>
-            <h3 className="text-primary md:text-4xl text-3xl font-bold self-center md:mb-6 mb-10">Thành viên</h3>
+            <h3 className="text-primary md:text-4xl text-3xl font-bold self-center md:mb-6 mb-10">THÀNH VIÊN</h3>
 
             <div className="md:mb-6 mb-2 flex flex-col items-end px-6"></div>
 
             <div className="w-full overflow-hidden">
                 <Slider {...settings} className="w-full">
                     {members.map((item, index) => (
-                        <div key={index} className="px-2">
-                            <div className="bg-gray-200 shadow-lg rounded-lg p-4 flex flex-col items-center">
-                                <div className="rounded-lg overflow-hidden w-full h-80 flex-shrink-0">
+                        <div key={index} className="px-4">
+                            <div className="bg-gray-200 shadow-lg rounded-lg flex flex-col items-center">
+                                <div className="rounded-t-lg overflow-hidden w-full h-80 flex-shrink-0">
                                     <img src={item.image} alt={item.name} className="w-full h-full object-cover" />
                                 </div>
                                 <h3 className="text-lg font-semibold mt-4">{item.name}</h3>
-                                <p className="text-gray-700">{item.position}</p>
+                                <p className="text-gray-700 pb-4">{item.position}</p>
                             </div>
                         </div>
                     ))}

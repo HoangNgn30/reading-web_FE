@@ -6,8 +6,6 @@ import AdviserList from './AdviserList';
 import ResearchProjects from '../projects/Projects';
 
 function Introduce() {
-    const [showMore, setShowMore] = useState(false);
-
     return (
         <div className="flex flex-col items-center justify-center h-full relative overflow-hidden z-20 pb-10">
             <div id="Intro" className="h-full w-full bg-[#e4ded0]">
@@ -22,7 +20,7 @@ function Introduce() {
                         GIỚI THIỆU
                     </h3>
 
-                    <div className="flex flex-col lg:flex-row w-full lg:my-10 items-start justify-center gap-5 px-10 lg:px-20 mb-20">
+                    <div className="flex flex-col lg:flex-row w-full lg:my-10 items-center justify-center gap-5 px-10 lg:px-20 mb-20">
                         <LabSlider />
 
                         <div className="flex flex-col gap-3 lg:max-w-[550px] h-fit text-black text-justify lg:ml-6">
@@ -37,35 +35,24 @@ function Introduce() {
                                 sinh viên và giảng viên trong việc khám phá và ứng dụng công nghệ Internet vạn vật (IoT)
                                 và trí tuệ nhân tạo (AI). Lab được trang bị hệ thống máy tính mạnh mẽ, các thiết bị cảm
                                 biến, robot giao tiếp, và các công cụ phần mềm hiện đại, tạo điều kiện thuận lợi cho
-                                việc thực hiện các dự án nghiên cứu cũng như các bài tập thực hành.
+                                việc thực hiện các dự án nghiên cứu cũng như các bài tập thực hành. Ngoài việc phục vụ
+                                cho hoạt động học tập, phòng Lab còn tổ chức các buổi seminar, hội thảo với sự tham gia
+                                của các chuyên gia trong lĩnh vực AIoT, giúp sinh viên tiếp cận những kiến thức mới nhất
+                                và trao đổi kinh nghiệm thực tiễn. Sinh viên sẽ có cơ hội làm việc trong các dự án
+                                nghiên cứu đa dạng, từ phát triển ứng dụng thông minh cho nhà ở đến hệ thống giám sát
+                                trong nông nghiệp, hoặc các giải pháp giao thông thông minh, tạo ra giá trị thực tế cho
+                                cộng đồng. Với sự hỗ trợ từ giảng viên và sự khuyến khích tham gia vào các cuộc thi và
+                                dự án khởi nghiệp, phòng Lab AIoT không chỉ là nơi học tập mà còn là môi trường thúc đẩy
+                                sự sáng tạo, khơi dậy đam mê nghiên cứu và phát triển công nghệ trong thế hệ sinh viên
+                                tương lai.
                             </p>
-                            {showMore && (
-                                <p
-                                    className="text-base lg:text-xl"
-                                    style={{ opacity: '1', willChange: 'auto', transform: 'none' }}
-                                >
-                                    Ngoài việc phục vụ cho hoạt động học tập, phòng Lab còn tổ chức các buổi seminar,
-                                    hội thảo với sự tham gia của các chuyên gia trong lĩnh vực AIoT, giúp sinh viên tiếp
-                                    cận những kiến thức mới nhất và trao đổi kinh nghiệm thực tiễn. Sinh viên sẽ có cơ
-                                    hội làm việc trong các dự án nghiên cứu đa dạng, từ phát triển ứng dụng thông minh
-                                    cho nhà ở đến hệ thống giám sát trong nông nghiệp, hoặc các giải pháp giao thông
-                                    thông minh, tạo ra giá trị thực tế cho cộng đồng. Với sự hỗ trợ từ giảng viên và sự
-                                    khuyến khích tham gia vào các cuộc thi và dự án khởi nghiệp, phòng Lab AIoT không
-                                    chỉ là nơi học tập mà còn là môi trường thúc đẩy sự sáng tạo, khơi dậy đam mê nghiên
-                                    cứu và phát triển công nghệ trong thế hệ sinh viên tương lai.
-                                </p>
-                            )}
-                            <button
-                                className="text-primary underline mt-2 text-lg"
-                                onClick={() => setShowMore(!showMore)}
-                            >
-                                {showMore ? 'Thu gọn...' : 'Đọc thêm...'}
-                            </button>
                         </div>
                     </div>
 
                     <Memberlist className="mt-20" />
+
                     <AdviserList className="mt-20" />
+
                     <ResearchProjects />
                 </div>
             </div>
