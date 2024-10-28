@@ -15,8 +15,8 @@ function Header() {
                     <img
                         alt="logo"
                         loading="lazy"
-                        width="100"
-                        height="100"
+                        width="150"
+                        height="150"
                         decoding="async"
                         data-nimg="1"
                         style={{ color: `transparent` }}
@@ -24,7 +24,7 @@ function Header() {
                         className="rounded-full"
                     />
 
-                    <span className="font-bold ml-[10px] hidden md:block text-[#001355] text-xl">AIOT LAB - FIT DNU</span>
+                    <span className="font-bold ml-[10px] hidden md:block text-[#001355] text-xl">AIoT LAB - FIT DNU</span>
                 </a>
 
                 <div

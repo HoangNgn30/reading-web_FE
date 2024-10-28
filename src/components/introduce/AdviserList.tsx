@@ -31,11 +31,12 @@ const CustomArrow = ({ className, onClick, direction }) => (
 export default function AdviserList({ className }: IMemberListProps) {
     const settings = {
         dots: true,
-        infinite: true,
+        infinite: false,
         speed: 500,
         slidesToShow: 3,
-        slidesToScroll: 1,
+        slidesToScroll: 3,
         autoplay: false,
+        swipe: false,
         responsive: [
             { breakpoint: 1024, settings: { slidesToShow: 2 } },
             { breakpoint: 640, settings: { slidesToShow: 1 } },
