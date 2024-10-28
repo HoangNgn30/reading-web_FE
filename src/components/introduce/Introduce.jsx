@@ -8,7 +8,7 @@ import ResearchProjects from '../projects/Projects';
 function Introduce() {
     return (
         <div className="flex flex-col items-center justify-center h-full relative overflow-hidden z-20 pb-10">
-            <div id="Intro" className="h-full w-full bg-[#e4ded0]">
+            <div id="Intro" className="h-full w-full bg-[#D72134]">
                 <div
                     className="flex flex-col items-center justify-center w-full z-[30]"
                     style={{ opacity: '1', willChange: 'auto', backdropFilter: 'brightness(90%)' }}
