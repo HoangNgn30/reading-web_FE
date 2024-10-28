@@ -11,6 +11,8 @@ function SimpleSlide({ listOb }) {
         slidesToShow: 3,
         speed: 500,
         centerPadding: '50px',
+        autoplay: true,
+        autoplaySpeed: 2000,
         responsive: [
             {
                 breakpoint: 1280,
@@ -30,7 +32,7 @@ function SimpleSlide({ listOb }) {
     };
     return (
         <div>
-            <Slider {...settings} className="xl:w-[1090px] md:w-[720px] w-[330px]">
+            <Slider {...settings} className="xl:w-[1090px] md:w-[720px] w-[330px] h-fit">
                 {listOb.map((ob, index) => {
                     return (
                         <div className="w-[330px] max-w-[330px] h-[300px] relative" key={index}>
