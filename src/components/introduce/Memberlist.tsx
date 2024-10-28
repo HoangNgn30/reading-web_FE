@@ -34,7 +34,7 @@ const CustomArrow = ({ className, onClick, direction }) => (
     </div>
 );
 
-export default function AdviserList({ className }: IMemberListProps) {
+export default function MemberList({ className }: IMemberListProps) {
     const settings = {
         dots: true,
         infinite: true,

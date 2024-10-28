@@ -1,6 +1,5 @@
 import section from '../../assets/section.svg';
 import LabSlider from './LabSlider';
-import { useState } from 'react';
 import Memberlist from './Memberlist';
 import AdviserList from './AdviserList';
 import ResearchProjects from '../projects/Projects';
