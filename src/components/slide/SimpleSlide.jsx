@@ -1,58 +1,31 @@
 /* eslint-disable react/prop-types */
-import 'slick-carousel/slick/slick.css';
-import 'slick-carousel/slick/slick-theme.css';
-import Slider from 'react-slick';
+import { FaArrowRight } from 'react-icons/fa';
 
-function SimpleSlide({ listOb }) {
-    const settings = {
-        className: 'center',
-        centerMode: true,
-        infinite: true,
-        slidesToShow: 3,
-        speed: 500,
-        centerPadding: '50px',
-        autoplay: true,
-        autoplaySpeed: 2000,
-        responsive: [
-            {
-                breakpoint: 1280,
-                settings: {
-                    slidesToShow: 2, // Hiển thị 2 slides cho màn hình từ 1024 đến 1280
-                    centerPadding: '30px',
-                },
-            },
-            {
-                breakpoint: 768,
-                settings: {
-                    slidesToShow: 1, // Hiển thị 1 slide cho màn hình nhỏ hơn 1024
-                    centerPadding: '0px',
-                },
-            },
-        ],
-    };
+function SimpleGrid({ listOb }) {
     return (
-        <div>
-            <Slider {...settings} className="xl:w-[1090px] md:w-[720px] w-[330px] h-fit">
-                {listOb.map((ob, index) => {
-                    return (
-                        <div className="w-[330px] max-w-[330px] h-[300px] relative" key={index}>
-                            <div
-                                className="w-[300px] max-w-[300px] h-[300px] bg-white rounded-3xl flex flex-col items-center overflow-hidden box-border absolute left-1/2 "
-                                style={{ transform: 'translateX(-50%)' }}
-                            >
-                                <div className="w-full " style={{ aspectRatio: 4 / 3 }}>
-                                    <img src={ob.image} className="w-full h-full object-cover object center"></img>
-                                </div>
-                                <div className="p-2.5">
-                                    <p className="line-clamp-2 text-lg font-bold">{ob.content}</p>
-                                </div>
+        <div className="scrollbar-custom overflow-x-auto flex flex-col px-24">
+            <button className="flex items-center text-black font-medium text-base self-end mb-8">
+                Tìm hiểu thêm
+                <span className="flex items-center ml-2 bg-red-600 text-white py-1 font-bold px-4 text-center content-center rounded-full">
+                    <FaArrowRight className="ml-1" />
+                </span>
+            </button>
+            <div className="grid md:grid-cols-3 sm:grid-cols-2 grid-cols-1 gap-x-8 gap-y-8">
+                {listOb.map((ob, index) => (
+                    <div key={index} className="flex-shrink-0">
+                        <div className="bg-white rounded-lg flex flex-col items-center">
+                            <div className="w-full" style={{ aspectRatio: '4 / 3' }}>
+                                <img src={ob.image} className="w-full rounded-t-lg h-full object-cover" alt="member" />
+                            </div>
+                            <div className="p-2.5">
+                                <p className="line-clamp-2 text-lg font-medium">{ob.content}</p>
                             </div>
                         </div>
-                    );
-                })}
-            </Slider>
+                    </div>
+                ))}
+            </div>
         </div>
     );
 }
 
-export default SimpleSlide;
+export default SimpleGrid;

@@ -4,6 +4,7 @@ import anh3 from '../../assets/bieoyveubm5r8d35bbcc20240228092829_thump.jpg';
 import anh4 from '../../assets/jrz7falci9ohz3quwa3820230601011109_thump.jpg';
 import anh5 from '../../assets/tgsr6q056c80wytv0n4720221227011757_thump.jpg';
 import SimpleSlide from '../slide/SimpleSlide';
+import { FaArrowRight } from 'react-icons/fa';
 
 function Activity() {
     const listActivity = [
@@ -18,7 +19,7 @@ function Activity() {
         },
         {
             image: anh3,
-            content: 'Cuộc thi tìm kiếm "Tài Năng Lập Trình DNU"',
+            content: 'Cuộc thi tìm kiếm "Tài Năng Lập Trình DNU, khám phá khả năng lập trình của bạn',
         },
         {
             image: anh4,
@@ -41,7 +42,7 @@ function Activity() {
                 style={{ opacity: '1', willChange: 'auto' }}
             >
                 <h1
-                    className="font-bold text-center text-2xl lg:text-4xl text-[#001355] px-10 lg:px-20"
+                    className="font-bold text-center text-2xl lg:text-4xl text-[#001355] px-10 lg:px-20 mt-8 my-10"
                     style={{ opacity: '1', willChange: 'auto', transform: 'none' }}
                 >
                     HOẠT ĐỘNG
