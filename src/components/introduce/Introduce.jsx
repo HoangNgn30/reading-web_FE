@@ -48,10 +48,11 @@ function Introduce() {
                             </p>
                         </div>
                     </div>
+                    <div className="bg-[#F2F8FF] w-full">
+                        <AdviserList className="mt-20" />
 
-                    <AdviserList className="mt-20" />
-
-                    <Memberlist className="my-20" />
+                        <Memberlist className="my-20" />
+                    </div>
 
                     <ResearchProjects />
                     <Activity />

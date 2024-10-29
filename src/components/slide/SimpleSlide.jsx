@@ -12,13 +12,13 @@ function SimpleGrid({ listOb }) {
             </button>
             <div className="grid md:grid-cols-3 sm:grid-cols-2 grid-cols-1 gap-x-8 gap-y-8">
                 {listOb.map((ob, index) => (
-                    <div key={index} className="flex-shrink-0">
+                    <div key={index} className="flex-shrink-0 border border-[#E2E4E9] rounded-lg">
                         <div className="bg-white rounded-lg flex flex-col items-center">
-                            <div className="w-full" style={{ aspectRatio: '4 / 3' }}>
-                                <img src={ob.image} className="w-full rounded-t-lg h-full object-cover" alt="member" />
+                            <div className="w-full">
+                                <img src={ob.image} className="w-full rounded-t-lg h-64 object-cover" alt="member" />
                             </div>
-                            <div className="p-2.5">
-                                <p className="line-clamp-2 text-lg font-medium">{ob.content}</p>
+                            <div className="p-3 h-40 text-[#172554]">
+                                <p className="text-lg font-medium">{ob.content}</p>
                             </div>
                         </div>
                     </div>

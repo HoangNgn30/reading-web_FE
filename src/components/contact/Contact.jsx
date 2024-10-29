@@ -10,7 +10,7 @@ function Contact() {
             <div className="flex flex-col w-full justify-center items-center m-auto">
                 <div className="flex flex-row w-full h-full justify-around items-center flex-wrap">
                     <div className="">
-                        <img src={logo} width={300} height={300} alt="Logo" />
+                        <img src={logo} width={400} height={400} alt="Logo" />
                     </div>
                     <div className="w-auto h-auto md:mx-16 px-8">
                         <h3 className="font-bold w-full text-center md:text-left lg:text-[24px] text-base mb-4">

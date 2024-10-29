@@ -4,7 +4,6 @@ import anh3 from '../../assets/bieoyveubm5r8d35bbcc20240228092829_thump.jpg';
 import anh4 from '../../assets/jrz7falci9ohz3quwa3820230601011109_thump.jpg';
 import anh5 from '../../assets/tgsr6q056c80wytv0n4720221227011757_thump.jpg';
 import SimpleSlide from '../slide/SimpleSlide';
-import { FaArrowRight } from 'react-icons/fa';
 
 function Activity() {
     const listActivity = [
@@ -34,7 +33,7 @@ function Activity() {
     ];
     return (
         <div
-            className="flex flex-col items-center justify-center h-full relative overflow-hidden z-10 py-10 bg-[#CDC8BB] w-full"
+            className="flex flex-col items-center justify-center h-full relative overflow-hidden z-10 py-10 bg-[#F2F5FF] w-full"
             id="Activity"
         >
             <div
