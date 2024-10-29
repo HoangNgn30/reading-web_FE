@@ -1,5 +1,10 @@
 import React from 'react';
 import { FaArrowRight } from 'react-icons/fa';
+import { Swiper, SwiperSlide } from 'swiper/react';
+import { Navigation, Pagination } from 'swiper/modules';
+import 'swiper/css';
+import 'swiper/css/navigation';
+import 'swiper/css/pagination';
 import './Project.css';
 
 const ResearchProjects = () => {
@@ -9,6 +14,7 @@ const ResearchProjects = () => {
                 ĐỀ TÀI/DỰ ÁN & CÔNG BỐ KHOA HỌC
             </h1>
 
+            {/* Project Carousel */}
             <div className="mb-8 bg-gray-200 p-4 rounded-lg">
                 <div className="flex justify-between items-center mb-6">
                     <h2 className="text-xl font-semibold">Đề tài/Dự án</h2>
@@ -20,18 +26,29 @@ const ResearchProjects = () => {
                         </span>
                     </button>
                 </div>
-                <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
-                    <div className="p-4 border rounded shadow bg-[#F2F8FF] relative corner-fold">
-                        <h3 className="font-medium">
-                            NGHIÊN CỨU XÂY DỰNG HỆ THỐNG PHẦN MỀM KIỂM TRA TRÙNG LẶP TRONG CÁC BÁO CÁO HỌC TẬP CỦA SINH
-                            VIÊN NGÀNH CÔNG NGHỆ THÔNG TIN TẠI TRƯỜNG ĐẠI HỌC ĐẠI NAM”
-                        </h3>
-                    </div>
-                </div>
+                <Swiper
+                    spaceBetween={20}
+                    slidesPerView={3}
+                    navigation
+                    pagination={{ clickable: true }}
+                    modules={[Navigation, Pagination]}
+                    className="project-swiper"
+                >
+                    <SwiperSlide>
+                        <div className="p-4 border rounded shadow bg-[#F2F8FF] relative corner-fold md:w-full w-[300px]">
+                            <h3 className="font-medium">
+                                NGHIÊN CỨU XÂY DỰNG HỆ THỐNG PHẦN MỀM KIỂM TRA TRÙNG LẶP TRONG CÁC BÁO CÁO HỌC TẬP CỦA
+                                SINH VIÊN NGÀNH CÔNG NGHỆ THÔNG TIN TẠI TRƯỜNG ĐẠI HỌC ĐẠI NAM
+                            </h3>
+                        </div>
+                    </SwiperSlide>
+                    {/* Add more SwiperSlide components as needed */}
+                </Swiper>
 
                 <hr className="my-4" />
             </div>
 
+            {/* Publications Carousel */}
             <div className="mb-8 bg-gray-200 p-4 rounded-lg">
                 <div className="flex justify-between items-center mb-6">
                     <h2 className="text-xl font-semibold self-center">Công bố khoa học</h2>
@@ -43,60 +60,86 @@ const ResearchProjects = () => {
                         </span>
                     </button>
                 </div>
-                <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
-                    <div className="p-4 border rounded shadow bg-[#F2F8FF] relative corner-fold">
-                        <h3 className="font-medium pr-3">
-                            Hand segmentation under different viewpoints by combination of Mask R-CNN with tracking DH
-                            Nguyen, TH Le, TH Tran, H Vu, TL Le, HG Doan 2018 5th Asian conference on defense technology
-                            (ACDT), 14-20 20 2018
-                        </h3>
-                        <p className="text-gray-600">TS. Lê Trung Hiếu</p>
-                    </div>
-                    <div className="p-4 border rounded shadow bg-[#F2F8FF] relative corner-fold">
-                        <h3 className="font-medium pr-3">
-                            The Internet-of-Things based hand gestures using wearable sensors for human machine
-                            interaction TH Le, TH Tran, C Pham 2019 International Conference on Multimedia Analysis and
-                            Pattern Recognition … 15 2019
-                        </h3>
-                        <p className="text-gray-600">ThS. Lê Trung Hiếu</p>
-                    </div>
-                    <div className="p-4 border rounded shadow bg-[#F2F8FF] relative corner-fold">
-                        <h3 className="font-medium pr-3">
-                            Hand Gesture Recognition From Wrist-Worn Camera for Human–Machine Interaction HQ Nguyen, TH
-                            Le, TK Tran, HN Tran, TH Tran, TL Le, H Vu, C Pham, ... IEEE Access 11, 53262-53274 6 2023
-                        </h3>
-                        <p className="text-gray-600">ThS. Lê Trung Hiếu</p>
-                    </div>
-                    <div className="p-4 border rounded shadow bg-[#F2F8FF] relative corner-fold">
-                        <h3 className="font-medium pr-3">
-                            A pilot study on hand posture recognition from wrist-worn camera for human machine
-                            interaction TH Tran, HN Tran, HQ Nguyen, TH Le, VT Nguyen, TK Tran, C Pham, ... 2021
-                            International Conference on Advanced Technologies for Communications … 5 2021
-                        </h3>
-                        <p className="text-gray-600">ThS. Lê Trung Hiếu</p>
-                    </div>
-                    <div className="p-4 border rounded shadow bg-[#F2F8FF] relative corner-fold">
-                        <h3 className="font-medium pr-3">
-                            Human action recognition from inertial sensors with transformer TH Le, TH Tran, C Pham 2022
-                            international conference on multimedia analysis and pattern recognition … 2022
-                        </h3>
-                        <p className="text-gray-600">ThS. Lê Trung Hiếu</p>
-                    </div>
-                    <div className="p-4 border rounded shadow bg-[#F2F8FF] relative corner-fold">
-                        <h3 className="font-medium pr-3">
-                            Combined local and global features for action recognition from motion sensors TH Le, QT
-                            Nguyen, TH Tran, C Pham International Conference on Intelligence of Things, 146-155 1 2022
-                        </h3>
-                        <p className="text-gray-600">ThS. Lê Trung Hiếu</p>
-                    </div>
-                    <div className="p-4 border rounded shadow bg-[#F2F8FF] relative corner-fold">
-                        <h3 className="font-medium pr-3">
-                            Hand Gesture Recognition From Wrist-Worn Camera for Human–Machine Interaction HQ Nguyen, TH
-                            Le, TK Tran, HN Tran, TH Tran, TL Le, H Vu, C Pham, ... IEEE Access 11, 53262-53274 6 2023
-                        </h3>
-                        <p className="text-gray-600">ThS. Lê Trung Hiếu</p>
-                    </div>
-                </div>
+
+                <Swiper
+                    spaceBetween={20}
+                    slidesPerView={3}
+                    // navigation
+                    // pagination={{ clickable: true }}
+                    autoplay={{
+                        delay: 4000,
+                        disableOnInteraction: false,
+                    }}
+                    modules={[Navigation, Pagination]}
+                    breakpoints={{
+                        640: {
+                            slidesPerView: 1,
+                        },
+                        768: {
+                            slidesPerView: 2,
+                        },
+                        1024: {
+                            slidesPerView: 3,
+                        },
+                    }}
+                    className="project-swiper"
+                >
+                    <SwiperSlide>
+                        <div className="p-4 border rounded shadow bg-[#F2F8FF] relative corner-fold h-40">
+                            <h3 className="font-medium pr-3">
+                                Hand segmentation under different viewpoints by combination of Mask R-CNN with tracking
+                                DH Nguyen, TH Le, TH Tran, H Vu, TL Le, HG Doan
+                            </h3>
+                            <p className="text-gray-600">TS. Lê Trung Hiếu</p>
+                        </div>
+                    </SwiperSlide>
+                    <SwiperSlide>
+                        <div className="p-4 border rounded shadow bg-[#F2F8FF] relative corner-fold h-40">
+                            <h3 className="font-medium pr-3">
+                                The Internet-of-Things based hand gestures using wearable sensors for human machine
+                                interaction TH Le, TH Tran, C Pham
+                            </h3>
+                            <p className="text-gray-600">ThS. Lê Trung Hiếu</p>
+                        </div>
+                    </SwiperSlide>
+                    <SwiperSlide>
+                        <div className="p-4 border rounded shadow bg-[#F2F8FF] relative corner-fold h-40">
+                            <h3 className="font-medium pr-3">
+                                Hand Gesture Recognition From Wrist-Worn Camera for Human–Machine Interaction HQ Nguyen,
+                                TH Le, TK Tran, HN Tran, TH Tran, TL Le, H Vu, C Pham
+                            </h3>
+                            <p className="text-gray-600">ThS. Lê Trung Hiếu</p>
+                        </div>
+                    </SwiperSlide>
+                    <SwiperSlide>
+                        <div className="p-4 border rounded shadow bg-[#F2F8FF] relative corner-fold h-40">
+                            <h3 className="font-medium pr-3">
+                                Hand Gesture Recognition From Wrist-Worn Camera for Human–Machine Interaction HQ Nguyen,
+                                TH Le, TK Tran, HN Tran, TH Tran, TL Le, H Vu, C Pham
+                            </h3>
+                            <p className="text-gray-600">ThS. Lê Trung Hiếu</p>
+                        </div>
+                    </SwiperSlide>
+                    <SwiperSlide>
+                        <div className="p-4 border rounded shadow bg-[#F2F8FF] relative corner-fold h-40">
+                            <h3 className="font-medium pr-3">
+                                Hand Gesture Recognition From Wrist-Worn Camera for Human–Machine Interaction HQ Nguyen,
+                                TH Le, TK Tran, HN Tran, TH Tran, TL Le, H Vu, C Pham
+                            </h3>
+                            <p className="text-gray-600">ThS. Lê Trung Hiếu</p>
+                        </div>
+                    </SwiperSlide>
+                    <SwiperSlide>
+                        <div className="p-4 border rounded shadow bg-[#F2F8FF] relative corner-fold h-40">
+                            <h3 className="font-medium pr-3">
+                                Hand Gesture Recognition From Wrist-Worn Camera for Human–Machine Interaction HQ Nguyen,
+                                TH Le, TK Tran, HN Tran, TH Tran, TL Le, H Vu, C Pham
+                            </h3>
+                            <p className="text-gray-600">ThS. Lê Trung Hiếu</p>
+                        </div>
+                    </SwiperSlide>
+                    {/* Add additional SwiperSlide components as needed */}
+                </Swiper>
             </div>
         </div>
     );

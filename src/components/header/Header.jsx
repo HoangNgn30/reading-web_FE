@@ -28,7 +28,7 @@ function Header() {
                 </a>
 
                 <div
-                    className="hidden lg:flex w-fit h-full flex-row items-center justify-between md:mr-10"
+                    className="hidden lg:flex w-fit h-full flex-row items-center justify-between md:mr-10 md:text-sm xl:text-base"
                     style={{ maxWidth: '100%' }}
                 >
                     <div className="flex items-center justify-between border border-[#7042f861] bg-[#0300145e] mr-[15px] px-[20px] py-[10px] rounded-full gap-10 z-50 font-medium text-gray-200">

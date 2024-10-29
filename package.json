@@ -24,6 +24,7 @@
         "react-tsparticles": "^2.12.2",
         "slick-carousel": "^1.8.1",
         "slider": "^1.0.4",
+        "swiper": "^11.1.14",
         "tsparticles-slim": "^2.12.0",
         "vite-plugin-babel-macros": "^1.0.6"
     },
