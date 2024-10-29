@@ -60,7 +60,7 @@ export default function MemberList({ className }: IMemberListProps) {
                 {members.map((item, index) => (
                     <div key={index} className="md:px-2 px-8">
                         {' '}
-                        <div className="bg-gray-200 shadow-lg rounded-lg overflow-hidden">
+                        <div className="bg-gray-200 rounded-lg overflow-hidden">
                             <div className="w-full h-80">
                                 <img src={item.image} alt={item.name} className="w-full h-full object-cover" />
                             </div>

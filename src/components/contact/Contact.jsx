@@ -1,7 +1,6 @@
 import { FaFacebook } from 'react-icons/fa';
 import { FaPhone } from 'react-icons/fa6';
 import { FaEnvelope } from 'react-icons/fa';
-import { BsInstagram } from 'react-icons/bs';
 import { AiOutlineGlobal } from 'react-icons/ai';
 
 import logo from '../../assets/logo.png';
