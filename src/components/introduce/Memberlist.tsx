@@ -54,7 +54,7 @@ export default function MemberList({ className }: IMemberListProps) {
 
     return (
         <div className={`flex flex-col items-center ${className} w-full max-w-4/5 mx-auto px-24`}>
-            <h3 className="text-[#001355] md:text-4xl text-3xl font-bold self-center md:mb-6 mb-10">CỐ VẤN</h3>
+            <h3 className="text-[#001355] md:text-4xl text-3xl font-bold self-center md:mb-6 mb-10">THÀNH VIÊN</h3>
 
             <div className="md:mb-6 mb-2 flex flex-col items-end px-6"></div>
 

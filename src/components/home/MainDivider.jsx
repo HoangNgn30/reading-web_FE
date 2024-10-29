@@ -12,7 +12,6 @@ function MainDivider() {
                 <div className="absolute w-full">
                     <Introduce />
                     <StarBackgound />
-                    <Activity />
                     <Contact />
                 </div>
             </div>

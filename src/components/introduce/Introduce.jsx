@@ -3,6 +3,7 @@ import LabSlider from './LabSlider';
 import Memberlist from './Memberlist';
 import AdviserList from './AdviserList';
 import ResearchProjects from '../projects/Projects';
+import Activity from '../activity/Activity';
 
 function Introduce() {
     return (
@@ -53,6 +54,7 @@ function Introduce() {
                     <Memberlist className="my-20" />
 
                     <ResearchProjects />
+                    <Activity />
                 </div>
             </div>
             <div className="w-full h-full relative -z-9 -mt-2" style={{ filter: 'brightness(90%)' }}>
