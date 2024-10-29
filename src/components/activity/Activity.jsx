@@ -33,7 +33,7 @@ function Activity() {
     ];
     return (
         <div
-            className="flex flex-col items-center justify-center h-full relative overflow-hidden z-10 mb-16"
+            className="flex flex-col items-center justify-center h-full relative overflow-hidden z-10 py-10 bg-[#CDC8BB] w-full"
             id="Activity"
         >
             <div

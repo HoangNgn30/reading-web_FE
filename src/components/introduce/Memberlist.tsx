@@ -27,7 +27,7 @@ const members = [
     { position: 'Thành viên', name: 'CN. Trần Vũ Đại', image: anh8 },
 ];
 
-const CustomArrow = ({ className, onClick, direction }) => (
+const CustomArrow = ({ className, onClick, direction }: any) => (
     <div
         className={`${className} ${
             direction === 'left' ? 'left-2' : 'right-2'
@@ -46,33 +46,32 @@ export default function MemberList({ className }: IMemberListProps) {
         slidesToScroll: 1,
         autoplay: true,
         autoplaySpeed: 5000,
+        centerPadding: '50px',
         responsive: [
             { breakpoint: 1024, settings: { slidesToShow: 2 } },
             { breakpoint: 640, settings: { slidesToShow: 1 } },
         ],
     };
-
     return (
-        <div className={`flex flex-col items-center ${className} w-full max-w-4/5 mx-auto px-24`}>
-            <h3 className="text-[#001355] md:text-4xl text-3xl font-bold self-center md:mb-6 mb-10">THÀNH VIÊN</h3>
+        <div className={`flex flex-col items-center ${className} w-full max-w-screen-lg mx-auto`}>
+            <h3 className="text-[#001355] md:text-4xl text-3xl font-bold mb-10">THÀNH VIÊN</h3>
 
-            <div className="md:mb-6 mb-2 flex flex-col items-end px-6"></div>
-
-            <div className="w-full overflow-hidden">
-                <Slider {...settings} className="w-full">
-                    {members.map((item, index) => (
-                        <div key={index} className="px-4">
-                            <div className="bg-gray-200 shadow-lg rounded-lg flex flex-col items-center">
-                                <div className="rounded-t-lg overflow-hidden w-full h-80 flex-shrink-0">
-                                    <img src={item.image} alt={item.name} className="w-full h-full object-cover" />
-                                </div>
-                                <h3 className="text-lg font-semibold mt-4">{item.name}</h3>
-                                <p className="text-gray-700 pb-4">{item.position}</p>
+            <Slider {...settings} className="w-full">
+                {members.map((item, index) => (
+                    <div key={index} className="md:px-2 px-8">
+                        {' '}
+                        <div className="bg-gray-200 shadow-lg rounded-lg overflow-hidden">
+                            <div className="w-full h-80">
+                                <img src={item.image} alt={item.name} className="w-full h-full object-cover" />
+                            </div>
+                            <div className="p-4 text-center">
+                                <h3 className="text-lg font-semibold">{item.name}</h3>
+                                <p className="text-gray-700">{item.position}</p>
                             </div>
                         </div>
-                    ))}
-                </Slider>
-            </div>
+                    </div>
+                ))}
+            </Slider>
         </div>
     );
 }
