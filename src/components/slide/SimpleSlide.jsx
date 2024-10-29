@@ -4,7 +4,7 @@ import { FaArrowRight } from 'react-icons/fa';
 function SimpleGrid({ listOb }) {
     return (
         <div className="scrollbar-custom overflow-x-auto flex flex-col px-24">
-            <button className="flex items-center text-black font-medium text-base self-end mb-8">
+            <button className="flex items-center text-black font-medium text-base md:self-end self-center mb-8">
                 Tìm hiểu thêm
                 <span className="flex items-center ml-2 bg-red-600 text-white py-1 font-bold px-4 text-center content-center rounded-full">
                     <FaArrowRight className="ml-1" />

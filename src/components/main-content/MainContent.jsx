@@ -21,9 +21,9 @@ function MainContent() {
                     công nghệ. Nghiên cứu của Lab AI tập trung vào phát triển các thuật toán và kỹ thuật học máy, xử lý
                     ngôn ngữ tự nhiên, thị giác máy tính và robot.
                 </p>
-                <button className="bg-[#D72134] hover:bg-red-800 text-white font-semibold py-3 px-6 rounded-full transition duration-300">
+                {/* <button className="bg-[#D72134] hover:bg-red-800 text-white font-semibold py-3 px-6 rounded-full transition duration-300">
                     Tìm hiểu thêm
-                </button>
+                </button> */}
             </div>
         </div>
     );
