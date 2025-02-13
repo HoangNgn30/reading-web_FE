@@ -1,12 +1,35 @@
 import { useState } from 'react';
 import ReactModal from 'react-modal';
 import logo from '../../assets/logo.png';
+import { toast } from 'react-toastify';
+import axios from 'axios';
+import { useNavigate } from 'react-router-dom';
+import Cookies from 'js-cookie';
+
+const API_BASE_URL = 'https://be-aiot-lab-landing-page.onrender.com';
 
 ReactModal.setAppElement('#root');
 function Header() {
     const [modalIsOpen, setModalIsOpen] = useState(false);
     const toggleOpen = () => setModalIsOpen((prev) => !prev);
     const closeModal = () => setModalIsOpen(false);
+
+    const navigate = useNavigate();
+
+    const handleLogOut = async () => {
+        try {
+            const response = await axios.post(`${API_BASE_URL}/logout`);
+            Cookies.remove('jwt');
+            console.log(response);
+            toast.success('Đăng xuất thành công', { autoClose: 1000 });
+            setTimeout(() => {
+                navigate('/login');
+            }, 1000);
+        } catch (error) {
+            toast.error('Đăng xuất thất bại, hãy thử lại!');
+            console.log(error);
+        }
+    };
 
     return (
         <div className="w-full h-[65px] fixed top-0 shadow-lg shadow-[#2A0E61]/50  md:backdrop-blur-md z-40 px-10 md:bg-transparent bg-slate-100">
@@ -24,7 +47,9 @@ function Header() {
                         className="rounded-full"
                     />
 
-                    <span className="font-bold ml-[10px] hidden md:block text-[#001355] text-xl">AIoT LAB - FIT DNU</span>
+                    <span className="font-bold ml-[10px] hidden md:block text-[#001355] text-xl">
+                        AIoT LAB - FIT DNU
+                    </span>
                 </a>
 
                 <div
@@ -51,8 +76,12 @@ function Header() {
                         <a href="#Contact" className="cursor-pointer">
                             Liên hệ
                         </a>
+
+                        <a href="/profile">Trang cá nhân</a>
                     </div>
                 </div>
+
+                <button onClick={handleLogOut}>Đăng xuất</button>
 
                 <div className="lg:hidden flex items-center">
                     <button className="text-gray-300" onClick={toggleOpen}>
@@ -96,6 +125,10 @@ function Header() {
                             <a href="#Contact" className="block py-2 cursor-pointer text-white">
                                 Liên hệ
                             </a>
+
+                            <a href="/profile">Trang cá nhân</a>
+
+                            <button onClick={handleLogOut}>Đăng xuất</button>
                         </div>
                     </ReactModal>
                 </div>
