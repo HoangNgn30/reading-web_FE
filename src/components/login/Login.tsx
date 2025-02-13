@@ -20,7 +20,8 @@ const Login = () => {
         try {
             const response = await axios.post(`${API_BASE_URL}/login`, { email, password });
             sessionStorage.setItem('loginSuccess', 'true'); // Thay đổi từ localStorage sang sessionStorage
-            navigate('/');
+            setTimeout(() => navigate('/'), 500);
+            
         } catch (error: any) {
             console.error('Login Failed:', error.response?.data?.message || 'Có lỗi xảy ra');
             toast.error(error.response?.data?.message || 'Đăng nhập thất bại! 😢, hãy thử lại!', { autoClose: 3000 });
