@@ -26,7 +26,7 @@ function Signup() {
         setIsLoading(true);
 
         try {
-            await axios.post(`${API_BASE_URL}/register`, formData);
+            await axios.post(`${API_BASE_URL}/auth/register`, formData);
             // toast.success('Đăng ký thành công! 🎉', { autoClose: 500 });
             setTimeout(() => navigate('/login'), 500);
         } catch (error: any) {

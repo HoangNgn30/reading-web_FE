@@ -18,7 +18,7 @@ const Login = () => {
         setIsLoading(true);
 
         try {
-            const response = await axios.post(`${API_BASE_URL}/login`, { email, password });
+            const response = await axios.post(`${API_BASE_URL}/auth/login`, { email, password });
             sessionStorage.setItem('loginSuccess', 'true'); // Thay đổi từ localStorage sang sessionStorage
             setTimeout(() => navigate('/'), 500);
             
