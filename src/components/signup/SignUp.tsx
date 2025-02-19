@@ -1,10 +1,11 @@
 import { useState } from 'react';
-import { useNavigate } from 'react-router-dom';
+import { useAsyncError, useNavigate } from 'react-router-dom';
 import axios from 'axios';
 import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 import React from 'react';
 import { Loader2 } from 'lucide-react';
+import { useAuthApi } from '../../services/authServices';
 
 const API_BASE_URL = 'https://be-aiot-lab-landing-page.onrender.com';
 
@@ -17,6 +18,8 @@ function Signup() {
         password: '',
     });
 
+    const { signUp } = useAuthApi();
+
     const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
         setFormData({ ...formData, [e.target.name]: e.target.value });
     };
@@ -26,9 +29,9 @@ function Signup() {
         setIsLoading(true);
 
         try {
-            await axios.post(`${API_BASE_URL}/auth/register`, formData);
-            // toast.success('Đăng ký thành công! 🎉', { autoClose: 500 });
-            setTimeout(() => navigate('/login'), 500);
+            await signUp(formData);
+            toast.success('Đăng ký thành công! 🎉', { autoClose: 500 });
+            navigate('/login');
         } catch (error: any) {
             console.error('Error signing up:', error);
             toast.error(error.response?.data?.message || 'Đăng ký thất bại! 😢', { autoClose: 3000 });
@@ -78,8 +81,8 @@ function Signup() {
                             className="w-full p-2 border rounded mt-1 disabled:bg-gray-100 disabled:cursor-not-allowed"
                         />
                     </div>
-                    <button 
-                        type="submit" 
+                    <button
+                        type="submit"
                         disabled={isLoading}
                         className="w-full bg-blue-500 text-white p-2 rounded mt-2 hover:bg-blue-600 disabled:bg-blue-300 disabled:cursor-not-allowed flex items-center justify-center"
                     >
