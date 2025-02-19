@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import ReactModal from 'react-modal';
 import logo from '../../assets/logo.png';
 import { toast } from 'react-toastify';
@@ -11,10 +11,21 @@ const API_BASE_URL = 'https://be-aiot-lab-landing-page.onrender.com';
 ReactModal.setAppElement('#root');
 function Header() {
     const [modalIsOpen, setModalIsOpen] = useState(false);
+    const [isLoggedIn, setIsLoggedIn] = useState(false); // Track login state
+    const navigate = useNavigate();
+
     const toggleOpen = () => setModalIsOpen((prev) => !prev);
     const closeModal = () => setModalIsOpen(false);
 
-    const navigate = useNavigate();
+    // Check if user is logged in when the component mounts
+    useEffect(() => {
+        const token = Cookies.get('jwt');
+        if (token) {
+            setIsLoggedIn(true); // User is logged in
+        } else {
+            setIsLoggedIn(false); // User is not logged in
+        }
+    }, []);
 
     const handleLogOut = async () => {
         try {
@@ -29,6 +40,10 @@ function Header() {
             toast.error('Đăng xuất thất bại, hãy thử lại!');
             console.log(error);
         }
+    };
+
+    const handleLogin = () => {
+        navigate('/login'); // Navigate to login page
     };
 
     return (
@@ -46,7 +61,6 @@ function Header() {
                         src={logo}
                         className="rounded-full"
                     />
-
                     <span className="font-bold ml-[10px] hidden md:block text-[#001355] text-xl">
                         AIoT LAB - FIT DNU
                     </span>
@@ -76,12 +90,14 @@ function Header() {
                         <a href="#Contact" className="cursor-pointer">
                             Liên hệ
                         </a>
-
-                        <a href="/profile">Trang cá nhân</a>
                     </div>
                 </div>
 
-                <button onClick={handleLogOut}>Đăng xuất</button>
+                {isLoggedIn ? (
+                    <button onClick={handleLogOut}>Đăng xuất</button>
+                ) : (
+                    <button onClick={handleLogin}>Đăng nhập</button> // Show "Đăng nhập" button if not logged in
+                )}
 
                 <div className="lg:hidden flex items-center">
                     <button className="text-gray-300" onClick={toggleOpen}>
@@ -126,9 +142,11 @@ function Header() {
                                 Liên hệ
                             </a>
 
-                            <a href="/profile">Trang cá nhân</a>
-
-                            <button onClick={handleLogOut}>Đăng xuất</button>
+                            {isLoggedIn ? (
+                                <button onClick={handleLogOut}>Đăng xuất</button>
+                            ) : (
+                                <button onClick={handleLogin}>Đăng nhập</button>
+                            )}
                         </div>
                     </ReactModal>
                 </div>

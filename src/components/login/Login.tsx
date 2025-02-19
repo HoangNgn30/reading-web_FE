@@ -20,7 +20,7 @@ const Login = () => {
         try {
             const response = await axios.post(`${API_BASE_URL}/auth/login`, { email, password });
             sessionStorage.setItem('loginSuccess', 'true'); // Thay đổi từ localStorage sang sessionStorage
-            setTimeout(() => navigate('/'), 500);
+            setTimeout(() => navigate('/admin'), 500);
             
         } catch (error: any) {
             console.error('Login Failed:', error.response?.data?.message || 'Có lỗi xảy ra');
