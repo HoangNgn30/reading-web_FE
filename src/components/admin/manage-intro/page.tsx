@@ -448,7 +448,7 @@ export default function ManageIntroductions() {
                                 fontWeight: 'bold',
                             }}
                         >
-                            QUẢN LÝ LỚP
+                            QUẢN LÝ THÔNG TIN
                         </span>
                     </div>
                     <Flex gap={8} align="center" justify="center">
