@@ -32,7 +32,7 @@ export default function ManageMembers() {
     const [form] = Form.useForm();
     const [selectedRowKeys, setSelectedRowKeys] = useState<number[]>([]);
     const [searchName, setSearchName] = useState('');
-    const [studentList, setStudentList] = useState([]);
+    
     const [pageSize, setPageSize] = useState(10);
     const [currentPage, setCurrentPage] = useState(1);
     const [total, setTotal] = useState(0);
@@ -151,13 +151,17 @@ export default function ManageMembers() {
 
     const handleEditMember = async (values) => {
         try {
-            const success = await updateMember(selectedMember.id, values);
-            if (success) {
-                message.success('Cập nhật thành viên thành công!');
-                setIsEditModalVisible(false);
-                fetchClasses();
+            if (selectedMember) {
+                const success = await updateMember(selectedMember.id, values);
+                if (success) {
+                    message.success('Cập nhật thành viên thành công!');
+                    setIsEditModalVisible(false);
+                    fetchClasses();
+                } else {
+                    message.error('Cập nhật thất bại!');
+                }
             } else {
-                message.error('Cập nhật thất bại!');
+                message.error('Không có thành viên được chọn!');
             }
         } catch (error) {
             console.error('Lỗi khi cập nhật thành viên:', error);
@@ -187,7 +191,7 @@ export default function ManageMembers() {
     const openViewModal = async (memberItem) => {
         try {
             const response = await getMemberById(memberItem.id);
-            setStudentList(response?.data?.students || []);
+            
             setSelectedMember({
                 ...memberItem,
                 name: response?.data?.name,
@@ -211,7 +215,7 @@ export default function ManageMembers() {
                 />
             ),
             key: 'select',
-            align: 'center',
+            align: 'center' as 'center',
             render: (_, record) => (
                 <div style={{ display: 'flex', justifyContent: 'center', alignItems: 'center' }}>
                     <Checkbox
