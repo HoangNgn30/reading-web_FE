@@ -63,7 +63,7 @@ export default function ManageMembers() {
         setLoading(true);
         try {
             const response = await getMembers();
-            setMember(response?.data || []);
+            setMember(response.data || []);
             console.log(member);
             setTotal(response?.total);
             setPagination((prev) => ({
@@ -238,7 +238,6 @@ export default function ManageMembers() {
             title: 'Vai trò',
             dataIndex: 'role',
             key: 'role',
-            sorter: (a, b) => a.total_students - b.total_students,
             sortDirections: ['descend', 'ascend'],
             align: 'center',
         },
