@@ -7,18 +7,18 @@ import { toast } from 'react-toastify';
 import HeaderAdmin from '../Header';
 import AdminLayout from '../layout';
 import { PlusCircle, Eye, Edit, Trash2, Search, Download } from 'lucide-react';
+interface Member {
+    id: number;
+    name: string;
+    email: string;
+    role: string;
+    isApplied: boolean;
+    image: string;
+}
 
 export default function ManageMembers() {
     const { Option } = Select;
     const [isView, setIsView] = useState(false);
-    interface Member {
-        id: number;
-        name: string;
-        email: string;
-        role: string;
-        isApplied: boolean;
-        image: string;
-    }
 
     const [member, setMember] = useState<Member[]>([]);
     const [isAddModalVisible, setIsAddModalVisible] = useState(false);
