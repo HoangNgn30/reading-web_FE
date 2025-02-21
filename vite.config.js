@@ -15,4 +15,8 @@ export default defineConfig({
       '@': '/src', // Định nghĩa alias cho src
     },
   },
+  base: '/', // Thư mục gốc của project
+  define: {
+    'process.env': process.env,
+  },
 });

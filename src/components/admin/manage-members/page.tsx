@@ -249,7 +249,7 @@ export default function ManageMembers() {
             title: 'Email',
             dataIndex: 'email',
             key: 'email',
-            sorter: (a, b) => a.email_chu_nhiem - b.email_chu_nhiem,
+            sorter: (a, b) => a.email - b.email,
             sortDirections: ['descend', 'ascend'],
             align: 'center',
         },
@@ -258,7 +258,6 @@ export default function ManageMembers() {
             dataIndex: 'isApplied',
             key: 'isApplied',
             render: (text) => (text ? 'Có' : 'Không'),
-            sortDirections: ['descend', 'ascend'],
             align: 'center',
         },
         {
