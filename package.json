@@ -13,6 +13,7 @@
         "@react-spring/web": "^9.7.4",
         "@tailwindcss/line-clamp": "^0.4.4",
         "antd": "^5.24.1",
+        "antd-img-crop": "^4.24.0",
         "axios": "^1.7.9",
         "fe-introduce-department": "file:",
         "framer-motion": "^12.4.5",

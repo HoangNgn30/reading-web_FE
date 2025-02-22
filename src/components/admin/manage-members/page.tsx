@@ -1,19 +1,28 @@
 import React, { useEffect, useState, useCallback } from 'react';
-import { Table, Button, message, Modal, Form, Input, Checkbox, Flex, Select, Image, Divider } from 'antd';
-import { EditOutlined, DeleteOutlined, EyeOutlined, PlusCircleOutlined } from '@ant-design/icons';
+import { Table, Button, message, Modal, Form, Input, Checkbox, Flex, Select, Image, Divider, Upload } from 'antd';
+import {
+    EditOutlined,
+    DeleteOutlined,
+    EyeOutlined,
+    LoadingOutlined,
+    PlusOutlined,
+    PlusCircleOutlined,
+    UploadOutlined,
+} from '@ant-design/icons';
 import { DownloadOutlined } from '@ant-design/icons';
 import { useMemberApi } from '../../../services/memberServices';
 import { toast } from 'react-toastify';
 import HeaderAdmin from '../Header';
 import AdminLayout from '../layout';
 import { PlusCircle, Eye, Edit, Trash2, Search, Download } from 'lucide-react';
+import ImgCrop from 'antd-img-crop';
 interface Member {
     id: number;
     name: string;
     email: string;
     role: string;
     isApplied: boolean;
-    image: string;
+    image: '';
 }
 
 export default function ManageMembers() {
@@ -32,7 +41,10 @@ export default function ManageMembers() {
     const [form] = Form.useForm();
     const [selectedRowKeys, setSelectedRowKeys] = useState<number[]>([]);
     const [searchName, setSearchName] = useState('');
-    
+    const [imageUrl, setImageUrl] = useState('');
+    const [previewOpen, setPreviewOpen] = useState(false);
+    const [previewTitle, setPreviewTitle] = useState('');
+
     const [pageSize, setPageSize] = useState(10);
     const [currentPage, setCurrentPage] = useState(1);
     const [total, setTotal] = useState(0);
@@ -52,7 +64,8 @@ export default function ManageMembers() {
         },
     };
 
-    const { getMembers, getMemberById, createMember, updateMember, deleteMember, updateMemberStatus } = useMemberApi();
+    const { getMembers, getMemberById, createMember, updateMember, deleteMember, updateMemberStatus, uploadImage } =
+        useMemberApi();
 
     const handleCancelTransfer = () => {
         setIsTransferModalVisible(false);
@@ -87,6 +100,64 @@ export default function ManageMembers() {
             current: paginationConfig.current,
             pageSize: paginationConfig.pageSize,
         });
+    };
+
+    const handleImageUpload = async (event) => {
+        const file = event.target.files?.[0];
+        if (!file) return;
+
+        try {
+            setLoading(true);
+
+            // Tạo preview ảnh local
+            const reader = new FileReader();
+            reader.onloadend = () => {
+                setImageUrl(reader.result);
+            };
+            reader.readAsDataURL(file);
+
+            // Chuẩn bị dữ liệu gửi lên API
+            const formData = new FormData();
+            formData.append('image', file);
+
+            // Gửi ảnh lên API
+            if (selectedMember?.id) {
+                const response = await uploadImage(selectedMember.id, formData);
+                if (response && response.image) {
+                    setImageUrl(response.image);
+                    form.setFieldsValue({ image: response.image });
+                    message.success('Tải ảnh lên thành công!');
+                } else {
+                    message.error('Tải ảnh lên thất bại!');
+                }
+            } else {
+                // Upload ảnh cho member mới
+                const response = await uploadImage('temp', formData);
+                if (response && response.image) {
+                    setImageUrl(response.image);
+                    form.setFieldsValue({ image: response.image });
+                }
+            }
+        } catch (error) {
+            console.error('Error uploading image:', error);
+            message.error('Có lỗi xảy ra khi tải ảnh lên!');
+        } finally {
+            setLoading(false);
+        }
+    };
+
+    const uploadButton = (
+        <div className="relative w-32 h-32 rounded-lg border-2 border-dashed border-gray-300 hover:border-blue-600 transition-colors">
+            <div className="absolute inset-0 flex flex-col items-center justify-center">
+                {loading ? <LoadingOutlined /> : <PlusOutlined />}
+                <div className="mt-2 text-sm text-gray-500">Tải ảnh lên</div>
+            </div>
+        </div>
+    );
+
+    const handlePreview = async (file) => {
+        setPreviewOpen(true);
+        setPreviewTitle(file.name || file.url.substring(file.url.lastIndexOf('/') + 1));
     };
 
     const handleStudentTableChange = (pagination) => {
@@ -191,7 +262,7 @@ export default function ManageMembers() {
     const openViewModal = async (memberItem) => {
         try {
             const response = await getMemberById(memberItem.id);
-            
+
             setSelectedMember({
                 ...memberItem,
                 name: response?.data?.name,
@@ -243,6 +314,12 @@ export default function ManageMembers() {
             dataIndex: 'role',
             key: 'role',
             sortDirections: ['descend', 'ascend'],
+            align: 'center',
+        },
+        {
+            title: 'Vị trí',
+            dataIndex: 'position',
+            key: 'position',
             align: 'center',
         },
         {
@@ -325,7 +402,10 @@ export default function ManageMembers() {
                     {/* Action Buttons and Search */}
                     <div className="mb-6 flex flex-col sm:flex-row justify-between gap-4">
                         <div className="flex space-x-4">
-                            <button className="inline-flex items-center px-4 py-2 bg-blue-600 text-white rounded-md hover:bg-blue-700" onClick={() => setIsAddModalVisible(true)}>
+                            <button
+                                className="inline-flex items-center px-4 py-2 bg-blue-600 text-white rounded-md hover:bg-blue-700"
+                                onClick={() => setIsAddModalVisible(true)}
+                            >
                                 <PlusCircle className="w-4 h-4 mr-2" />
                                 Tạo
                             </button>
@@ -388,7 +468,7 @@ export default function ManageMembers() {
                     <div className="fixed inset-0 bg-black bg-opacity-50 hidden">
                         <div className="relative top-1/2 transform -translate-y-1/2 mx-auto max-w-lg bg-white rounded-lg p-6">
                             <Modal
-                                title="Thêm lớp"
+                                title="Thêm thành viên"
                                 open={isAddModalVisible}
                                 onCancel={() => {
                                     setIsAddModalVisible(false);
@@ -402,7 +482,7 @@ export default function ManageMembers() {
                                     form={form}
                                     layout="vertical"
                                     onFinish={handleAddClass}
-                                    initialValues={{ role: 'Admin', isApplied: true }} // Đặt giá trị mặc định
+                                    initialValues={{ role: 'Cố vấn', isApplied: true }} // Đặt giá trị mặc định
                                 >
                                     <Form.Item
                                         label="Tên Thành Viên"
@@ -416,16 +496,20 @@ export default function ManageMembers() {
                                         <Input placeholder="Nhập email " />
                                     </Form.Item>
 
+                                    <Form.Item label="Vị trí" name="position" required={true}>
+                                        <Input placeholder="Nhập vị trí " />
+                                    </Form.Item>
+
                                     {/* Chọn vai trò với giá trị mặc định là Admin */}
                                     <Form.Item label="Vai trò" name="role" required={true}>
                                         <Select>
-                                            <Select.Option value="User">User</Select.Option>
-                                            <Select.Option value="Admin">Admin</Select.Option>
+                                            <Select.Option value="Cố vấn">Cố vấn</Select.Option>
+                                            <Select.Option value="Thành viên">Thành viên</Select.Option>
                                         </Select>
                                     </Form.Item>
 
                                     {/* Chọn trạng thái với giá trị mặc định là Có (true) */}
-                                    <Form.Item label="Trạng thái" name="isApplied" required={true}>
+                                    <Form.Item label="Trạng thái áp dụng" name="isApplied" required={true}>
                                         <Select>
                                             <Select.Option value={true}>Có</Select.Option>
                                             <Select.Option value={false}>Không</Select.Option>
@@ -456,19 +540,21 @@ export default function ManageMembers() {
                                         <Input placeholder="Nhập email " />
                                     </Form.Item>
 
-                                    {/* Chọn vai trò giữa User và Admin */}
+                                    <Form.Item label="Vị trí" name="position">
+                                        <Input placeholder="Nhập vị trí " />
+                                    </Form.Item>
+
                                     <Form.Item
                                         label="Vai trò"
                                         name="role"
                                         rules={[{ required: true, message: 'Vui lòng chọn vai trò!' }]}
                                     >
                                         <Select>
-                                            <Select.Option value="User">User</Select.Option>
-                                            <Select.Option value="Admin">Admin</Select.Option>
+                                            <Select.Option value="Cố vấn">Cố vấn</Select.Option>
+                                            <Select.Option value="Thành viên">Thành viên</Select.Option>
                                         </Select>
                                     </Form.Item>
 
-                                    {/* Chọn Đang áp dụng (Có/Không) tương ứng true/false */}
                                     <Form.Item
                                         label="Đang áp dụng"
                                         name="isApplied"
@@ -478,6 +564,65 @@ export default function ManageMembers() {
                                             <Select.Option value={true}>Có</Select.Option>
                                             <Select.Option value={false}>Không</Select.Option>
                                         </Select>
+                                    </Form.Item>
+
+                                    {/* Upload ảnh */}
+                                    <Form.Item label="Ảnh đại diện" name="image">
+                                        <div className="space-y-6">
+                                            <label className="relative cursor-pointer">
+                                                <input
+                                                    type="file"
+                                                    className="hidden"
+                                                    accept="image/*"
+                                                    onChange={handleImageUpload}
+                                                />
+                                            </label>
+                                            <div className="flex items-center gap-8">
+                                                {/* Image Preview */}
+
+                                                <div className="relative group">
+                                                    <div
+                                                        className={`w-40 h-40 rounded-2xl shadow-lg overflow-hidden transition-all duration-300 ${
+                                                            imageUrl
+                                                                ? 'bg-white'
+                                                                : 'bg-gray-50 border-2 border-dashed border-gray-200'
+                                                        }`}
+                                                    >
+                                                        {imageUrl ? (
+                                                            <>
+                                                                <img
+                                                                    src={imageUrl}
+                                                                    alt="Ảnh đại diện"
+                                                                    className="w-full h-full object-cover"
+                                                                />
+                                                                <div className="absolute inset-0 bg-black/40 opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
+                                                                <button
+                                                                    type="button"
+                                                                    onClick={() => {
+                                                                        setImageUrl('');
+                                                                        form.setFieldsValue({ image: null });
+                                                                    }}
+                                                                    className="absolute top-2 right-2 w-8 h-8 bg-red-500 text-white rounded-full flex items-center justify-center opacity-0 group-hover:opacity-100 hover:bg-red-600 transition-all duration-300 transform hover:scale-105"
+                                                                >
+                                                                    <span className="text-lg">×</span>
+                                                                </button>
+                                                            </>
+                                                        ) : (
+                                                            <div className="w-full h-full flex flex-col items-center justify-center gap-3">
+                                                                <div className="w-12 h-12 rounded-full bg-gray-100 flex items-center justify-center">
+                                                                    <Upload className="w-6 h-6 text-gray-400" />
+                                                                </div>
+                                                                <span className="text-gray-400 text-sm">
+                                                                    Chưa có ảnh
+                                                                </span>
+                                                            </div>
+                                                        )}
+                                                    </div>
+                                                </div>
+
+                                                {/* Upload Button */}
+                                            </div>
+                                        </div>
                                     </Form.Item>
                                 </Form>
                             </Modal>
@@ -519,6 +664,12 @@ export default function ManageMembers() {
                                         <span style={{ fontWeight: 'bold' }}>Vai trò:</span>
                                         <span style={{ color: 'blue' }}>
                                             {selectedMember?.role || 'Chưa có dữ liệu'}
+                                        </span>
+                                    </Flex>
+                                    <Flex justify="space-between">
+                                        <span style={{ fontWeight: 'bold' }}>Vị trí:</span>
+                                        <span style={{ color: 'blue' }}>
+                                            {selectedMember?.position || 'Chưa có dữ liệu'}
                                         </span>
                                     </Flex>
                                     <Flex justify="space-between">
