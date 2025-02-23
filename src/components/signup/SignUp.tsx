@@ -43,7 +43,7 @@ function Signup() {
     return (
         <div className="flex justify-center items-center min-h-screen bg-gray-100">
             <div className="bg-white p-8 rounded-lg shadow-md w-96">
-                <h2 className="text-2xl font-bold text-center mb-4">Chào mừng đến với AiOT Lab</h2>
+                <h2 className="text-2xl font-bold text-center mb-4">Chào mừng !</h2>
                 <form onSubmit={handleSubmit} className="space-y-4">
                     <div>
                         <label className="block text-sm font-medium">Tài khoản</label>
