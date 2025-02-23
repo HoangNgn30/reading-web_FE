@@ -1,28 +1,51 @@
 import React, { useEffect, useState, useCallback } from 'react';
-import { Table, Button, message, Modal, Form, Input, Checkbox, Flex, Select } from 'antd';
-import { EditOutlined, DeleteOutlined, EyeOutlined, PlusCircleOutlined } from '@ant-design/icons';
+import { Table, Button, message, Modal, Form, Input, Checkbox, Flex, Select, Image, Divider, Upload } from 'antd';
+import {
+    EditOutlined,
+    DeleteOutlined,
+    EyeOutlined,
+    LoadingOutlined,
+    PlusOutlined,
+    PlusCircleOutlined,
+    UploadOutlined,
+} from '@ant-design/icons';
 import { DownloadOutlined } from '@ant-design/icons';
-
+import { useMemberApi } from '../../../services/memberServices';
 import { toast } from 'react-toastify';
 import HeaderAdmin from '../Header';
 import AdminLayout from '../layout';
+import { PlusCircle, Eye, Edit, Trash2, Search, Download } from 'lucide-react';
+import ImgCrop from 'antd-img-crop';
+import { useIntroductionApi } from '../../../services/introductionServices';
+interface Member {
+    id: number;
+    name: string;
+    email: string;
+    role: string;
+    isApplied: boolean;
+    image: '';
+}
 
-export default function ManageIntroductions() {
+export default function ManageMembers() {
     const { Option } = Select;
     const [isView, setIsView] = useState(false);
-    const [classes, setClasses] = useState([]);
+
+    const [member, setMember] = useState<Member[]>([]);
     const [isAddModalVisible, setIsAddModalVisible] = useState(false);
     const [isEditModalVisible, setIsEditModalVisible] = useState(false);
     const [isViewModalVisible, setIsViewModalVisible] = useState(false);
     const [isBulkDeleteMode, setIsBulkDeleteMode] = useState(false);
     const [isDeleteAllMode, setIsDeleteAllMode] = useState(false);
     const [isDeleteModalOpen, setIsDeleteModalOpen] = useState(false);
-    const [selectedClass, setSelectedClass] = useState(null);
+    const [selectedMember, setSelectedMember] = useState<Member | null>(null);
     const [classIdToDelete, setClassIdToDelete] = useState(null);
     const [form] = Form.useForm();
-    const [selectedRowKeys, setSelectedRowKeys] = useState([]);
+    const [selectedRowKeys, setSelectedRowKeys] = useState<number[]>([]);
     const [searchName, setSearchName] = useState('');
-    const [studentList, setStudentList] = useState([]);
+    const [imageUrl, setImageUrl] = useState('');
+    const [previewOpen, setPreviewOpen] = useState(false);
+    const [previewTitle, setPreviewTitle] = useState('');
+
     const [pageSize, setPageSize] = useState(10);
     const [currentPage, setCurrentPage] = useState(1);
     const [total, setTotal] = useState(0);
@@ -42,38 +65,21 @@ export default function ManageIntroductions() {
         },
     };
 
-    const handleCancelTransfer = () => {
-        setIsTransferModalVisible(false);
-        setSelectedClassForTransfer(null);
-    };
+    const { getMembers, getMemberById, createMember, updateMember, deleteMember, updateMemberStatus, uploadImage } =
+        useMemberApi();
 
-    const handleConfirmChangeClass = () => {
-        try {
-            setIsTransferModalVisible(false);
-            setIsViewModalVisible(false);
-            setLoading(true);
-            toast.success('Chuyển lớp thành công!');
-            fetchClasses();
-            setSelectedStudentIds(null);
-            setSelectedClassForTransfer(null);
-        } catch (error) {
-            console.log(error);
-            toast.error('Chuyển lớp thất bại, vui lòng thử lại!');
-        }
-    };
+    const { getIntro, getIntroById, createIntro, updateIntro, deleteIntro } = useIntroductionApi();
 
     const fetchClasses = useCallback(async () => {
         setLoading(true);
         try {
-            const response = await getAllClassPageable({
-                page: pagination.current,
-                pageSize: pagination.pageSize,
-            });
-            setClasses(response?.student_class || []);
-            setTotal(response?.total_data);
+            const response = await getIntro();
+            setMember(response.data || []);
+            console.log(member);
+            setTotal(response?.total);
             setPagination((prev) => ({
                 ...prev,
-                total: response?.total_data,
+                total: response?.total,
             }));
         } catch (error) {
             console.error(error);
@@ -94,6 +100,64 @@ export default function ManageIntroductions() {
         });
     };
 
+    const handleImageUpload = async (event) => {
+        const file = event.target.files?.[0];
+        if (!file) return;
+
+        try {
+            setLoading(true);
+
+            // Tạo preview ảnh local
+            const reader = new FileReader();
+            reader.onloadend = () => {
+                setImageUrl(reader.result);
+            };
+            reader.readAsDataURL(file);
+
+            // Chuẩn bị dữ liệu gửi lên API
+            const formData = new FormData();
+            formData.append('image', file);
+
+            // Gửi ảnh lên API
+            if (selectedMember?.id) {
+                const response = await uploadImage(selectedMember.id, formData);
+                if (response && response.image) {
+                    setImageUrl(response.image);
+                    form.setFieldsValue({ image: response.image });
+                    message.success('Tải ảnh lên thành công!');
+                } else {
+                    message.error('Tải ảnh lên thất bại!');
+                }
+            } else {
+                // Upload ảnh cho member mới
+                const response = await uploadImage('temp', formData);
+                if (response && response.image) {
+                    setImageUrl(response.image);
+                    form.setFieldsValue({ image: response.image });
+                }
+            }
+        } catch (error) {
+            console.error('Error uploading image:', error);
+            message.error('Có lỗi xảy ra khi tải ảnh lên!');
+        } finally {
+            setLoading(false);
+        }
+    };
+
+    const uploadButton = (
+        <div className="relative w-32 h-32 rounded-lg border-2 border-dashed border-gray-300 hover:border-blue-600 transition-colors">
+            <div className="absolute inset-0 flex flex-col items-center justify-center">
+                {loading ? <LoadingOutlined /> : <PlusOutlined />}
+                <div className="mt-2 text-sm text-gray-500">Tải ảnh lên</div>
+            </div>
+        </div>
+    );
+
+    const handlePreview = async (file) => {
+        setPreviewOpen(true);
+        setPreviewTitle(file.name || file.url.substring(file.url.lastIndexOf('/') + 1));
+    };
+
     const handleStudentTableChange = (pagination) => {
         setStudentPagination({
             current: pagination.current,
@@ -104,9 +168,9 @@ export default function ManageIntroductions() {
     const handleDeleteClass = async () => {
         setSelectedRowKeys([]);
         try {
-            await deleteClass(classIdToDelete);
+            await deleteIntro(classIdToDelete);
             setIsDeleteModalOpen(false);
-            setClasses((prevClasses) => prevClasses.filter((classItem) => classItem.id !== classIdToDelete));
+            setMember((prevClasses) => prevClasses.filter((classItem) => classItem.id !== classIdToDelete));
             setClassIdToDelete(null);
             fetchClasses();
             message.success('Xóa lớp thành công!');
@@ -118,9 +182,9 @@ export default function ManageIntroductions() {
     const handleDeleteSelected = async () => {
         try {
             for (const classId of selectedRowKeys) {
-                await deleteClass(classId);
+                await deleteMember(classId);
             }
-            setClasses((prevClasses) => prevClasses.filter((classItem) => !selectedRowKeys.includes(classItem.id)));
+            setMember((prevClasses) => prevClasses.filter((classItem) => !selectedRowKeys.includes(classItem.id)));
             setSelectedRowKeys([]);
             setIsDeleteModalOpen(false);
             fetchClasses();
@@ -132,7 +196,7 @@ export default function ManageIntroductions() {
 
     const handleDeleteAll = async () => {
         try {
-            await deleteAllClass();
+            // await deleteAllClass();
             setIsDeleteModalOpen(false);
             fetchClasses();
 
@@ -144,8 +208,8 @@ export default function ManageIntroductions() {
 
     const handleAddClass = async (values) => {
         try {
-            await createClass(values);
-            setClasses((prevClasses) => [...prevClasses, { id: Math.random(), ...values }]);
+            await createIntro(values);
+            setMember((prevMember) => [...prevMember, { id: Math.random(), ...values }]);
             message.success('Thêm lớp thành công!');
             setIsAddModalVisible(false);
             form.resetFields();
@@ -154,48 +218,52 @@ export default function ManageIntroductions() {
         }
     };
 
-    const handleEditClass = async (values) => {
+    const handleEditMember = async (values) => {
         try {
-            const success = await updateClass(selectedClass.id, values);
-            if (success) {
-                message.success('Cập nhật lớp học thành công!');
-                setIsEditModalVisible(false);
-                fetchClasses();
+            if (selectedMember) {
+                const success = await updateIntro(selectedMember.id, values);
+                if (success) {
+                    message.success('Cập nhật thành viên thành công!');
+                    setIsEditModalVisible(false);
+                    fetchClasses();
+                } else {
+                    message.error('Cập nhật thất bại!');
+                }
             } else {
-                message.error('Cập nhật lớp học thất bại!');
+                message.error('Không có thành viên được chọn!');
             }
         } catch (error) {
-            console.error('Lỗi khi cập nhật lớp:', error);
-            message.error('Đã xảy ra lỗi khi cập nhật lớp!');
+            console.error('Lỗi khi cập nhật thành viên:', error);
+            message.error('Đã xảy ra lỗi khi cập nhật thành viên!');
         }
     };
 
     const handleSearch = async (value) => {
         setSearchName(value);
         try {
-            const response = await getAllClass();
+            const response = await getIntro();
             const filteredClasses = response?.data.filter((classItem) =>
-                classItem.class_name.toLowerCase().includes(value.toLowerCase()),
+                classItem.content.toLowerCase().includes(value.toLowerCase()),
             );
-            setClasses(filteredClasses);
+            setMember(filteredClasses);
         } catch (error) {
             message.error('Tìm kiếm thất bại!');
         }
     };
 
-    const openEditModal = (classItem) => {
-        setSelectedClass(classItem);
+    const openEditModal = (memberItem) => {
+        setSelectedMember(memberItem);
         setIsEditModalVisible(true);
-        form.setFieldsValue(classItem);
+        form.setFieldsValue(memberItem);
     };
 
-    const openViewModal = async (classItem) => {
+    const openViewModal = async (memberItem) => {
         try {
-            const response = await getStudentByClassId(classItem.id);
-            setStudentList(response?.data?.students || []);
-            setSelectedClass({
-                ...classItem,
-                className: response?.data?.class_name,
+            const response = await getIntroById(memberItem.id);
+
+            setSelectedMember({
+                ...memberItem,
+                name: response?.data?.name,
             });
             setIsViewModalVisible(true);
         } catch (error) {
@@ -203,96 +271,20 @@ export default function ManageIntroductions() {
         }
     };
 
-    const studentColumns = [
-        // id danh so tu 1
-        {
-            title: 'STT',
-            dataIndex: 'id',
-            key: 'id',
-            align: 'center',
-            render: (text, record, index) => index + 1,
-        },
-
-        {
-            title: 'Mã học sinh',
-            dataIndex: 'student_code',
-            key: 'student_code',
-            align: 'center',
-        },
-        {
-            title: 'Họ và tên',
-            dataIndex: 'full_name',
-            key: 'full_name',
-            align: 'center',
-        },
-        {
-            title: 'Ngày sinh',
-            dataIndex: 'date_of_birth',
-            key: 'date_of_birth',
-            align: 'center',
-            render: (date) => new Date(date).toLocaleDateString('vi-VN'),
-        },
-        {
-            title: 'Giới tính',
-            dataIndex: 'sex',
-            key: 'sex',
-            align: 'center',
-        },
-        {
-            title: 'Email',
-            dataIndex: 'email',
-            key: 'email',
-            align: 'center',
-        },
-        {
-            title: 'Số điện thoại',
-            dataIndex: 'phone_number',
-            key: 'phone_number',
-            align: 'center',
-            // render: (phone_number) => '0' + phone_number,
-        },
-    ];
-
-    const handleExportExcel = (students, className) => {
-        students = studentList || [];
-        console.log(students);
-        const data = students.map((student) => ({
-            'Mã sinh viên': student.student_code,
-            'Họ và tên': student.full_name,
-            'Số diện thoại': student.phone_number,
-            Email: student.email,
-            'Giới tính': student.sex,
-            'Ngày sinh': student.date_of_birth,
-            // Thêm các trường khác tùy theo columns của bạn
-        }));
-
-        const ws = XLSX.utils.json_to_sheet(data);
-        const wb = XLSX.utils.book_new();
-        XLSX.utils.book_append_sheet(wb, ws, 'DanhSachSinhVien');
-
-        // Tự động điều chỉnh độ rộng cột
-        const colWidths = Object.keys(data[0]).map((key) => ({
-            wch: Math.max(key.length, ...data.map((item) => String(item[key]).length)),
-        }));
-        ws['!cols'] = colWidths;
-
-        XLSX.writeFile(wb, `DanhSachSinhVien_${className || ''}.xlsx`);
-    };
-
     const columns = [
         {
             title: (
                 <Checkbox
-                    checked={selectedRowKeys.length === classes.length && classes.length > 0}
-                    indeterminate={selectedRowKeys.length > 0 && selectedRowKeys.length < classes.length}
+                    checked={selectedRowKeys.length === member.length && member.length > 0}
+                    indeterminate={selectedRowKeys.length > 0 && selectedRowKeys.length < member.length}
                     onChange={(e) => {
                         const isChecked = e.target.checked;
-                        setSelectedRowKeys(isChecked ? classes.map((classItem) => classItem.id) : []);
+                        setSelectedRowKeys(isChecked ? member.map((memberItem) => memberItem.id) : []);
                     }}
                 />
             ),
             key: 'select',
-            align: 'center',
+            align: 'center' as 'center',
             render: (_, record) => (
                 <div style={{ display: 'flex', justifyContent: 'center', alignItems: 'center' }}>
                     <Checkbox
@@ -308,27 +300,18 @@ export default function ManageIntroductions() {
             ),
         },
         {
-            title: 'Tên lớp',
-            dataIndex: 'class_name',
-            key: 'class_name',
-            sorter: (a, b) => a.class_name.localeCompare(b.class_name),
+            title: 'Nội dung',
+            dataIndex: 'content',
+            key: 'content',
+            sorter: (a, b) => a.content.localeCompare(b.content),
             sortDirections: ['descend', 'ascend'],
             align: 'center',
         },
         {
-            title: 'Số lượng học sinh',
-            dataIndex: 'total_students',
-            key: 'total_students',
-            sorter: (a, b) => a.total_students - b.total_students,
-            sortDirections: ['descend', 'ascend'],
-            align: 'center',
-        },
-        {
-            title: 'Email chủ nhiệm',
-            dataIndex: 'email_chu_nhiem',
-            key: 'email_chu_nhiem',
-            sorter: (a, b) => a.email_chu_nhiem - b.email_chu_nhiem,
-            sortDirections: ['descend', 'ascend'],
+            title: 'Đang áp dụng',
+            dataIndex: 'isApplied',
+            key: 'isApplied',
+            render: (text) => (text ? 'Có' : 'Không'),
             align: 'center',
         },
         {
@@ -347,7 +330,6 @@ export default function ManageIntroductions() {
                     >
                         <EyeOutlined className="text-white" />
                     </Button>
-
                     <Button
                         type="primary"
                         className="shadow-none flex items-center justify-center w-8 h-8 rounded-full bg-yellow-400 text-white p-0"
@@ -376,319 +358,230 @@ export default function ManageIntroductions() {
 
     return (
         <AdminLayout>
-            <div className="p-4 overflow-auto max-w-[calc(100vw-50px)] mt-20">
-                {/* <div className="p-4 overflow-auto max-w-[calc(100vw-50px)] bg-gradient-to-br from-blue-300 via-green-200 to-yellow-200 rounded-lg shadow-lg border-2 border-blue-400"> */}
+            <div className="p-4 overflow-auto max-w-[calc(100vw-50px)] mt-20"></div>
 
-                <div className="mb-4 flex justify-between flex-wrap gap-3 items-center">
-                    <Flex gap={10}>
-                        <Button type="primary" className="shadow-none" onClick={() => setIsAddModalVisible(true)}>
-                            <PlusCircleOutlined />
-                            Tạo
-                        </Button>
-                        <Button
-                            type="primary"
-                            danger
-                            onClick={() => {
-                                setIsBulkDeleteMode(true);
-                                setIsDeleteModalOpen(true);
-                            }}
-                            disabled={selectedRowKeys.length === 0}
-                        >
-                            Xoá
-                        </Button>
-                    </Flex>
-
-                    <div className="flex gap-2 items-center">
-                        <Input.Search
-                            placeholder="Tìm kiếm theo tên lớp"
-                            value={searchName}
-                            onChange={(e) => {
-                                setSearchName(e.target.value);
-                                handleSearch(e.target.value);
-                            }}
-                            style={{ width: 200 }}
-                        />
-                    </div>
-                </div>
-                <div
-                    style={{
-                        display: 'flex',
-                        alignItems: 'center',
-                        gap: '10px',
-                        marginBottom: '16px',
-                        marginTop: '20px',
-                        justifyContent: 'space-between',
-                    }}
-                >
-                    <Button
-                        type="primary"
-                        danger
-                        onClick={() => {
-                            setIsDeleteAllMode(true);
-                            setIsDeleteModalOpen(true);
-                        }}
-                    >
-                        Xoá tất cả
-                    </Button>
-                    <div
-                        style={{
-                            display: 'flex',
-                            alignItems: 'center',
-                            gap: '10px',
-                        }}
-                    >
-                        <span
-                            style={{
-                                color: '#2563EB',
-
-                                fontSize: '20px',
-                                display: 'flex',
-                                alignItems: 'center',
-                                gap: '10px',
-                                fontWeight: 'bold',
-                            }}
-                        >
-                            QUẢN LÝ THÔNG TIN
-                        </span>
-                    </div>
-                    <Flex gap={8} align="center" justify="center">
-                        <span style={{ fontWeight: 'bold' }}>Tổng số:</span>
-                        <Input
-                            style={{
-                                width: '60px',
-                                color: 'red',
-                                fontWeight: 'bold',
-                            }}
-                            value={classes.length}
-                            readOnly
-                            disabled
-                        />
-                    </Flex>
-                </div>
-                <Table
-                    loading={loading}
-                    columns={columns}
-                    dataSource={classes}
-                    rowKey="id"
-                    pagination={{
-                        current: pagination.current,
-                        pageSize: pagination.pageSize,
-                        showSizeChanger: true,
-                        pageSizeOptions: ['5', '10', '20', '50'],
-                        onChange: (page, pageSize) => {
-                            setCurrentPage(page);
-                            setPageSize(pageSize);
-                        },
-                        total: pagination.total,
-                    }}
-                    onChange={handleTableChange}
-                />
-                {/* Modal Thêm Lớp */}
-                <Modal
-                    title="Thêm lớp"
-                    open={isAddModalVisible}
-                    onCancel={() => {
-                        setIsAddModalVisible(false);
-                        setIsView(false);
-                        form.resetFields();
-                    }}
-                    onOk={() => form.submit()}
-                    footer={isView ? null : undefined}
-                >
-                    <Form form={form} layout="vertical" onFinish={handleAddClass}>
-                        <Form.Item
-                            label="Tên lớp"
-                            name="class_name"
-                            rules={[{ required: true, message: 'Vui lòng nhập tên lớp!' }]}
-                        >
-                            <Input placeholder="Nhập tên lớp" />
-                        </Form.Item>
-                        <Form.Item label="Email chủ nhiệm" name="email_chu_nhiem">
-                            <Input placeholder="Nhập email chủ nhiệm" />
-                        </Form.Item>
-                    </Form>
-                </Modal>
-
-                {/* Modal Chỉnh Sửa */}
-                <Modal
-                    title="Chỉnh sửa thông tin lớp"
-                    open={isEditModalVisible}
-                    onCancel={() => {
-                        setIsEditModalVisible(false);
-                        form.resetFields();
-                    }}
-                    onOk={() => form.submit()}
-                >
-                    <Form form={form} layout="vertical" onFinish={handleEditClass}>
-                        <Form.Item
-                            label="Tên lớp"
-                            name="class_name"
-                            rules={[{ required: true, message: 'Vui lòng nhập tên lớp!' }]}
-                        >
-                            <Input placeholder="Nhập tên lớp" />
-                        </Form.Item>
-
-                        <Form.Item label="Email chủ nhiệm" name="email_chu_nhiem">
-                            <Input placeholder="Nhập email chủ nhiệm" />
-                        </Form.Item>
-                        {/* 
-                    <Form.Item label="Số lượng học sinh" name="total_students">
-                        <Input disabled />
-                    </Form.Item> */}
-                    </Form>
-                </Modal>
-
-                {/* Modal view hoc sinh */}
-                <Modal
-                    title={
-                        <div
-                            style={{
-                                display: 'flex',
-                                justifyContent: 'space-between',
-                                alignItems: 'center',
-                                paddingRight: '25px',
-                                paddingBottom: '6px',
-                            }}
-                        >
-                            <Flex gap={24} align="center" justify="center">
-                                <div>
-                                    <span style={{ color: 'black' }}>Danh sách học sinh lớp: </span>
-                                    <span style={{ color: 'red' }}>{`${selectedClass?.className || ''}`}</span>
+            <div className="min-h-screen bg-gray-50">
+                {/* Main Content Container */}
+                <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
+                    {/* Header Section */}
+                    <div className="mb-8">
+                        <div className="flex justify-between items-center">
+                            <h1 className="text-2xl font-bold text-gray-900">QUẢN LÝ THÀNH VIÊN</h1>
+                            <div className="flex items-center space-x-2">
+                                <span className="font-semibold">Tổng số:</span>
+                                <div className="w-16 px-3 py-1 bg-white border rounded text-center text-red-600 font-bold">
+                                    {member.length}
                                 </div>
-                                <Button
-                                    onClick={() => setIsTransferModalVisible(true)}
-                                    type="primary"
-                                    disabled={!selectedStudentIds?.length}
-                                >
-                                    Chuyển lớp
-                                </Button>
-                            </Flex>
-                            <div style={{ display: 'flex', alignItems: 'center', gap: '10px' }}>
-                                <span>Tổng số:</span>
-                                <Input
-                                    style={{
-                                        width: '60px',
-                                        color: 'red',
+                            </div>
+                        </div>
+                    </div>
+
+                    {/* Action Buttons and Search */}
+                    <div className="mb-6 flex flex-col sm:flex-row justify-between gap-4">
+                        <div className="flex space-x-4">
+                            <button
+                                className="inline-flex items-center px-4 py-2 bg-blue-600 text-white rounded-md hover:bg-blue-700"
+                                onClick={() => setIsAddModalVisible(true)}
+                            >
+                                <PlusCircle className="w-4 h-4 mr-2" />
+                                Tạo
+                            </button>
+                            <button
+                                className="inline-flex items-center px-4 py-2 bg-red-600 text-white rounded-md hover:bg-red-700"
+                                disabled={selectedRowKeys.length === 0}
+                                onClick={() => {
+                                    setIsBulkDeleteMode(true);
+                                    setIsDeleteModalOpen(true);
+                                }}
+                            >
+                                <Trash2 className="w-4 h-4 mr-2" />
+                                Xoá
+                            </button>
+                        </div>
+
+                        <div className="relative">
+                            <input
+                                type="text"
+                                placeholder="Tìm kiếm theo tên..."
+                                className="pl-10 pr-4 py-2 border rounded-md w-full sm:w-64"
+                                value={searchName}
+                                onChange={(e) => {
+                                    setSearchName(e.target.value);
+                                    handleSearch(e.target.value);
+                                }}
+                            />
+                            <Search className="w-5 h-5 absolute left-3 top-1/2 transform -translate-y-1/2 text-gray-400" />
+                        </div>
+                    </div>
+
+                    {/* Table Section */}
+                    <div className="bg-white rounded-lg shadow overflow-hidden">
+                        <div className="overflow-x-auto">
+                            <div className="min-w-full divide-y divide-gray-200">
+                                <Table
+                                    loading={loading}
+                                    columns={columns}
+                                    dataSource={member}
+                                    rowKey="id"
+                                    pagination={{
+                                        current: pagination.current,
+                                        pageSize: pagination.pageSize,
+                                        showSizeChanger: true,
+                                        pageSizeOptions: ['5', '10', '20', '50'],
+                                        onChange: (page, pageSize) => {
+                                            setCurrentPage(page);
+                                            setPageSize(pageSize);
+                                        },
+                                        total: pagination.total,
                                     }}
-                                    value={studentList?.length}
-                                    readOnly
-                                    disabled
+                                    onChange={handleTableChange}
                                 />
                             </div>
                         </div>
-                    }
-                    open={isViewModalVisible}
-                    onCancel={() => {
-                        setIsViewModalVisible(false);
-                        setSelectedClass(null);
-                        setStudentList([]);
-                        setSelectedStudentIds([]);
-                    }}
-                    footer={null}
-                    width={1000}
-                >
-                    <div style={{ maxHeight: '500px', overflowY: 'auto' }}>
-                        <Table
-                            columns={studentColumns}
-                            dataSource={studentList.slice(
-                                (studentPagination.current - 1) * studentPagination.pageSize,
-                                studentPagination.current * studentPagination.pageSize,
-                            )}
-                            rowKey="id"
-                            rowSelection={rowSelection}
-                            pagination={{
-                                current: studentPagination.current,
-                                pageSize: studentPagination.pageSize,
-                                total: studentList.length,
-                                showSizeChanger: true,
-                                pageSizeOptions: ['7', '10', '20', '50'],
-                                onChange: (page, pageSize) => {
-                                    handleStudentTableChange({ current: page, pageSize });
-                                },
-
-                                showTotal: (total, range) => `${range[0]}-${range[1]} trên tổng ${total} học sinh`,
-                            }}
-                            scroll={{ x: 800 }}
-                        />
                     </div>
 
-                    <div style={{ display: 'flex', justifyContent: 'flex-end', marginTop: '16px' }}>
-                        <Button
-                            type="primary"
-                            icon={<DownloadOutlined />}
-                            onClick={() => handleExportExcel(studentList, selectedClass?.className)}
-                            disabled={studentList.length === 0}
-                        >
-                            Tải xuống Excel
-                        </Button>
-                    </div>
-                </Modal>
-
-                {/* Modal Xác nhận xóa */}
-                <Modal
-                    title="Xác nhận xóa!"
-                    open={isDeleteModalOpen}
-                    onOk={() => {
-                        if (isBulkDeleteMode) {
-                            handleDeleteSelected();
-                        } else if (isDeleteAllMode) {
-                            handleDeleteAll();
-                        } else {
-                            handleDeleteClass();
-                        }
-                    }}
-                    onCancel={() => {
-                        setIsDeleteModalOpen(false);
-                        setClassIdToDelete(null);
-                        setIsBulkDeleteMode(false);
-                        setIsDeleteAllMode(false);
-                    }}
-                    onClose={() => {
-                        setIsDeleteModalOpen(false);
-                        setIsBulkDeleteMode(false);
-                        setIsDeleteAllMode(false);
-                    }}
-                    okText="Xác nhận"
-                    okType="danger"
-                    cancelText="Hủy"
-                    className="z-1000"
-                >
-                    {isDeleteAllMode
-                        ? 'Bạn có chắc chắn muốn xóa tất cả các lớp? Hành động này không thể hoàn tác'
-                        : isBulkDeleteMode
-                        ? 'Bạn có chắc chắn muốn xóa những lớp đã chọn? Hành động này không thể hoàn tác'
-                        : 'Bạn có chắc chắn muốn xóa lớp này? Hành động này không thể hoàn tác'}
-                </Modal>
-
-                {/* Modal chuyển lớp */}
-                <Modal
-                    title="Chuyển lớp cho học sinh"
-                    open={isTransferModalVisible}
-                    onCancel={handleCancelTransfer}
-                    footer={null}
-                >
-                    <Form>
-                        <Form.Item label="Chọn lớp" name="class">
-                            <Select placeholder="Chọn lớp mới" onChange={(value) => setSelectedClassForTransfer(value)}>
-                                {classes.map((cls) => (
-                                    <Option key={cls.id} value={cls.id}>
-                                        {cls.class_name}
-                                    </Option>
-                                ))}
-                            </Select>
-                        </Form.Item>
-                        <div style={{ display: 'flex', justifyContent: 'flex-end', gap: '10px' }}>
-                            <Button onClick={handleCancelTransfer}>Hủy</Button>
-                            <Button
-                                type="primary"
-                                onClick={handleConfirmChangeClass}
-                                disabled={!selectedClassForTransfer}
+                    {/* Keep all your existing modals, just update their styling */}
+                    {/* Modal styling example: */}
+                    <div className="fixed inset-0 bg-black bg-opacity-50 hidden">
+                        <div className="relative top-1/2 transform -translate-y-1/2 mx-auto max-w-lg bg-white rounded-lg p-6">
+                            <Modal
+                                title="Thêm thành viên"
+                                open={isAddModalVisible}
+                                onCancel={() => {
+                                    setIsAddModalVisible(false);
+                                    setIsView(false);
+                                    form.resetFields();
+                                }}
+                                onOk={() => form.submit()}
+                                footer={isView ? null : undefined}
                             >
-                                Xác nhận
-                            </Button>
+                                <Form
+                                    form={form}
+                                    layout="vertical"
+                                    onFinish={handleAddClass}
+                                    initialValues={{ isApplied: true }}
+                                >
+                                    <Form.Item
+                                        label="Nội dung"
+                                        name="content"
+                                        rules={[{ required: true, message: 'Vui lòng nhập nội dung!' }]}
+                                    >
+                                        <Input.TextArea placeholder="Nhập nội dung" />
+                                    </Form.Item>
+
+                                    <Form.Item label="Trạng thái áp dụng" name="isApplied" required={true}>
+                                        <Select>
+                                            <Select.Option value={true}>Có</Select.Option>
+                                            <Select.Option value={false}>Không</Select.Option>
+                                        </Select>
+                                    </Form.Item>
+
+                                    <Button type="primary" htmlType="submit">
+                                        Gửi
+                                    </Button>
+                                </Form>
+                            </Modal>
+                            {/* Modal Chỉnh Sửa */}
+                            <Modal
+                                title="Chỉnh sửa thành viên"
+                                open={isEditModalVisible}
+                                onCancel={() => {
+                                    setIsEditModalVisible(false);
+                                    form.resetFields();
+                                }}
+                                onOk={() => form.submit()}
+                            >
+                                <Form form={form} layout="vertical" onFinish={handleEditMember}>
+                                    <Form.Item
+                                        label="Nội dung"
+                                        name="content"
+                                        rules={[{ required: true, message: 'Vui lòng nhập nội dung!' }]}
+                                    >
+                                        <Input.TextArea placeholder="Nhập nội dung" />
+                                    </Form.Item>
+
+                                    <Form.Item
+                                        label="Đang áp dụng"
+                                        name="isApplied"
+                                        rules={[{ required: true, message: 'Vui lòng chọn trạng thái!' }]}
+                                    >
+                                        <Select>
+                                            <Select.Option value={true}>Có</Select.Option>
+                                            <Select.Option value={false}>Không</Select.Option>
+                                        </Select>
+                                    </Form.Item>
+
+                                    <Button type="primary" htmlType="submit">
+                                        Lưu
+                                    </Button>
+                                </Form>
+                            </Modal>
+                            {/* Modal view hoc sinh */}
+                            <Modal
+                                open={isViewModalVisible}
+                                onCancel={() => {
+                                    setIsViewModalVisible(false);
+                                    setSelectedMember(null);
+                                }}
+                                footer={null}
+                                width={400}
+                            >
+                                <Divider />
+
+                                {/* Danh sách thông tin */}
+                                <Flex vertical gap={12}>
+                                    <Flex justify="space-between">
+                                        <span style={{ fontWeight: 'bold' }}>Nội dung:</span>
+                                        <span>{selectedMember?.content || 'Chưa có dữ liệu'}</span>
+                                    </Flex>
+                                    <Flex justify="space-between">
+                                        <span style={{ fontWeight: 'bold' }}>Trạng thái:</span>
+                                        <span style={{ color: selectedMember?.isApplied ? 'green' : 'red' }}>
+                                            {selectedMember?.isApplied ? 'Có' : 'Không'}
+                                        </span>
+                                    </Flex>
+                                </Flex>
+                            </Modal>
+
+                            {/* Modal Xác nhận xóa */}
+                            <Modal
+                                title="Xác nhận xóa!"
+                                open={isDeleteModalOpen}
+                                onOk={() => {
+                                    if (isBulkDeleteMode) {
+                                        handleDeleteSelected();
+                                    } else if (isDeleteAllMode) {
+                                        handleDeleteAll();
+                                    } else {
+                                        handleDeleteClass();
+                                    }
+                                }}
+                                onCancel={() => {
+                                    setIsDeleteModalOpen(false);
+                                    setClassIdToDelete(null);
+                                    setIsBulkDeleteMode(false);
+                                    setIsDeleteAllMode(false);
+                                }}
+                                onClose={() => {
+                                    setIsDeleteModalOpen(false);
+                                    setIsBulkDeleteMode(false);
+                                    setIsDeleteAllMode(false);
+                                }}
+                                okText="Xác nhận"
+                                okType="danger"
+                                cancelText="Hủy"
+                                className="z-1000"
+                            >
+                                {isDeleteAllMode
+                                    ? 'Bạn có chắc chắn muốn xóa tất cả bản ghi? Hành động này không thể hoàn tác'
+                                    : isBulkDeleteMode
+                                    ? 'Bạn có chắc chắn muốn xóa những bản ghi đã chọn? Hành động này không thể hoàn tác'
+                                    : 'Bạn có chắc chắn muốn xóa bản ghi này? Hành động này không thể hoàn tác'}
+                            </Modal>
+                            {/* Modal chuyển lớp */}
                         </div>
-                    </Form>
-                </Modal>
+                    </div>
+                </div>
             </div>
         </AdminLayout>
     );
