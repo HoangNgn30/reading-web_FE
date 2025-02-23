@@ -1,6 +1,5 @@
 import { useState, useEffect } from 'react';
 import ReactModal from 'react-modal';
-import logo from '../../assets/logo.png';
 import { toast } from 'react-toastify';
 import axios from 'axios';
 import { useNavigate } from 'react-router-dom';
@@ -57,7 +56,7 @@ function Header() {
                         decoding="async"
                         data-nimg="1"
                         style={{ color: `transparent` }}
-                        src={logo}
+                        src={'/'}
                         className="rounded-full"
                     />
                     <span className="font-bold ml-[10px] hidden md:block text-[#001355] text-xl">Job Finding Web</span>
