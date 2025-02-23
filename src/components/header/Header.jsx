@@ -17,13 +17,12 @@ function Header() {
     const toggleOpen = () => setModalIsOpen((prev) => !prev);
     const closeModal = () => setModalIsOpen(false);
 
-    // Check if user is logged in when the component mounts
     useEffect(() => {
         const token = Cookies.get('jwt');
         if (token) {
-            setIsLoggedIn(true); // User is logged in
+            setIsLoggedIn(true);
         } else {
-            setIsLoggedIn(false); // User is not logged in
+            setIsLoggedIn(false);
         }
     }, []);
 
@@ -43,7 +42,7 @@ function Header() {
     };
 
     const handleLogin = () => {
-        navigate('/login'); // Navigate to login page
+        navigate('/login');
     };
 
     return (
@@ -61,9 +60,7 @@ function Header() {
                         src={logo}
                         className="rounded-full"
                     />
-                    <span className="font-bold ml-[10px] hidden md:block text-[#001355] text-xl">
-                        AIoT LAB - FIT DNU
-                    </span>
+                    <span className="font-bold ml-[10px] hidden md:block text-[#001355] text-xl">Job Finding Web</span>
                 </a>
 
                 <div
@@ -79,10 +76,6 @@ function Header() {
                             Thành viên
                         </a>
 
-                        <a href="#Project" className="cursor-pointer">
-                            Nghiên cứu khoa học
-                        </a>
-
                         <a href="#Activity" className="cursor-pointer">
                             Hoạt động
                         </a>
@@ -96,7 +89,7 @@ function Header() {
                 {isLoggedIn ? (
                     <button onClick={handleLogOut}>Đăng xuất</button>
                 ) : (
-                    <button onClick={handleLogin}>Đăng nhập</button> // Show "Đăng nhập" button if not logged in
+                    <button onClick={handleLogin}>Đăng nhập</button>
                 )}
 
                 <div className="lg:hidden flex items-center">
@@ -135,9 +128,7 @@ function Header() {
                             <a href="#Activity" className="block py-2 cursor-pointer text-white">
                                 Hoạt động
                             </a>
-                            <a href="#Department" className="block py-2 cursor-pointer text-white">
-                                Chuyên ngành
-                            </a>
+
                             <a href="#Contact" className="block py-2 cursor-pointer text-white">
                                 Liên hệ
                             </a>

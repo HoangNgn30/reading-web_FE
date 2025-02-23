@@ -1,85 +1,80 @@
-import React, { useState } from 'react';
-import { useNavigate, Link } from 'react-router-dom';
-import axios from 'axios';
-import { ToastContainer, toast } from 'react-toastify';
-import 'react-toastify/dist/ReactToastify.css';
-import { Loader2 } from 'lucide-react';
-import { useAuthApi } from '../../services/authServices';
-
-const API_BASE_URL = 'https://be-aiot-lab-landing-page.onrender.com';
+import React from 'react';
+import { useState } from 'react';
+import { FaGoogle } from 'react-icons/fa';
 
 const Login = () => {
-    const [email, setEmail] = useState('');
+    const [username, setUsername] = useState('');
     const [password, setPassword] = useState('');
-    const [isLoading, setIsLoading] = useState(false);
-    const navigate = useNavigate();
-    const { login } = useAuthApi();
 
-    const handleSubmit = async (e: React.FormEvent) => {
+    const handleSubmit = (e) => {
         e.preventDefault();
-        setIsLoading(true);
-
-        try {
-            const response = await login({ email, password });
-            toast.success('Login thành công!');
-            setTimeout(() => navigate('/admin'), 500);
-        } catch (error: any) {
-            console.error('Login Failed:', error.response?.data?.message || 'Có lỗi xảy ra');
-            toast.error(error.response?.data?.message || 'Đăng nhập thất bại! 😢, hãy thử lại!', { autoClose: 3000 });
-            setIsLoading(false);
-        }
+        console.log('Tên tài khoản:', username);
+        console.log('Mật khẩu:', password);
     };
 
     return (
-        <div className="flex items-center justify-center min-h-screen bg-gray-100">
-            <div className="bg-white p-8 rounded-lg shadow-lg w-96 flex flex-col items-center gap-2">
-                <h2 className="text-2xl font-bold text-center mb-4">Chào mừng trở lại AiOT Lab</h2>
-                <form onSubmit={handleSubmit} className="w-full">
+        <div className="flex min-h-screen items-center justify-center bg-gray-100">
+            <div className="w-full max-w-md rounded-lg bg-white p-8 shadow-lg">
+                <h2 className="mb-6 text-center text-2xl font-semibold">Đăng nhập</h2>
+                <form onSubmit={handleSubmit}>
+                    {/* Tên tài khoản */}
                     <div className="mb-4">
-                        <label className="block text-gray-700">Email</label>
+                        <label className="mb-1 block text-sm font-medium text-gray-600">Tên tài khoản</label>
                         <input
-                            type="email"
-                            className="w-full px-4 py-2 border rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-400"
-                            value={email}
-                            onChange={(e) => setEmail(e.target.value)}
+                            type="text"
+                            value={username}
+                            onChange={(e) => setUsername(e.target.value)}
+                            className="w-full rounded-md border p-2 outline-none focus:border-blue-500"
                             required
-                            disabled={isLoading}
                         />
                     </div>
+
+                    {/* Mật khẩu */}
                     <div className="mb-4">
-                        <label className="block text-gray-700">Mật khẩu</label>
+                        <label className="mb-1 block text-sm font-medium text-gray-600">Mật khẩu</label>
                         <input
                             type="password"
-                            className="w-full px-4 py-2 border rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-400"
                             value={password}
                             onChange={(e) => setPassword(e.target.value)}
+                            className="w-full rounded-md border p-2 outline-none focus:border-blue-500"
                             required
-                            disabled={isLoading}
                         />
                     </div>
-                    <button
-                        type="submit"
-                        className="w-full bg-blue-500 text-white py-2 rounded-lg hover:bg-blue-600 disabled:opacity-50 disabled:cursor-not-allowed flex items-center justify-center"
-                        disabled={isLoading}
-                    >
-                        {isLoading ? (
-                            <>
-                                <Loader2 className="animate-spin mr-2 h-5 w-5" />
-                                Đang đăng nhập...
-                            </>
-                        ) : (
-                            'Đăng nhập'
-                        )}
+
+                    {/* Nút đăng nhập */}
+                    <button type="submit" className="w-full rounded-md bg-blue-500 py-2 text-white hover:bg-blue-600">
+                        Đăng nhập
                     </button>
-                    <div className="flex gap-2 mt-4">
-                        <span>Chưa có tài khoản?</span>
-                        <Link to="/signup" className="font-medium text-amber-500">
-                            Đăng ký ngay
-                        </Link>
+
+                    {/* Quên mật khẩu */}
+                    <div className="mt-2 text-right text-sm">
+                        <a href="#" className="text-blue-500 hover:underline">
+                            Quên mật khẩu?
+                        </a>
                     </div>
                 </form>
+
+                {/* Hoặc */}
+                <div className="my-6 flex items-center">
+                    <div className="h-px flex-1 bg-gray-300"></div>
+                    <span className="mx-4 text-gray-500">Hoặc</span>
+                    <div className="h-px flex-1 bg-gray-300"></div>
+                </div>
+
+                {/* Đăng nhập bằng Google */}
+                <button className="flex w-full items-center justify-center gap-2 rounded-md bg-gray-200 py-2 text-gray-700 hover:bg-gray-300">
+                    <FaGoogle className="text-red-500" />
+                    Đăng nhập bằng Google
+                </button>
+
+                {/* Đăng ký tài khoản */}
+                <div className="mt-4 text-center text-sm">
+                    Bạn chưa có tài khoản?{' '}
+                    <a href="#" className="text-blue-500 hover:underline">
+                        Đăng ký tài khoản
+                    </a>
+                </div>
             </div>
-            <ToastContainer position="top-right" />
         </div>
     );
 };
