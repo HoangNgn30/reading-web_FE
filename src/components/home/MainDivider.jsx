@@ -1,7 +1,13 @@
-import React, { useEffect } from 'react';
+import { useEffect } from 'react';
 import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
-import StarBackgound from '../background/StarBackground';
+import Hero from './Hero';
+import Collection from './Collection';
+import Popular from './Popular';
+import Features from './Features';
+import Footer from '../footer/Footer';
+import About from './About';
+import { Feather } from 'lucide-react';
 
 function MainDivider() {
     useEffect(() => {
@@ -13,14 +19,17 @@ function MainDivider() {
     }, []);
 
     return (
-        <div className="w-full">
-            <div className="felx flex-col">
-                <div className="absolute w-full">
-                    <StarBackgound />
-                </div>
+        <>
+            <Hero />
+            <Popular />
+            <About />
+            <Collection />
+            <Features />
+            <div className="max-pad-container bg-white">
+                <Footer />
             </div>
             <ToastContainer position="top-right" />
-        </div>
+        </>
     );
 }
 

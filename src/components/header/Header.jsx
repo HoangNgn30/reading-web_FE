@@ -2,41 +2,42 @@ import { useState, useEffect } from 'react';
 import ReactModal from 'react-modal';
 import { toast } from 'react-toastify';
 import axios from 'axios';
-import { useNavigate } from 'react-router-dom';
+import { useNavigate, Link } from 'react-router-dom';
 import Cookies from 'js-cookie';
+import Navbar from './Navbar';
+import { CgMenuLeft } from 'react-icons/cg';
+import { RiSearchLine } from 'react-icons/ri';
+import logo from '../../assets/logo.png'
 
 const API_BASE_URL = 'https://be-aiot-lab-landing-page.onrender.com';
 
 ReactModal.setAppElement('#root');
+
 function Header() {
-    const [modalIsOpen, setModalIsOpen] = useState(false);
-    const [isLoggedIn, setIsLoggedIn] = useState(false); // Track login state
+    const [menuOpened, setMenuOpened] = useState(false);
+    const [isLoggedIn, setIsLoggedIn] = useState(false);
     const navigate = useNavigate();
 
-    const toggleOpen = () => setModalIsOpen((prev) => !prev);
-    const closeModal = () => setModalIsOpen(false);
+    const toggleMenu = () => {
+        setMenuOpened((prev) => !prev);
+    };
 
     useEffect(() => {
         const token = Cookies.get('jwt');
-        if (token) {
-            setIsLoggedIn(true);
-        } else {
-            setIsLoggedIn(false);
-        }
+        setIsLoggedIn(!!token);
     }, []);
 
     const handleLogOut = async () => {
         try {
-            const response = await axios.post(`${API_BASE_URL}/auth/logout`);
+            await axios.post(`${API_BASE_URL}/auth/logout`);
             Cookies.remove('jwt');
-            console.log(response);
             toast.success('Đăng xuất thành công', { autoClose: 1000 });
             setTimeout(() => {
                 navigate('/login');
             }, 1000);
         } catch (error) {
             toast.error('Đăng xuất thất bại, hãy thử lại!');
-            console.log(error);
+            console.error(error);
         }
     };
 
@@ -45,103 +46,64 @@ function Header() {
     };
 
     return (
-        <div className="w-full h-[65px] fixed top-0 shadow-lg shadow-[#2A0E61]/50  md:backdrop-blur-md z-40 px-10 md:bg-transparent bg-slate-100">
-            <div className="w-full h-full flex flex-row items-center justify-between m-auto px-[10px]">
-                <a href="#Intro" className="h-full w-auto flex flex-row items-center">
-                    <img
-                        alt="logo"
-                        loading="lazy"
-                        width="150"
-                        height="150"
-                        decoding="async"
-                        data-nimg="1"
-                        style={{ color: `transparent` }}
-                        src={'/'}
-                        className="rounded-full"
+        <header className="fixed top-0 left-0 right-0 h-[80px] w-screen bg-white shadow-sm z-50">
+            <div className="max-pad-container h-full flex items-center">
+                {/* Logo */}
+                <Link to="/" className="text-xl font-bold w-[200px]">
+                    <img src={logo} alt="logo" className="h-[80px] w-auto" />
+                </Link>
+
+                {/* Navigation */}
+                <div className="flex-1 flex justify-center">
+                    <Navbar
+                        containerStyles={`${
+                            menuOpened
+                                ? 'flex flex-col gap-y-16 h-screen w-[200px] absolute left-0 top-0 z-50 bg-white px-10 py-4 shadow-xl'
+                                : 'hidden xl:flex justify-center gap-x-8 xl:gap-x-14 medium-15 px-2 py-1'
+                        }`}
+                        toggleMenu={toggleMenu}
+                        menuOpened={menuOpened}
                     />
-                    <span className="font-bold ml-[10px] hidden md:block text-[#001355] text-xl">Job Finding Web</span>
-                </a>
-
-                <div
-                    className="hidden lg:flex w-fit h-full flex-row items-center justify-between md:mr-10 md:text-sm xl:text-base"
-                    style={{ maxWidth: '100%' }}
-                >
-                    <div className="flex items-center justify-between border border-[#7042f861] bg-[#0300145e] mr-[15px] px-[20px] py-[10px] rounded-full gap-10 z-50 font-medium text-gray-200">
-                        <a href="#Intro" className="cursor-pointer">
-                            Giới thiệu
-                        </a>
-
-                        <a href="#Member" className="cursor-pointer">
-                            Thành viên
-                        </a>
-
-                        <a href="#Activity" className="cursor-pointer">
-                            Hoạt động
-                        </a>
-
-                        <a href="#Contact" className="cursor-pointer">
-                            Liên hệ
-                        </a>
-                    </div>
                 </div>
 
-                {isLoggedIn ? (
-                    <button onClick={handleLogOut}>Đăng xuất</button>
-                ) : (
-                    <button onClick={handleLogin}>Đăng nhập</button>
-                )}
+                {/* Right Section - Menu, Search & User */}
+                <div className="flex items-center gap-x-4 w-[500px] justify-end m-10">
+                    {/* Menu Button */}
+                    <CgMenuLeft
+                        onClick={toggleMenu}
+                        className="w-5 h-5 text-black text-2xl xl:hidden cursor-pointer mr-[10px]"
+                    />
 
-                <div className="lg:hidden flex items-center">
-                    <button className="text-gray-300" onClick={toggleOpen}>
-                        <svg
-                            aria-hidden="true"
-                            focusable="false"
-                            data-prefix="fas"
-                            data-icon="bars"
-                            className="svg-inline--fa fa-bars "
-                            role="img"
-                            xmlns="http://www.w3.org/2000/svg"
-                            viewBox="0 0 448 512"
-                            width={20}
-                            height={20}
-                            style={{ color: '#ffffff', fontSize: '20px' }}
+                    {/* Search */}
+                    <div className="relative">
+                        <input
+                            type="text"
+                            placeholder="Tìm kiếm"
+                            className="w-[200px] h-10 pl-4 pr-10 rounded-full border border-black focus:outline-none focus:border-secondary"
+                        />
+                        <button className="absolute right-4 top-1/2 -translate-y-1/2">
+                            <RiSearchLine className="w-5 h-5 text-black" />
+                        </button>
+                    </div>
+
+                    {isLoggedIn ? (
+                        <button
+                            onClick={handleLogOut}
+                            className="px-4 py-2 rounded-full bg-secondary text-white hover:bg-secondaryOne hover:text-black transition-colors"
                         >
-                            <path
-                                fill="currentColor"
-                                d="M0 96C0 78.3 14.3 64 32 64l384 0c17.7 0 32 14.3 32 32s-14.3 32-32 32L32 128C14.3 128 0 113.7 0 96zM0 256c0-17.7 14.3-32 32-32l384 0c17.7 0 32 14.3 32 32s-14.3 32-32 32L32 288c-17.7 0-32-14.3-32-32zM448 416c0 17.7-14.3 32-32 32L32 448c-17.7 0-32-14.3-32-32s14.3-32 32-32l384 0c17.7 0 32 14.3 32 32z"
-                            ></path>
-                        </svg>
-                    </button>
-
-                    <ReactModal
-                        isOpen={modalIsOpen}
-                        onRequestClose={closeModal}
-                        shouldCloseOnOverlayClick={true}
-                        className="bg-transparent"
-                        style={{ overlay: { backgroundColor: 'transparent', zIndex: 40 } }}
-                    >
-                        <div className="absolute top-[65px] right-0 bg-[#020213d2] border border-[#7042f861] w-[250px] p-4 rounded-lg shadow-lg z-50">
-                            <a href="#Intro" className="block py-2 cursor-pointer text-white">
-                                Giới thiệu
-                            </a>
-                            <a href="#Activity" className="block py-2 cursor-pointer text-white">
-                                Hoạt động
-                            </a>
-
-                            <a href="#Contact" className="block py-2 cursor-pointer text-white">
-                                Liên hệ
-                            </a>
-
-                            {isLoggedIn ? (
-                                <button onClick={handleLogOut}>Đăng xuất</button>
-                            ) : (
-                                <button onClick={handleLogin}>Đăng nhập</button>
-                            )}
-                        </div>
-                    </ReactModal>
+                            Đăng xuất
+                        </button>
+                    ) : (
+                        <button
+                            onClick={handleLogin}
+                            className="px-4 py-2 rounded-full bg-secondary text-white hover:bg-secondaryOne hover:text-black transition-colors"
+                        >
+                            Đăng nhập
+                        </button>
+                    )}
                 </div>
             </div>
-        </div>
+        </header>
     );
 }
 
