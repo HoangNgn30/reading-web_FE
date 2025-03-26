@@ -1,14 +1,36 @@
 import { useState } from 'react';
 import loginVideo from '../../assets/login1.mp4';
+import { useNavigate } from 'react-router-dom';
+import useAuthApi from '../../services/authServices';
+import { toast } from 'react-toastify';
 
 const Login = () => {
-    const [username, setUsername] = useState('');
+    const navigate = useNavigate();
+    const { login } = useAuthApi();
+    const [isLoading, setIsLoading] = useState(false);
+
+    const [usernameOrEmail, setUsername] = useState('');
     const [password, setPassword] = useState('');
 
-    const handleSubmit = (e) => {
+    const handleSubmit = async (e) => {
         e.preventDefault();
-        console.log('Tên tài khoản:', username);
-        console.log('Mật khẩu:', password);
+        setIsLoading(true);
+
+        try {
+            const response = await login({ usernameOrEmail, password });
+            console.log(response);
+            if (response.status == 200) {
+                navigate('/');
+                toast.success(response.message, { autoClose: 3000 });
+            } else {
+                toast.error(response.message, { autoClose: 3000 });
+            }
+        } catch (error) {
+            console.error('Lỗi đăng nhập:', error);
+            toast.error(error.response?.data?.message || 'Đăng nhập thất bại!', { autoClose: 3000 });
+        } finally {
+            setIsLoading(false);
+        }
     };
 
     return (
@@ -35,7 +57,7 @@ const Login = () => {
                             <label className="mb-2 block text-sm font-medium text-gray-700">Tên tài khoản</label>
                             <input
                                 type="text"
-                                value={username}
+                                value={usernameOrEmail}
                                 onChange={(e) => setUsername(e.target.value)}
                                 className="w-full rounded-lg border border-gray-200 bg-white p-3 text-gray-900 focus:border-green-800 focus:ring-2 focus:ring-green-800"
                                 placeholder="Nhập tên tài khoản"

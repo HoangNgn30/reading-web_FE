@@ -1,21 +1,20 @@
 import { useState, useEffect } from 'react';
 import ReactModal from 'react-modal';
 import { toast } from 'react-toastify';
-import axios from 'axios';
 import { useNavigate, Link } from 'react-router-dom';
 import Cookies from 'js-cookie';
 import Navbar from './Navbar';
 import { CgMenuLeft } from 'react-icons/cg';
 import { RiSearchLine } from 'react-icons/ri';
 import logo from '../../assets/logo.png'
-
-const API_BASE_URL = 'https://be-aiot-lab-landing-page.onrender.com';
+import useAuthApi from '../../services/authServices';
 
 ReactModal.setAppElement('#root');
 
 function Header() {
     const [menuOpened, setMenuOpened] = useState(false);
     const [isLoggedIn, setIsLoggedIn] = useState(false);
+    const {logout} = useAuthApi();
     const navigate = useNavigate();
 
     const toggleMenu = () => {
@@ -29,8 +28,7 @@ function Header() {
 
     const handleLogOut = async () => {
         try {
-            await axios.post(`${API_BASE_URL}/auth/logout`);
-            Cookies.remove('jwt');
+            await logout();
             toast.success('Đăng xuất thành công', { autoClose: 1000 });
             setTimeout(() => {
                 navigate('/login');
