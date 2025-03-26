@@ -1,6 +1,7 @@
 import { data } from 'autoprefixer';
 import httpRequest from '../utils/httpRequest';
 import Cookie from 'js-cookie';
+import axios from 'axios';
 
 const storyApi = () => {
     const postStory = async ({ title, authorName, genre, description }) => {

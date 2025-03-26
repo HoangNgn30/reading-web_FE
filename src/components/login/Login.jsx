@@ -14,16 +14,15 @@ const Login = () => {
 
     const handleSubmit = async (e) => {
         e.preventDefault();
-        setIsLoading(true);
 
         try {
             const response = await login({ usernameOrEmail, password });
-            console.log(response);
-            if (response.status == 200) {
+            //console.log(response.data.message);
+            if (response.status === 200) {
                 navigate('/');
-                toast.success(response.message, { autoClose: 3000 });
+                toast.success(response.data.message, { autoClose: 1000 });
             } else {
-                toast.error(response.message, { autoClose: 3000 });
+                toast.error(response.data.message, { autoClose: 1000 });
             }
         } catch (error) {
             console.error('Lỗi đăng nhập:', error);
@@ -81,6 +80,7 @@ const Login = () => {
                         {/* Nút đăng nhập */}
                         <button
                             type="submit"
+                            onSubmit={handleSubmit}
                             className="w-full rounded-lg bg-secondary py-3 text-white transition-colors hover:bg-secondaryOne hover:text-black focus:outline-none focus:ring-2 focus:ring-green-800 focus:ring-offset-2"
                         >
                             Đăng nhập
@@ -88,7 +88,7 @@ const Login = () => {
 
                         {/* Quên mật khẩu */}
                         <div className="text-right">
-                            <a href="#" className="text-sm text-secondary hover:text-secondary hover:underline">
+                            <a href="/reset-password" className="text-sm text-secondary hover:text-secondary hover:underline">
                                 Quên mật khẩu?
                             </a>
                         </div>

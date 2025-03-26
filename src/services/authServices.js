@@ -9,6 +9,7 @@ const useAuthApi = () => {
 
             if (res?.data?.token) {
                 localStorage.setItem('jwt', res.data.token);
+                Cookies.set('jwt', res.data.token);
             }
 
             return { status: res.status, data: res.data };
@@ -31,6 +32,7 @@ const useAuthApi = () => {
     const logout = async () => {
         try {
             const res = await httpRequest.post(`/auth/logout`, {});
+            Cookies.remove('jwt');
             localStorage.removeItem('jwt');
             return { status: res.status, data: res.data };
         } catch (error) {
@@ -84,6 +86,15 @@ const useAuthApi = () => {
         }
     };
 
+    const resetPassword = async (usernameOrEmail) => {
+        try {
+            const res = await httpRequest.post(`/auth/reset-password`, { usernameOrEmail });
+            return { status: await res.status, data: res.data };
+        } catch (error) {
+
+        }
+    }
+
     const getRole = () => {
         try {
             const token = Cookies.get('jwt');
@@ -102,6 +113,7 @@ const useAuthApi = () => {
         updateUsername,
         updateAvatar,
         updatePassword,
+        resetPassword,
         getRole
     };
 };

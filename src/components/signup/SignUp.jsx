@@ -26,8 +26,8 @@ function Signup() {
         setIsLoading(true);
 
         try {
-            await signUp(formData);
-            toast.success('Đăng ký thành công! 🎉', { autoClose: 500 });
+            const response = await signUp(formData);
+            toast.success(response.data.message, { autoClose: 500 });
             navigate('/login');
         } catch (error) {
             console.error('Error signing up:', error);

@@ -1,7 +1,9 @@
 import { BrowserRouter, Route, Routes } from 'react-router-dom';
-import { publicRoutes, protectedRoutes } from './routes'; // Separate routes
+import { publicRoutes, protectedRoutes } from './routes';
 import React from 'react';
 import RequireAuth from './components/RequireAuth';
+import { ToastContainer } from 'react-toastify'; 
+import 'react-toastify/dist/ReactToastify.css'; 
 
 interface RouteConfig {
     path: string;
@@ -54,6 +56,8 @@ function App() {
                         })}
                     </Route>
                 </Routes>
+
+                <ToastContainer position="top-right" autoClose={3000} />
             </div>
         </BrowserRouter>
     );

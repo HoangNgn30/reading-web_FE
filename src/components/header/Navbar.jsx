@@ -8,7 +8,7 @@ const Navbar = ({ containerStyles, toggleMenu, menuOpened }) => {
         { to: '/', label: 'Trang chủ' },
         { to: '/categories', label: 'Thể loại' },
         { to: '/following', label: 'Theo dõi' },
-        { to: '/history', label: 'Lịch sử' },
+        { to: '/add-story', label: 'Thêm sách' },
         { to: '/books', label: 'Tìm sách' },
     ];
     return (

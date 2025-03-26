@@ -23,15 +23,20 @@ function Header() {
 
     useEffect(() => {
         const token = Cookies.get('jwt');
-        setIsLoggedIn(!!token);
+        //console.log(token);
+        if(!token)
+            setIsLoggedIn(false);
+        else
+            setIsLoggedIn(true);
     }, []);
 
     const handleLogOut = async () => {
         try {
-            await logout();
-            toast.success('Đăng xuất thành công', { autoClose: 1000 });
+            const response = await logout();
+            setIsLoggedIn(false);
+            toast.success(response.data.message, { autoClose: 1000 });
             setTimeout(() => {
-                navigate('/login');
+                navigate('/');
             }, 1000);
         } catch (error) {
             toast.error('Đăng xuất thất bại, hãy thử lại!');
@@ -84,7 +89,7 @@ function Header() {
                         </button>
                     </div>
 
-                    {isLoggedIn ? (
+                    {isLoggedIn == true ? (
                         <button
                             onClick={handleLogOut}
                             className="px-4 py-2 rounded-full bg-secondary text-white hover:bg-secondaryOne hover:text-black transition-colors"
