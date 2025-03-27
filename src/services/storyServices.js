@@ -39,8 +39,16 @@ const storyApi = () => {
 
     const getStory = async (storyId, page) => {
         try {
-            const token = Cookie.get('jwt');
             const res = await httpRequest.get(`/story/${storyId}/${page}`, {});
+            return { status: res.status, data: res.data };
+        } catch (error) {
+            console.log(error);
+        }
+    };
+
+    const getStoryById = async (storyId) => {
+        try {
+            const res = await httpRequest.get(`/story/${storyId}`, {});
             return { status: res.status, data: res.data };
         } catch (error) {
             console.log(error);
@@ -56,10 +64,10 @@ const storyApi = () => {
         }
     }
 
-    const updateStory = async (storyId, { title, authorName, description, statusId, latestChapterId, avatar, genre }) => {
+    const updateStory = async (storyId, { title, authorName, description, status, genre, avatar }) => {
         try {
             const token = Cookie.get('jwt');
-            const res = await httpRequest.post(`/story/update/${storyId}`, { title, authorName, description, statusId, latestChapterId, avatar, genre }, {
+            const res = await httpRequest.post(`/story/update/${storyId}`, { title, authorName, description, status, genre, avatar }, {
                 headers: {
                     "Content-Type": "application/json",
                     "Authorization": `Bearer ${token}`,
@@ -124,7 +132,8 @@ const storyApi = () => {
         updateStory,
         deleteStory,
         addManager,
-        deleteManager
+        deleteManager,
+        getStoryById
     }
 };
 

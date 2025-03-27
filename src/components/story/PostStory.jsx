@@ -67,7 +67,7 @@ const PostStory = () => {
             const response = await postStory(formData);
             if (response.status === 200) {
                 toast.success(response.data.message, { autoClose: 3000 });
-                navigate("/");
+                navigate("/managed-story");
             }else{
                 toast.error(response.data.message, {autoClose: 1000});
                 navigate(0);
