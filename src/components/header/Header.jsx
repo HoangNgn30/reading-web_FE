@@ -1,4 +1,4 @@
-import { useState, useEffect } from 'react';
+import { useState, useEffect, useRef } from 'react';
 import ReactModal from 'react-modal';
 import { toast } from 'react-toastify';
 import { useNavigate, Link } from 'react-router-dom';
@@ -6,15 +6,18 @@ import Cookies from 'js-cookie';
 import Navbar from './Navbar';
 import { CgMenuLeft } from 'react-icons/cg';
 import { RiSearchLine } from 'react-icons/ri';
-import logo from '../../assets/logo.png'
+import { VscAccount } from 'react-icons/vsc';
+import logo from '../../assets/logo.png';
 import useAuthApi from '../../services/authServices';
 
 ReactModal.setAppElement('#root');
 
 function Header() {
+    const [isDropdownOpen, setIsDropdownOpen] = useState(false);
+    const dropdownRef = useRef(null);
     const [menuOpened, setMenuOpened] = useState(false);
     const [isLoggedIn, setIsLoggedIn] = useState(false);
-    const {logout} = useAuthApi();
+    const { logout } = useAuthApi();
     const navigate = useNavigate();
 
     const toggleMenu = () => {
@@ -23,12 +26,28 @@ function Header() {
 
     useEffect(() => {
         const token = Cookies.get('jwt');
-        //console.log(token);
-        if(!token)
-            setIsLoggedIn(false);
-        else
-            setIsLoggedIn(true);
+        setIsLoggedIn(!!token);
     }, []);
+
+    // Đóng dropdown khi click ra ngoài
+    useEffect(() => {
+        const handleClickOutside = (event) => {
+            if (dropdownRef.current && !dropdownRef.current.contains(event.target)) {
+                setIsDropdownOpen(false);
+            }
+        };
+
+        document.addEventListener('mousedown', handleClickOutside);
+        return () => document.removeEventListener('mousedown', handleClickOutside);
+    }, []);
+
+    const menu = [
+        { to: '/profile', label: 'Thông tin tài khoản' },
+        { to: '/followed', label: 'Danh sách theo dõi' },
+        { to: '/history', label: 'Lịch sử đọc sách' },
+        { to: '/add-story', label: 'Đăng sách' },
+        { to: '/managed-story', label: 'Quản lý sách' },
+    ];
 
     const handleLogOut = async () => {
         try {
@@ -89,21 +108,50 @@ function Header() {
                         </button>
                     </div>
 
-                    {isLoggedIn == true ? (
-                        <button
-                            onClick={handleLogOut}
-                            className="px-4 py-2 rounded-full bg-secondary text-white hover:bg-secondaryOne hover:text-black transition-colors"
-                        >
-                            Đăng xuất
-                        </button>
-                    ) : (
-                        <button
-                            onClick={handleLogin}
-                            className="px-4 py-2 rounded-full bg-secondary text-white hover:bg-secondaryOne hover:text-black transition-colors"
-                        >
-                            Đăng nhập
-                        </button>
-                    )}
+                    {/* Account Dropdown */}
+                    <div className="relative" ref={dropdownRef}>
+                        <VscAccount
+                            onClick={() => setIsDropdownOpen(!isDropdownOpen)}
+                            className="w-6 h-6 cursor-pointer hover:text-secondary transition-colors"
+                        />
+                        {isDropdownOpen && (
+                            <div className="absolute right-0 mt-2 w-48 bg-white rounded-lg shadow-lg py-2 z-50">
+                                {isLoggedIn ? (
+                                    <>
+                                        {menu.map((item, index) => (
+                                            <Link
+                                                key={index}
+                                                to={item.to}
+                                                className="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100"
+                                                onClick={() => setIsDropdownOpen(false)}
+                                            >
+                                                {item.label}
+                                            </Link>
+                                        ))}
+                                        <button
+                                            onClick={() => {
+                                                handleLogOut();
+                                                setIsDropdownOpen(false);
+                                            }}
+                                            className="w-full text-left px-4 py-2 text-sm text-red-600 hover:bg-gray-100"
+                                        >
+                                            Đăng xuất
+                                        </button>
+                                    </>
+                                ) : (
+                                    <button
+                                        onClick={() => {
+                                            handleLogin();
+                                            setIsDropdownOpen(false);
+                                        }}
+                                        className="w-full text-left px-4 py-2 text-sm text-gray-700 hover:bg-gray-100"
+                                    >
+                                        Đăng nhập
+                                    </button>
+                                )}
+                            </div>
+                        )}
+                    </div>
                 </div>
             </div>
         </header>

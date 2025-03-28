@@ -8,6 +8,11 @@ import UpdateStory from '../components/story/UpdateStory';
 import React from 'react';
 import ManagedStories from '../components/story/ManagedStories';
 import StoryInfo from '../components/story/StoryInfo';
+import Categories from '../components/features/Categories';
+import Followed from '../components/features/Followed';
+import History from '../components/features/History';
+import Books from '../components/features/Books';
+import Profile from '../components/auth/Profile';     
 
 const publicRoutes = [
     {
@@ -34,6 +39,31 @@ const publicRoutes = [
         path: '/story/:id',
         component: StoryInfo,
         layout: ({ children }) => <>{children}</>,
+    },
+    {
+        path: '/categories',
+        component: Categories,
+        layout: HeaderOnly,
+    },
+    {
+        path: '/followed',
+        component: Followed,
+        layout: HeaderOnly,
+    },
+    {
+        path: '/history',
+        component: History,
+        layout: HeaderOnly,
+    },
+    {
+        path: '/books',
+        component: Books,
+        layout: HeaderOnly,
+    },
+    {
+        path: '/profile',
+        component: Profile,
+        layout: HeaderOnly,
     },
 ];
 
