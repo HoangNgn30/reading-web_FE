@@ -7,6 +7,7 @@ import PostStory from '../components/story/PostStory';
 import UpdateStory from '../components/story/UpdateStory';
 import React from 'react';
 import ManagedStories from '../components/story/ManagedStories';
+import StoryInfo from '../components/story/StoryInfo';
 
 const publicRoutes = [
     {
@@ -28,6 +29,11 @@ const publicRoutes = [
         path: '/reset-password',
         component: ResetPassword,
         layout: ({ children }: { children: React.ReactNode }) => <>{children}</>,
+    },
+    {
+        path: '/story/:id',
+        component: StoryInfo,
+        layout: ({ children }) => <>{children}</>,
     },
 ];
 
